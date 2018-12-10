@@ -1,0 +1,328 @@
+public abstract class BaseClient : IDisposable
+{
+    public EventHandler<GettingAccessTokenEventArgs> GettingAccessToken;
+    public EventHandler<SendingWebRequestEventArgs> SendingWebRequest;
+
+    protected BaseClient();
+    protected BaseClient(string clientId, string clientSecret);
+
+    public string ClientId { get; set; }//?
+    public string ClientSecret { get; set; }
+
+    public Collection<Uri> BaseUris { get; }
+    protected WebResponse SendWebRequest(WebRequest webRequest);
+    protected Task<WebResponse> SendWebRequestAsync(WebRequest webRequest);
+    protected string GetNextCandidateBaseUri();//?
+    protected virtual string GetNextCandidateBaseUriCore();
+    protected virtual void OnGettingAccessToken(GettingAccessTokenEventArgs e);
+    protected virtual void OnSendingWebRequest(SendingWebRequestEventArgs e);//可重写可不重写   
+    public virtual void Dispose();
+}
+
+public class ColorClient : BaseClient, IDisposable
+{
+    public ColorClient();
+    public ColorClient(string clientId, string clientSecret);
+
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInAnalogousFamily(int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInAnalogousFamilyAsync(int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInAnalogousFamily(GeoColor color, int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInAnalogousFamilyAsync(GeoColor color, int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInComplementaryFamily(int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInComplementaryFamilyAsync(int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInComplementaryFamily(GeoColor color, int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInComplementaryFamilyAsync(GeoColor color, int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInContrastingFamily(int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInContrastingFamilyAsync(int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInContrastingFamily(GeoColor color, int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInContrastingFamilyAsync(GeoColor color, int numberOfColors);
+    public Collection<GeoColor> GetColorsInHueFamily(int numberOfColors);
+    public Task<Collection<GeoColor>> GetColorsInHueFamilyAsync(int numberOfColors);
+    public Collection<GeoColor> GetColorsInHueFamily(GeoColor color, int numberOfColors);
+    public Task<Collection<GeoColor>> GetColorsInHueFamilyAsync(GeoColor color, int numberOfColors);
+    public Collection<GeoColor> GetColorsInQualityFamily(int numberOfColors);
+    public Task<Collection<GeoColor>> GetColorsInQualityFamilyAsync(int numberOfColors);
+    public Collection<GeoColor> GetColorsInQualityFamily(GeoColor color, int numberOfColors);
+    public Task<Collection<GeoColor>> GetColorsInQualityFamilyAsync(GeoColor color, int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTetradFamily(int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInTetradFamilyAsync(int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTetradFamily(GeoColor color, int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInTetradFamilyAsync(GeoColor color, int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTriadFamily(int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInTriadFamilyAsync(int numberOfColors);
+    public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTriadFamily(GeoColor color, int numberOfColors);
+    public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInTriadFamilyAsync(GeoColor color, int numberOfColors);
+}
+
+public class ElevationClient : BaseClient, IDisposable
+{
+    public ElevationClient();
+    public ElevationClient(string clientId, string clientSecret);
+
+    public double GetElevationOfPoint(double x, double y, int pointProjectionInSrid, DistanceUnit elevationUnit);
+    public double GetElevationOfPoint(double x, double y, string pointProjectionInProj4String, DistanceUnit elevationUnit);
+    public Task<double> GetElevationOfPointAsync(double x, double y, int pointProjectionInSrid, DistanceUnit elevationUnit);
+    public Task<double> GetElevationOfPointAsync(double x, double y, string pointProjectionInProj4String, DistanceUnit elevationUnit);
+    
+    public ElevationResult GetElevationOfPoints(IEnumerable<PointShape> points, int pointsProjectionInSrid, DistanceUnit elevationUnit);
+    public ElevationResult GetElevationOfPoints(IEnumerable<PointShape> points, string pointsProjectionInProj4String, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfPointsAsync(IEnumerable<PointShape> points, int pointsProjectionInSrid, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfPointsAsync(IEnumerable<PointShape> points, string pointsProjectionInProj4String, DistanceUnit elevationUnit);
+
+    public ElevationResult GetElevationOfLine(LineBaseShape line, int lineProjectionInSrid, int numberOfSegments, DistanceUnit elevationUnit);
+    public ElevationResult GetElevationOfLine(LineBaseShape line, string lineProjectionInProj4String, int numberOfSegments, DistanceUnit elevationUnit);¬
+    public ElevationResult GetElevationOfLine(LineBaseShape line, int lineProjectionInSrid, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public ElevationResult GetElevationOfLine(LineBaseShape line, string lineProjectionInProj4String, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfLineAsync(LineBaseShape line, int lineProjectionInSrid, int numberOfSegments, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfLineAsync(LineBaseShape line, string lineProjectionInProj4String, int numberOfSegments, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfLineAsync(LineBaseShape line, int lineProjectionInSrid, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfLineAsync(LineBaseShape line, string lineProjectionInProj4String, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    
+    public GradeResult GetGradeOfLine(LineShape line, int lineProjectionInSrid, int numberOfSegments, DistanceUnit elevationUnit);
+    public GradeResult GetGradeOfLine(LineShape line, string lineProjectionInProj4String, int numberOfSegments, DistanceUnit elevationUnit);
+    public GradeResult GetGradeOfLine(LineShape line, int lineProjectionInSrid, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public GradeResult GetGradeOfLine(LineShape line, string lineProjectionInProj4String, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public Task<GradeResult> GetGradeOfLineAsync(LineShape line, int lineProjectionInSrid,           double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public Task<GradeResult> GetGradeOfLineAsync(LineShape line, string lineProjectionInProj4String, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public Task<GradeResult> GetGradeOfLineAsync(LineShape line, int lineProjectionInSrid,           int numberOfSegments,    DistanceUnit elevationUnit);
+    public Task<GradeResult> GetGradeOfLineAsync(LineShape line, string lineProjectionInProj4String, int numberOfSegments,    DistanceUnit elevationUnit);
+    
+    public ElevationResult GetElevationOfArea(AreaBaseShape area, int projectionInSrid, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public ElevationResult GetElevationOfArea(AreaBaseShape area, string projectionInProj4String, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfAreaAsync(AreaBaseShape area, int projectionInSrid,          double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+    public Task<ElevationResult> GetElevationOfAreaAsync(AreaBaseShape area, string projectionInProj4String, double intervalDistance, DistanceUnit intervalDistanceUnit, DistanceUnit elevationUnit);
+}
+
+public struct ElevationPointResult //
+{
+    public ElevationPointResult(double elevation, PointShape point, ThinkGeoCloudApplicationException exception);
+
+    public double Elevation { get; }
+    public PointShape Point { get; }
+    public ThinkGeoCloudApplicationException Exception { get; }
+}
+
+public class ElevationResult
+{
+    public ElevationResult(Collection<ElevationPointResult> elevationPoints, ElevationPointResult highestElevationPoint, ElevationPointResult lowestElevationPoint, double averageElevation);
+
+    public Collection<ElevationPointResult> ElevationPoints { get; }
+    public ElevationPointResult LowestElevationPoint { get; }
+    public ElevationPointResult HighestElevationPoint { get; }
+    public double AverageElevation { get; }
+}
+
+public class GettingAccessTokenEventArgs : EventArgs
+{
+    public GettingAccessTokenEventArgs();
+    public GettingAccessTokenEventArgs(WebRequest webRequest);
+    public GettingAccessTokenEventArgs(WebRequest webRequest, bool cancel);
+
+    public WebRequest WebRequest { get; }
+    public bool Cancel { get; set; }
+}
+
+public class GradeResult
+{
+    public GradeResult(GradeSegment highestGradeSegment, GradeSegment lowestGradeSegment, double averageGrade);
+
+    public Collection<GradeSegment> GradeSegments { get; }
+    public GradeSegment HighestGradeSegment { get; }
+    public GradeSegment LowestGradeSegment { get; }
+    public double AverageGrade { get; }
+}
+
+public struct GradeSegment
+{
+    public GradeSegment(double grade, LineShape gradeLine, double startingElevation, double endingElevation);
+
+    public double Grade { get; }
+    public LineShape GradeLine { get; }
+    public double StartingElevation { get; }
+    public double EndingElevation { get; }
+}
+
+[Flags]
+public enum LocationCategories
+{
+    None,
+    Common,
+    All,
+    Aeroway,
+    Amenity,
+    Barrier,
+    Boundary,
+    Building,
+    Education,
+    Entertainment,
+    Financial,
+    Healthcare,
+    Historic,
+    Leisure,
+    Manmade,
+    Natural,
+    Rail,
+    Power,
+    Road,
+    Shop,
+    Sport,
+    Sustenance,
+    Tourism,
+    Transportation,
+    Waterway,
+    Intersection,
+    AddressPoint,
+    Others,
+}
+
+public enum MapProjection
+{
+    SphericalMercator,
+}
+
+public class MapsClient : BaseClient, IDisposable
+{
+    public MapsClient();
+    public MapsClient(string clientId, string clientSecret);
+
+    public Stream GetRasterTile(long z, long x, long y, MapProjection projection, RasterMapType mapType, TileSize tileSize, TileResolution tileResolution);
+    public Task<Stream> GetRasterTileAsync(long z, long x, long y, MapProjection projection, RasterMapType mapType, TileSize tileSize, TileResolution tileResolution);
+    public Stream GetVectorTile(long z, long x, long y, MapProjection projection);
+    public Task<Stream> GetVectorTileAsync(long z, long x, long y, MapProjection projection);
+}
+
+public class ProjectionClient : BaseClient, IDisposable
+{
+    public ProjectionClient();
+    public ProjectionClient(string clientId, string clientSecret);
+
+    public Feature Project(Feature feature, string fromProjectionInProj4String, string toProjectionInProj4String);
+    public Feature Project(Feature feature, int fromProjectionInSrid, int toProjectionInSrid);
+    public Feature Project(Feature feature, string fromProjectionInProj4String, int toProjectionInSrid);
+    public Feature Project(Feature feature, int fromProjectionInSrid, string toProjectionInProj4String);
+
+    public Task<Feature> ProjectAsync(Feature feature, string fromProjectionInProj4String, string toProjectionInProj4String);
+    public Task<Feature> ProjectAsync(Feature feature, int fromProjectionInSrid, int toProjectionInSrid);
+    public Task<Feature> ProjectAsync(Feature feature, string fromProjectionInProj4String, int toProjectionInSrid);
+    public Task<Feature> ProjectAsync(Feature feature, int fromProjectionInSrid, string toProjectionInProj4String);
+}
+
+public enum RasterMapType
+{
+    Default,
+    Light,
+    Dark,
+    Hybrid,
+    Aerial,
+    TransparentBackground,
+}
+
+public class ReverseGeocodingClient : BaseClient, IDisposable
+{
+    public ReverseGeocodingClient();
+    public ReverseGeocodingClient(string clientId, string clientSecret);
+
+    public ReverseGeocodingResult Search(double x, double y, int pointProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public ReverseGeocodingResult Search(double x, double y, int pointProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+    public ReverseGeocodingResult Search(double x, double y, string pointProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public ReverseGeocodingResult Search(double x, double y, string pointProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+    public Task<ReverseGeocodingResult> SearchAsync(double x, double y, int pointProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public Task<ReverseGeocodingResult> SearchAsync(double x, double y, int pointProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+    public Task<ReverseGeocodingResult> SearchAsync(double x, double y, string pointProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public Task<ReverseGeocodingResult> SearchAsync(double x, double y, string pointProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+    
+    public ReverseGeocodingResult Search(LineShape line, int lineProjectionInSrid, double searchBuffer, DistanceUnit unitOfsearchBuffer);
+    public ReverseGeocodingResult Search(LineShape line, int lineProjectionInSrid, double searchBuffer, DistanceUnit unitOfsearchBuffer, ReverseGeocodingOptions options);
+    public ReverseGeocodingResult Search(LineShape line, string lineProjectionInProj4String, double searchBuffer, DistanceUnit unitOfsearchBuffer);
+    public ReverseGeocodingResult Search(LineShape line, string lineProjectionInProj4String, double searchBuffer, DistanceUnit unitOfsearchBuffer, ReverseGeocodingOptions options);
+    public Task<ReverseGeocodingResult> SearchAsync(LineShape line, int lineProjectionInSrid, double searchBuffer, DistanceUnit unitOfsearchBuffer);
+    public Task<ReverseGeocodingResult> SearchAsync(LineShape line, int lineProjectionInSrid, double searchBuffer, DistanceUnit unitOfsearchBuffer, ReverseGeocodingOptions options);
+    public Task<ReverseGeocodingResult> SearchAsync(LineShape line, string lineProjectionInProj4String, double searchBuffer, DistanceUnit unitOfsearchBuffer);
+    public Task<ReverseGeocodingResult> SearchAsync(LineShape line, string lineProjectionInProj4String, double searchBuffer, DistanceUnit unitOfsearchBuffer, ReverseGeocodingOptions options);
+    
+    public ReverseGeocodingResult Search(PolygonShape area, int areaProjectionInSrid);
+    public ReverseGeocodingResult Search(PolygonShape area, int areaProjectionInSrid, ReverseGeocodingOptions options);
+    public ReverseGeocodingResult Search(PolygonShape area, string areaProjectionInProj4String);
+    public ReverseGeocodingResult Search(PolygonShape area, string areaProjectionInProj4String, ReverseGeocodingOptions options);
+    public Task<ReverseGeocodingResult> SearchAsync(PolygonShape area, int areaProjectionInSrid);
+    public Task<ReverseGeocodingResult> SearchAsync(PolygonShape area, int areaProjectionInSrid, ReverseGeocodingOptions options);
+    public Task<ReverseGeocodingResult> SearchAsync(PolygonShape area, string areaProjectionInProj4String);
+    public Task<ReverseGeocodingResult> SearchAsync(PolygonShape area, string areaProjectionInProj4String, ReverseGeocodingOptions options);
+    
+    public Collection<ReverseGeocodingResult> Search(IEnumerable<PointShape> points, int pointsProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public Collection<ReverseGeocodingResult> Search(IEnumerable<PointShape> points, int pointsProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+    public Collection<ReverseGeocodingResult> Search(IEnumerable<PointShape> points, string pointsProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public Collection<ReverseGeocodingResult> Search(IEnumerable<PointShape> points, string pointsProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+    public Task<Collection<ReverseGeocodingResult>> SearchAsync(IEnumerable<PointShape> points, int pointsProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public Task<Collection<ReverseGeocodingResult>> SearchAsync(IEnumerable<PointShape> points, int pointsProjectionInSrid, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+    public Task<Collection<ReverseGeocodingResult>> SearchAsync(IEnumerable<PointShape> points, string pointsProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius);
+    public Task<Collection<ReverseGeocodingResult>> SearchAsync(IEnumerable<PointShape> points, string pointsProjectionInProj4String, double searchRadius, DistanceUnit unitOfsearchRadius, ReverseGeocodingOptions options);
+}
+
+public class ReverseGeocodingLocation
+{
+    public ReverseGeocodingLocation();
+
+    public Feature LocationFeature { get; set; }
+    public string LocationName { get; set; }
+    public string RelationToQueryFeature { get; set; }
+    public string DirectionFromQueryFeature { get; set; }
+    public double DistanceFromQueryFeature { get; set; }
+    public string LocationCategory { get; set; }
+    public string LocationType { get; set; }
+    public string Address { get; set; }
+    public string HouseNumber { get; set; }
+    public Dictionary<string, string> Properties { get; set; }
+    public string Postcode { get; set; }
+    public Dictionary<string, string> AddressComponents { get; set; }//key 唯一
+}
+
+public class ReverseGeocodingOptions
+{
+    public ReverseGeocodingOptions();
+
+    public int MaxResults { get; set; }
+    public LocationCategories LocationCategories { get; set; }
+    public ReverseGeocodingResultDetail ResultDetail { get; set; }
+    public DistanceUnit DistanceUnit { get; set; }
+    public Collection<string> LocationTypes { get; }
+}
+
+public class ReverseGeocodingResult
+{
+    public ReverseGeocodingResult(Feature queryFeature, ReverseGeocodingLocation bestMatchLocation, ThinkGeoCloudApplicationException exception);
+
+    public Feature QueryFeature { get; }
+    public ReverseGeocodingLocation BestMatchLocation { get; }
+    public Collection<ReverseGeocodingLocation> NearbyLocations { get; }
+    public ThinkGeoCloudApplicationException Exception { get; }
+}
+
+public enum ReverseGeocodingResultDetail
+{
+    Default,
+    Verbose,
+    Standard,
+}
+
+public class ThinkGeoCloudApplicationException : ApplicationException, ISerializable, _Exception
+{
+    public ThinkGeoCloudApplicationException(HttpStatusCode statusCode, string message, Exception innerException);
+
+    public HttpStatusCode StatusCode { get; }
+}
+
+public enum TileResolution
+{
+    Default,
+    Standard,
+    High,
+}
+
+public enum TileSize
+{
+    Default,
+    Small,
+    Medium,
+}
+

@@ -1,0 +1,26 @@
+{
+  "name": "cloudclient",
+  "version": "1.0.0",
+  "description": "JavaScript SDK for making maps.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "build-index": "webpack --config webpack.config-index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThinkGeo/CloudClient.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThinkGeo/CloudClient.js/issues"
+  },
+  "homepage": "https://github.com/ThinkGeo/CloudClient.js#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
