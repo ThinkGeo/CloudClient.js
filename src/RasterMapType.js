@@ -4,7 +4,7 @@ const RasterMapType = {
     Dark: 2,
     Hybrid: 3,
     Aerial: 4,
-    TransparentBackground: 5
+    TransparentBackground: 5,
 };
 
 Object.freeze(RasterMapType);

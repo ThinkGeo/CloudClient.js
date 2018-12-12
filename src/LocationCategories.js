@@ -26,7 +26,7 @@ const LocationCategories = {
     Waterway: 24,
     Intersection: 25,
     AddressPoint: 26,
-    Others: 27
+    Others: 27,
 };
 
 Object.freeze(LocationCategories);
