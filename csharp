@@ -6,7 +6,7 @@ public abstract class BaseClient : IDisposable
     protected BaseClient();
     protected BaseClient(string clientId, string clientSecret);
 
-    public string ClientId { get; set; }//?
+    public string ClientId { get; set; }
     public string ClientSecret { get; set; }
 
     public Collection<Uri> BaseUris { get; }
@@ -28,26 +28,32 @@ public class ColorClient : BaseClient, IDisposable
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInAnalogousFamilyAsync(int numberOfColors);
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInAnalogousFamily(GeoColor color, int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInAnalogousFamilyAsync(GeoColor color, int numberOfColors);
+
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInComplementaryFamily(int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInComplementaryFamilyAsync(int numberOfColors);
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInComplementaryFamily(GeoColor color, int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInComplementaryFamilyAsync(GeoColor color, int numberOfColors);
+
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInContrastingFamily(int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInContrastingFamilyAsync(int numberOfColors);
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInContrastingFamily(GeoColor color, int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInContrastingFamilyAsync(GeoColor color, int numberOfColors);
+
     public Collection<GeoColor> GetColorsInHueFamily(int numberOfColors);
     public Task<Collection<GeoColor>> GetColorsInHueFamilyAsync(int numberOfColors);
     public Collection<GeoColor> GetColorsInHueFamily(GeoColor color, int numberOfColors);
     public Task<Collection<GeoColor>> GetColorsInHueFamilyAsync(GeoColor color, int numberOfColors);
+
     public Collection<GeoColor> GetColorsInQualityFamily(int numberOfColors);
     public Task<Collection<GeoColor>> GetColorsInQualityFamilyAsync(int numberOfColors);
     public Collection<GeoColor> GetColorsInQualityFamily(GeoColor color, int numberOfColors);
     public Task<Collection<GeoColor>> GetColorsInQualityFamilyAsync(GeoColor color, int numberOfColors);
+
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTetradFamily(int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInTetradFamilyAsync(int numberOfColors);
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTetradFamily(GeoColor color, int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInTetradFamilyAsync(GeoColor color, int numberOfColors);
+
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTriadFamily(int numberOfColors);
     public Task<Dictionary<GeoColor, Collection<GeoColor>>> GetColorsInTriadFamilyAsync(int numberOfColors);
     public Dictionary<GeoColor, Collection<GeoColor>> GetColorsInTriadFamily(GeoColor color, int numberOfColors);

@@ -1,10 +1,7 @@
 import BaseClient from "./BaseClient.js";
 
 class MapsClient extends BaseClient {
-    constructor({
-        clientId = 'clientId',
-        clientSecret = 'clientSecret'
-    } = {}) {
+    constructor(clientId = 'clientId', clientSecret = 'clientSecret') {
         super(clientId, clientSecret);
     }
 

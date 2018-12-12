@@ -1,0 +1,1 @@
+import ISerializable from './ISerializable.js';

@@ -1,10 +1,7 @@
 import BaseClient from "./BaseClient.js";
 
 class ProjectionClient extends BaseClient {
-    constructor({
-        clientId = 'clientId',
-        clientSecret = 'clientSecret'
-    } = {}) {
+    constructor(clientId = 'clientId', clientSecret = 'clientSecret') {
         super(clientId, clientSecret);
     }
 
@@ -15,16 +12,16 @@ class ProjectionClient extends BaseClient {
      * @public
      */
     async ProjectAsync(feature, fromProjection, toProjection) {
-        if(){//fromProjection is int
-            if(){//toProjection is int
+        if () { //fromProjection is int
+            if () { //toProjection is int
 
-            }else{//toProjection is string
+            } else { //toProjection is string
 
             }
-        }else{//fromProjection is string
-            if(){//toProjection is int
+        } else { //fromProjection is string
+            if () { //toProjection is int
 
-            }else{//toProjection is string
+            } else { //toProjection is string
 
             }
         }

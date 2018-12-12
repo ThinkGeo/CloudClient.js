@@ -4,7 +4,7 @@
 import IDisposable from './IDisposable.js';
 
 class BaseClient extends IDisposable {
-    constructor({clientId = 'clientId', clientSecret = 'clientSecret'} = {}) {
+    constructor(clientId = 'clientId', clientSecret = 'clientSecret') {
         super();
 
         /**
@@ -13,6 +13,7 @@ class BaseClient extends IDisposable {
          */
         this.clientId_ = clientId;
         this.clientSecret_ = clientSecret;
+        this.BaseUris_ = new Set();
     }
 
     GettingAccessToken(GettingAccessTokenEventArgs) {
@@ -23,24 +24,24 @@ class BaseClient extends IDisposable {
 
     }
 
-    getClientId() {
+    get ClientId() {
         return this.clientId_;
     }
 
-    setClientId(clientId) {
-        this.clientId_ = clientId;
+    set ClientId(value) {
+        this.clientId_ = value;
     }
 
-    getClientSecret() {
+    get ClientSecret() {
         return this.clientSecret_;
     }
 
-    setClientSecret(clientSecret) {
-        this.clientSecret_ = clientSecret;
+    set ClientSecret(value) {
+        this.clientSecret_ = value;
     }
 
-    getBaseUris(Uri) {
-        return Uri;
+    get BaseUris() {
+        return this.BaseUris_;
     }
 
     async SendWebRequestAsync(webRequest){

@@ -9,51 +9,51 @@ class ReverseGeocodingLocation{
 
     get LocationFeature(){}
 
-    set LocationFeature(){}
+    set LocationFeature(value){}
 
     get LocationName(){}
 
-    set LocationName(){}
+    set LocationName(value){}
 
     get RelationToQueryFeature(){}
 
-    set RelationToQueryFeature(){}
+    set RelationToQueryFeature(value){}
 
     get DirectionFromQueryFeature(){}
 
-    set DirectionFromQueryFeature(){}
+    set DirectionFromQueryFeature(value){}
 
     get DistanceFromQueryFeature(){}
 
-    set DistanceFromQueryFeature(){}
+    set DistanceFromQueryFeature(value){}
 
     get LocationCategory(){}
 
-    set LocationCategory(){}
+    set LocationCategory(value){}
 
     get LocationType(){}
 
-    set LocationType(){}
+    set LocationType(value){}
 
     get Address(){}
 
-    set Address(){}
+    set Address(value){}
 
     get HouseNumber(){}
 
-    set HouseNumber(){}
+    set HouseNumber(value){}
 
     get Properties(){}
 
-    set Properties(){}
+    set Properties(value){}
 
     get Postcode(){}
 
-    set Postcode(){}
+    set Postcode(value){}
 
     get AddressComponents(){}
 
-    set AddressComponents(){}
+    set AddressComponents(value){}
 }
 
 export default ReverseGeocodingLocation;

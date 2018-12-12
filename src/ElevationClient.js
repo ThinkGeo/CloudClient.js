@@ -5,10 +5,7 @@
 import BaseClient from './BaseClient.js';
 
 class ElevationClient extends BaseClient {
-    constructor({
-        clientId = 'clientId',
-        clientSecret = 'clientSecret'
-    } = {}) {
+    constructor(clientId = 'clientId', clientSecret = 'clientSecret') {
         super(clientId, clientSecret);
     }
 

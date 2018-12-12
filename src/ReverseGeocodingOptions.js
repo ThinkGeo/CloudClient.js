@@ -9,19 +9,19 @@ class ReverseGeocodingOptions{
 
     get MaxResults(){}
 
-    set MaxResults(){}
+    set MaxResults(value){}
 
     get LocationCategories(){}
 
-    set LocationCategories(){}
+    set LocationCategories(value){}
 
     get ResultDetail(){}
 
-    set ResultDetail(){}
+    set ResultDetail(value){}
 
     get DistanceUnit(){}
 
-    set DistanceUnit(){}
+    set DistanceUnit(value){}
 
     get LocationTypes(){}
 }

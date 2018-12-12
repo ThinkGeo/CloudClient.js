@@ -14,20 +14,20 @@ class ElevationResult {
 
     }
 
-    getElevationPoints(){
-        return ElevationPoints;
+    get ElevationPoints(){
+        
     }
 
-    getLowestElevationPoint(){
-        return LowestElevationPoint;
+    get LowestElevationPoint(){
+        
     }
 
-    getElevationPointResult(){
-        return ElevationPointResult;
+    get ElevationPointResult(){
+        
     }
 
-    getAverageElevation(){
-        return AverageElevation;
+    get AverageElevation(){
+        
     }
 }
 

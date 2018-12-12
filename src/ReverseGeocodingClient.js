@@ -1,10 +1,7 @@
 import BaseClient from "./BaseClient.js";
 
 class ReverseGeocodingClient extends BaseClient {
-    constructor({
-        clientId = 'clientId',
-        clientSecret = 'clientSecret'
-    } = {}) {
+    constructor(clientId = 'clientId', clientSecret = 'clientSecret') {
         super(clientId, clientSecret);
     }
 
@@ -18,7 +15,7 @@ class ReverseGeocodingClient extends BaseClient {
      * @public
      */
     async SearchAsync(...arg) {
-  
+
     }
 }
 

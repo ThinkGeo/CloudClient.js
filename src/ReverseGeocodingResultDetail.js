@@ -1,7 +1,7 @@
 const ReverseGeocodingResultDetail = {
-    Default,
-    Verbose,
-    Standard
+    Default: 0,
+    Verbose: 1,
+    Standard: 2
 };
 
 Object.freeze(ReverseGeocodingResultDetail);
