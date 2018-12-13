@@ -5,6 +5,9 @@ import IDisposable from './IDisposable.js';
 
 class BaseClient extends IDisposable {
     constructor(clientId = 'clientId', clientSecret = 'clientSecret') {
+        if(new.target === BaseClient){
+            throw TypeError("BaseClient is an abstract class, so cannot instantiated.");
+        }
         super();
 
         /**
