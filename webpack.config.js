@@ -1,24 +1,20 @@
-const path = require("path");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
-module.exports = {
-    entry: path.join(__dirname, "/src/index.js"),
+var developConfig = {
+    entry: './src/index.js',
     devtool: 'source-map',
     output: {
-        path: path.resolve(__dirname, 'dist'),
         filename: 'CloudClient.js',
         library: 'T',
         libraryTarget: 'umd',
         libraryExport: 'default'
     },
-    plugins: [
-        new CleanWebpackPlugin('dist')
-    ],
-    module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: "babel-loader"
-        }]
+    mode: 'development',
+    devServer: {
+        openPage: "./debug",
+        host: 'localhost',
+        compress: true,
+        port: 8080
     }
-};
+}
+module.exports = [developConfig];
