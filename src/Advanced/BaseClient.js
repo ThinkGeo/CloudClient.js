@@ -87,7 +87,7 @@ class BaseClient extends Disposable {
     }
 
     formatResponse(response) {
-        return formatResponseCore(response);
+        return this.formatResponseCore(response);
     }
 
     formatResponseCore(response) {
