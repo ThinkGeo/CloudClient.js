@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ThinkGeoCloudClient</title>
+    <link rel="stylesheet" href="vectormap.css" type="text/css">
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+
+        pre {
+            overflow-y: auto;
+            height: 500px;
+        }
+    </style>
+    <script src="vectormap-dev.js"></script>
 </head>
 
 <body>
@@ -13,6 +26,12 @@
     <button id="search">search</button>
     <div id="response1"></div>
     <div id="response2"></div>
+    <div id="response3"></div>
+    <div id="map" class="map"></div>
+
+    <pre id="lineElevation">
+        <code id="response4"></code>
+    </pre>
 </body>
 <script src="../dist/ThinkGeoCloudClient.js"></script>
 <script src="index.js"></script>
