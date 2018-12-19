@@ -4,8 +4,8 @@ var developConfig = {
     entry: './src/index.js',
     devtool: 'source-map',
     output: {
-        filename: 'CloudClient.js',
-        library: 'T',
+        filename: 'ThinkGeoCloudClient.js',
+        library: 'tg',
         libraryTarget: 'umd',
         libraryExport: 'default'
     },

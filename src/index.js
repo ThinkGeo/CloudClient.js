@@ -1,7 +1,7 @@
 import $Elevation$Client from "./Elevation/ElevationClient";
 
-let T = {};
+let tg = {};
 
-T.ElevationClient = $Elevation$Client;
+tg.ElevationClient = $Elevation$Client;
 
-export default T;
+export default tg;

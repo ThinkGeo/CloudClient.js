@@ -1,7 +1,4 @@
-
-
-
-var ec = new T.ElevationClient({
+var ec = new tg.ElevationClient({
     apiKey: "v8pUXjjVgVSaUOhJCZENyNpdtN7_QnOooGkG0JxEdcI~"
 });
 
