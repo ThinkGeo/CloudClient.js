@@ -7,16 +7,17 @@ var request = function () {
 
     let point = inputValue.split(',');
 
-    //// API 1:
-    // ec.getElevationOfPoint(point[0], point[1], null, null, "Feet", function (s, f) {
-    //     document.getElementById('response').innerText = f;
-    // })
+    // API 1:
+    ec.getElevationOfPoint(point[0], point[1], null, null, "Feet", function (status, elevationResponse) {
+        document.getElementById('response1').innerText = elevationResponse;
+    })
 
     // API 2:
     ec.getElevationOfPointPromise(point[0], point[1], null, null, "Feet").then(function (elevationResponse) {
-        document.getElementById('response').innerText = elevationResponse;
+        document.getElementById('response2').innerText = elevationResponse;
     }, function (errorText) {
-        document.getElementById('response').innerText = errorText;
+        document.getElementById('response2').innerText = errorText;
     })
 }
+
 document.getElementById('search').addEventListener('click', request);

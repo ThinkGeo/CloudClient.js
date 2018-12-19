@@ -7,7 +7,7 @@ class ElevationClient extends BaseClient {
     }
 
     getElevationOfPoint(y, x, projectionInSrid, projectionInProj4String, elevationUnit, callback) {
-        let xhr = createGetElevationOfPointRequest(y, x, projectionInSrid, projectionInProj4String, elevationUnit);
+        let xhr = this.createGetElevationOfPointRequest(y, x, projectionInSrid, projectionInProj4String, elevationUnit);
         this.sendWebRequest(xhr, callback);
     }
 
