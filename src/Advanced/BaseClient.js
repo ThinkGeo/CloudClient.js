@@ -65,12 +65,16 @@ class BaseClient extends Disposable {
     }
 
     sendWebRequest(xhr, callback) {
-        
+
         xhr.onload = function (event) {
-            callback(xhr.status, xhr.responseText);
+            if (callback) {
+                callback(xhr.status, xhr.responseText);
+            }
         }
         xhr.onerror = function () {
-            callback("error", "request error");
+            if (callback) {
+                callback("error", "request error");
+            }
         }
         xhr.send();
     }
@@ -82,14 +86,15 @@ class BaseClient extends Disposable {
     GetNextCandidateBaseUriCore() {
     }
 
-    OnGettingAccessToken(e) {
+    formatResponse(response) {
+        return formatResponseCore(response);
     }
 
-    OnSendingWebRequest() {
+    formatResponseCore(response) {
+        return response;
     }
 
     disposeCore() {
-
     }
 }
 
