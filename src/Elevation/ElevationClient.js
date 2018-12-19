@@ -15,7 +15,6 @@ class ElevationClient extends BaseClient {
 
         this.getElevationOfPoint(latitude, longitude, options, callback)
     }
-
     getElevationOfPoint(y, x, opt_options, callback) {
         const options = opt_options ? opt_options : ({});
 
@@ -35,7 +34,6 @@ class ElevationClient extends BaseClient {
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
         this.sendWebRequest(xhr, callback);
     }
-
     getElevationOfPointInDecimalDegreePromise(latitude, longitude, elevationUnit) {
         let options = {
             projectionInSrid: "4326",
@@ -44,7 +42,6 @@ class ElevationClient extends BaseClient {
 
         return getElevationOfPointPromise(latitude, longitude, options)
     }
-
     getElevationOfPointPromise(y, x, opt_options) {
         const self = this;
         const options = opt_options ? opt_options : ({});
@@ -88,7 +85,6 @@ class ElevationClient extends BaseClient {
         options["projectionInSrid"] = "4326";
         this.getElevationOfLine(lineWellKnownText, options, callback);
     }
-
     getElevationOfLine(lineWellKnownText, opt_options, callback) {
         const options = opt_options ? opt_options : ({});
         let baseUri = this.getNextCandidateBaseUri();
@@ -105,7 +101,11 @@ class ElevationClient extends BaseClient {
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
         this.sendWebRequest(xhr, callback);
     }
-
+    getElevationOfLineInDecimalDegreePromise(lineWellKnownText, opt_options) {
+        const options = opt_options ? opt_options : ({});
+        options["projectionInSrid"] = "4326";
+        return this.getElevationOfLinePromise(lineWellKnownText, options);
+    }
     getElevationOfLinePromise(lineWellKnownText, opt_options) {
         const self = this;
         const options = opt_options ? opt_options : ({});
@@ -140,7 +140,6 @@ class ElevationClient extends BaseClient {
         })
         return promise;
     }
-
 
     formatResponseCore(response) {
         // TODO Format as ElevationResult
