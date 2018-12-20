@@ -1,2 +1,2 @@
-# CloudClient.js
+# ThinkGeoCloudClient.js
 JavaScript SDK for making maps.

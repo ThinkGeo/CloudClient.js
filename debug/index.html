@@ -24,15 +24,27 @@
 <body>
     <input type="text" id="input" value="31.9000,-95.0000">
     <button id="search">search</button>
+    <button id="search_projection">search_projection: </button>
     <div id="response1"></div>
     <div id="response2"></div>
     <div id="response3"></div>
+    <div>
+        projectionResponse: <span id="projectionResponse"></span>
+    </div>
+    <div>
+        projection Of Wkt Response: <span id="projectionOfWktResponse"></span>
+    </div>
+    <div>
+        projection Of Multi Response: <span id="projectionOfMultiResponse"></span>
+    </div>
+
     <div id="map" class="map"></div>
 
     <pre id="lineElevation">
         <code id="response4"></code>
     </pre>
 </body>
+
 <script src="../dist/ThinkGeoCloudClient.js"></script>
 <script src="index.js"></script>
 

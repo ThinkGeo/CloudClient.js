@@ -2,11 +2,13 @@ var ec = new tg.ElevationClient({
     apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
 });
 
+var projection = new tg.ProjectionClient({
+    apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
+});
+
 var request = function () {
-    let inputValue = document.getElementById('input').value;
-
-    let point = inputValue.split(',');
-
+    var inputValue = document.getElementById('input').value;
+    var point = inputValue.split(',');
     // API 1:
     ec.getElevationOfPoint(point[0], point[1], {}, function (status, elevationResponse) {
         document.getElementById('response1').innerText = elevationResponse;
@@ -18,18 +20,31 @@ var request = function () {
     }, function (errorText) {
         document.getElementById('response2').innerText = errorText;
     })
+
+    // projection
+    requestProjection();
 }
 
-var requestLine = function (ee) {
+var requestKwt = function (ee) {
+    let wkt = new ol.format.WKT().writeFeature(ee.feature);
+    requestLine(wkt);
+    requestProjectionOfWkt(wkt);
+    // requestProjectOfMulti();//POST,body parameters
+
+}
+
+var requestLine = function (wkt) {
     let hrElement = document.createElement("hr");
     document.getElementById("response4").appendChild(hrElement)
-    let wkt = new ol.format.WKT().writeFeature(ee.feature);
     let wktElement = document.createElement("code");
     wktElement.innerHTML = wkt;
     document.getElementById("response4").appendChild(wktElement)
 
     // API 3:
-    ec.getElevationOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
+    ec.getElevationOfLine(wkt, {
+        projectionInSrid: "3857",
+        numberOfSegments: "2"
+    }, function (status, elevationResponseText) {
         let brElement = document.createElement("br");
         wktElement.appendChild(brElement);
 
@@ -52,6 +67,40 @@ var requestLine = function (ee) {
     // });
 }
 
+var requestProjectionOfWkt = function (wkt) {
+    projection.getProjectOfWktPromise(wkt, {
+        fromProjectionInSrid: 3857,
+        toProjectionInSrid: 3857
+    }).then(function (data) {
+        document.getElementById('projectionOfWktResponse').innerText = data;
+    }, function (error) {
+        document.getElementById('projectionOfWktResponse').innerText = error;
+    });
+}
+
+var requestProjection = function (e) {
+    var inputValue = document.getElementById('input').value;
+    var point = inputValue.split(',');
+    projection.getProjectOfPointPromise(point[0], point[1], {
+        fromProjectionInSrid: 4326,
+        toProjectionInSrid: 4326
+    }).then(function (data) {
+        document.getElementById('projectionResponse').innerText = data;
+    }, function (error) {
+        document.getElementById('projectionResponse').innerText = error;
+    });
+}
+
+var requestProjectOfMulti = function (wkt) {
+    projection.getProjectOfMultiPromise(wkt, {
+        fromProjectionInSrid: 3857,
+        toProjectionInSrid: 3857
+    }).then(function (data) {
+        document.getElementById('projectionOfMultiResponse').innerText = data;
+    }, function (error) {
+        document.getElementById('projectionOfMultiResponse').innerText = error;
+    });
+}
 
 
 var map = new ol.Map({
@@ -80,9 +129,12 @@ var draw = new ol.interaction.Draw({
 })
 
 map.addInteraction(draw);
-draw.on("drawend", requestLine)
+// draw.on("drawend", requestLine);
+
+draw.on("drawend", requestKwt);
 
 document.getElementById('search').addEventListener('click', request);
+document.getElementById('search_projection').addEventListener('click', requestProjection);
 
 var scrollToTop = function () {
     let lineElevationElement = document.getElementById("lineElevation");
