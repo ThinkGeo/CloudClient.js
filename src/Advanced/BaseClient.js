@@ -1,9 +1,9 @@
 /**
  * @module T/BaseClient
  */
-import Disposable from './Disposable.js';
+import Eventable from './Eventable';
 
-class BaseClient extends Disposable {
+class BaseClient extends Eventable {
     constructor(opt_options) {
         const options = opt_options ? opt_options : ({});
         if (new.target === BaseClient) {
@@ -65,17 +65,22 @@ class BaseClient extends Disposable {
     }
 
     sendWebRequest(xhr, callback) {
-        xhr.onload = function (event) {
-            if (callback) {
-                callback(xhr.status, xhr.responseText);
+        let sendingWebRequestObj = { type: "sendingWebRequest", xhr: xhr, cancel: false };
+        this.dispatchEvent(sendingWebRequestObj);
+
+        if (!sendingWebRequestObj.cancel) {
+            sendingWebRequestObj.xhr.onload = function (event) {
+                if (callback) {
+                    callback(xhr.status, xhr.responseText);
+                }
             }
-        }
-        xhr.onerror = function () {
-            if (callback) {
-                callback("error", "request error");
+            sendingWebRequestObj.xhr.onerror = function () {
+                if (callback) {
+                    callback("error", "request error");
+                }
             }
+            sendingWebRequestObj.xhr.send();
         }
-        xhr.send();
     }
 
     getNextCandidateBaseUri() {

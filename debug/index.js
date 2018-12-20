@@ -21,6 +21,10 @@ var ec = new tg.ElevationClient({
     apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
 });
 
+ec.addEventListener("sendingWebRequest", function (e) {
+    console.log(e.xhr);
+});
+
 var typeSelect = document.getElementById('type');
 
 var draw, wktElement;
@@ -65,7 +69,7 @@ typeSelect.onchange = function () {
 var queryPoint = function (point) {
 
     // API 1:
-    ec.getElevationOfPoint(point[0], point[1], { projectionInSrid: "3857" }, function (status, elevationResponseText) {
+    ec.getElevationOfPoint(point[1], point[0], { projectionInSrid: "3857" }, function (status, elevationResponseText) {
         let resultElement = document.createElement("code");
         resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
         wktElement.appendChild(resultElement);
