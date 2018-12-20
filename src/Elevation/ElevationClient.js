@@ -79,6 +79,7 @@ class ElevationClient extends BaseClient {
         return promise;
     }
 
+
     // Get Elevation of Line
     getElevationOfLineInDecimalDegree(lineWellKnownText, opt_options, callback) {
         const options = opt_options ? opt_options : ({});
@@ -140,6 +141,9 @@ class ElevationClient extends BaseClient {
         })
         return promise;
     }
+
+
+    // Get Grade Of Line
 
     formatResponseCore(response) {
         // TODO Format as ElevationResult

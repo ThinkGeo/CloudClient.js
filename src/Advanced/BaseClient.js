@@ -65,7 +65,6 @@ class BaseClient extends Disposable {
     }
 
     sendWebRequest(xhr, callback) {
-
         xhr.onload = function (event) {
             if (callback) {
                 callback(xhr.status, xhr.responseText);
