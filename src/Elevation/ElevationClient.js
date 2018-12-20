@@ -70,7 +70,7 @@ class ElevationClient extends BaseClient {
                     resolve(self.formatResponse(this.response));
                 }
                 else {
-                    reject(new Error(this.statusText));
+                    reject(self.formatResponse(this.response));
                 }
             };
             xhr.onreadystatechange = handler;
@@ -133,7 +133,7 @@ class ElevationClient extends BaseClient {
                     resolve(self.formatResponse(this.response));
                 }
                 else {
-                    reject(new Error(this.statusText));
+                    reject(self.formatResponse(this.response));
                 }
             };
             xhr.onreadystatechange = handler;

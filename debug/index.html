@@ -11,37 +11,35 @@
         .map {
             height: 400px;
             width: 100%;
+            margin-bottom: 10px;
         }
 
         pre {
             overflow-y: auto;
-            height: 500px;
+            height: 400px;
+        }
+
+        #clearBtn {
+            margin-left: 10px;
         }
     </style>
     <script src="vectormap-dev.js"></script>
 </head>
 
 <body>
-    <input type="text" id="input" value="31.9000,-95.0000">
-    <button id="search">search</button>
-    <button id="search_projection">search_projection: </button>
-    <div id="response1"></div>
-    <div id="response2"></div>
-    <div id="response3"></div>
-    <div>
-        projectionResponse: <span id="projectionResponse"></span>
-    </div>
-    <div>
-        projection Of Wkt Response: <span id="projectionOfWktResponse"></span>
-    </div>
-    <div>
-        projection Of Multi Response: <span id="projectionOfMultiResponse"></span>
-    </div>
-
+    <h2 style="margin: 0">Draw Feature and Query Elevation</h2>
     <div id="map" class="map"></div>
+    <label>Geometry type &nbsp;</label>
+    <select id="type">
+        <option value="Point">Point</option>
+        <option value="LineString">LineString</option>
+        <option value="Polygon">Polygon</option>
+    </select>
 
-    <pre id="lineElevation">
-        <code id="response4"></code>
+    <button id="clearBtn">Clear</button>
+
+    <pre id="elevationResult">
+        <code id="response"></code>
     </pre>
 </body>
 
