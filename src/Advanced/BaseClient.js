@@ -34,7 +34,7 @@ class BaseClient extends Eventable {
         return this.BaseUris_;
     }
 
-    createRequestXHR(baseUri, apiPath, method, parameters, body) {
+    createRequestXHR(baseUri, apiPath, method, parameters) {
         if (baseUri.endsWith("/") && apiPath.endsWith("/")) {
             apiPath = apiPath.trim('/');
         }
@@ -42,6 +42,9 @@ class BaseClient extends Eventable {
 
         var xhr = new XMLHttpRequest();
         xhr.open(method, url, true);
+        if (method.toUpperCase() === 'POST') {
+            xhr.setRequestHeader("Content-type", "application/json");
+        }
         return xhr;
     }
 
@@ -57,8 +60,12 @@ class BaseClient extends Eventable {
         }
     }
 
-    sendWebRequest(xhr, callback) {
-        let sendingWebRequestObj = { type: "sendingWebRequest", xhr: xhr, cancel: false };
+    sendWebRequest(xhr, body, callback) {
+        let sendingWebRequestObj = {
+            type: "sendingWebRequest",
+            xhr: xhr,
+            cancel: false
+        };
         this.fire(sendingWebRequestObj);
 
         if (!sendingWebRequestObj.cancel) {
@@ -74,7 +81,11 @@ class BaseClient extends Eventable {
                     }
                 }
             }
-            sendingWebRequestObj.xhr.send();
+            if (body !== undefined) {
+                sendingWebRequestObj.xhr.send(body);
+            } else {
+                sendingWebRequestObj.xhr.send();
+            }
         }
     }
 
@@ -94,8 +105,7 @@ class BaseClient extends Eventable {
         return response;
     }
 
-    disposeCore() {
-    }
+    disposeCore() {}
 }
 
 export default BaseClient;

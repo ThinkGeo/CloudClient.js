@@ -5,7 +5,7 @@ var projection = new tg.ProjectionClient({
 var requestKwt = function (e) {
     let wkt = new ol.format.WKT().writeFeature(e.feature);
     requestProjectionOfWkt(wkt);
-    // requestProjectOfMulti();//POST,body parameters
+    requestProjectOfMulti(wkt); //POST,body parameters
 }
 
 var requestProjectionOfPoint = function () {
@@ -13,7 +13,7 @@ var requestProjectionOfPoint = function () {
     var point = inputValue.split(',');
     projection.getProjectOfPointPromise(point[0], point[1], {
         fromProjectionInSrid: 4326,
-        toProjectionInSrid: 4326
+        toProjectionInSrid: 3857
     }).then(function (data) {
         document.getElementById('projectionResponse_promise').innerText = JSON.stringify(JSON.parse(data), null, 4);
     }, function (error) {
@@ -21,7 +21,7 @@ var requestProjectionOfPoint = function () {
     });
 
     projection.getProjectOfPoint(point[0], point[1], {
-        fromProjectionInSrid: 4326,
+        fromProjectionInSrid: 3857,
         toProjectionInSrid: 4326
     }, function (status, data) {
         document.getElementById('projectionResponse_callback').innerText = JSON.stringify(JSON.parse(data), null, 4);
@@ -31,7 +31,7 @@ var requestProjectionOfPoint = function () {
 var requestProjectionOfWkt = function (wkt) {
     projection.getProjectOfWktPromise(wkt, {
         fromProjectionInSrid: 3857,
-        toProjectionInSrid: 3857
+        toProjectionInSrid: 4326
     }).then(function (data) {
         document.getElementById('projectionOfWktResponse_promise').innerText = JSON.stringify(JSON.parse(data), null, 4);
     }, function (error) {
@@ -40,7 +40,7 @@ var requestProjectionOfWkt = function (wkt) {
 
     projection.getProjectOfWkt(wkt, {
         fromProjectionInSrid: 3857,
-        toProjectionInSrid: 3857
+        toProjectionInSrid: 4326
     }, function (status, data) {
         document.getElementById('projectionOfWktResponse_callback').innerText = JSON.stringify(JSON.parse(data), null, 4);
     })
@@ -49,12 +49,19 @@ var requestProjectionOfWkt = function (wkt) {
 var requestProjectOfMulti = function (wkt) {
     projection.getProjectOfMultiPromise(wkt, {
         fromProjectionInSrid: 3857,
-        toProjectionInSrid: 3857
+        toProjectionInSrid: 4326
     }).then(function (data) {
         document.getElementById('projectionOfMultiResponse').innerText = JSON.stringify(JSON.parse(data), null, 4);
     }, function (error) {
         document.getElementById('projectionOfMultiResponse').innerText = error;
     });
+
+    projection.getProjectOfMulti(wkt, {
+        fromProjectionInSrid: 3857,
+        toProjectionInSrid: 4326
+    }, function (status, data) {
+        document.getElementById('projectionOfMultiResponse').innerText = JSON.stringify(JSON.parse(data), null, 4);
+    })
 }
 
 var map = new ol.Map({

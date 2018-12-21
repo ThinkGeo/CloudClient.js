@@ -20,7 +20,7 @@ class ProjectionClient extends BaseClient {
             self.apiKey
         );
         let xhr = self.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-        this.sendWebRequest(xhr, callback);
+        this.sendWebRequest(xhr, undefined, callback);
     }
     getProjectOfPointPromise(y, x, opt_options) {
         const self = this;
@@ -48,7 +48,7 @@ class ProjectionClient extends BaseClient {
                 }
             };
             xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr, undefined);
+            self.sendWebRequest(xhr, undefined, undefined);
         });
         return promise;
     }
@@ -67,7 +67,7 @@ class ProjectionClient extends BaseClient {
             self.apiKey
         );
         let xhr = self.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-        self.sendWebRequest(xhr, callback);
+        self.sendWebRequest(xhr, undefined, callback);
     }
     getProjectOfWktPromise(wkt, opt_options) {
         const self = this;
@@ -95,12 +95,12 @@ class ProjectionClient extends BaseClient {
                 }
             };
             xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr, undefined);
+            self.sendWebRequest(xhr, undefined, undefined);
         });
         return promise;
     }
 
-    getProjectiOfMulti(wkt, opt_options, callback) {
+    getProjectOfMulti(wkt, opt_options, callback) {
         const self = this;
         const options = opt_options ? opt_options : ({});
         let baseUri = self.getNextCandidateBaseUri();
@@ -123,7 +123,7 @@ class ProjectionClient extends BaseClient {
         );
 
         let xhr = self.createRequestXHR(baseUri, apiPath, 'POST', queryParameters, postBodyParameters);
-        self.sendWebRequest(xhr, undefined);
+        self.sendWebRequest(xhr, postBodyParameters, callback);
     }
     getProjectOfMultiPromise(wkt, opt_options) {
         const self = this;
@@ -160,7 +160,7 @@ class ProjectionClient extends BaseClient {
                 }
             };
             xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr, undefined);
+            self.sendWebRequest(xhr, postBodyParameters, undefined);
         });
         return promise;
     }
@@ -225,6 +225,7 @@ class ProjectionClient extends BaseClient {
             "toProj": toProj
         }
 
+        body = JSON.stringify(body);
         return body;
     }
 }
