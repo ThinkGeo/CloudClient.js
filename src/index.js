@@ -1,5 +1,5 @@
 import $Elevation$Client from "./Elevation/ElevationClient";
-import $Projection$Client from "./ProjectionClient";
+import $Projection$Client from "./Projection/ProjectionClient";
 
 let tg = {};
 

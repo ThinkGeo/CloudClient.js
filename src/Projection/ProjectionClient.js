@@ -1,4 +1,4 @@
-import BaseClient from "./Advanced/BaseClient";
+import BaseClient from "../Advanced/BaseClient";
 
 class ProjectionClient extends BaseClient {
     constructor(opt_options) {
