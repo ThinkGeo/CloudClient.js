@@ -15,10 +15,17 @@ var requestProjectionOfPoint = function () {
         fromProjectionInSrid: 4326,
         toProjectionInSrid: 4326
     }).then(function (data) {
-        document.getElementById('projectionResponse').innerText = data;
+        document.getElementById('projectionResponse_promise').innerText = JSON.stringify(JSON.parse(data), null, 4);
     }, function (error) {
-        document.getElementById('projectionResponse').innerText = error;
+        document.getElementById('projectionResponse_promise').innerText = error;
     });
+
+    projection.getProjectOfPoint(point[0], point[1], {
+        fromProjectionInSrid: 4326,
+        toProjectionInSrid: 4326
+    }, function (status, data) {
+        document.getElementById('projectionResponse_callback').innerText = JSON.stringify(JSON.parse(data), null, 4);
+    })
 }
 
 var requestProjectionOfWkt = function (wkt) {
@@ -26,10 +33,17 @@ var requestProjectionOfWkt = function (wkt) {
         fromProjectionInSrid: 3857,
         toProjectionInSrid: 3857
     }).then(function (data) {
-        document.getElementById('projectionOfWktResponse').innerText = data;
+        document.getElementById('projectionOfWktResponse_promise').innerText = JSON.stringify(JSON.parse(data), null, 4);
     }, function (error) {
-        document.getElementById('projectionOfWktResponse').innerText = error;
+        document.getElementById('projectionOfWktResponse_promise').innerText = error;
     });
+
+    projection.getProjectOfWkt(wkt, {
+        fromProjectionInSrid: 3857,
+        toProjectionInSrid: 3857
+    }, function (status, data) {
+        document.getElementById('projectionOfWktResponse_callback').innerText = JSON.stringify(JSON.parse(data), null, 4);
+    })
 }
 
 var requestProjectOfMulti = function (wkt) {
@@ -62,13 +76,31 @@ var vector = new ol.layer.Vector({
 })
 map.addLayer(vector);
 
-var draw = new ol.interaction.Draw({
-    source: source,
-    type: "LineString"
-})
+var typeSelect = document.getElementById('type');
 
-map.addInteraction(draw);
+function addInteraction() {
+    var value = typeSelect.value;
+    if (value !== 'None') {
+        draw = new ol.interaction.Draw({
+            source: source,
+            type: typeSelect.value
+        });
+        map.addInteraction(draw);
+        draw.on("drawend", requestKwt)
+    }
+}
+typeSelect.onchange = function () {
+    map.removeInteraction(draw);
+    addInteraction();
+};
 
-draw.on("drawend", requestKwt);
+addInteraction();
 
 document.getElementById('search_projection').addEventListener('click', requestProjectionOfPoint);
+document.getElementById("clearBtn").addEventListener("click", function () {
+    source.clear();
+    document.getElementById("projectionResponse_promise").innerHTML = "";
+    document.getElementById("projectionResponse_callback").innerHTML = "";
+    document.getElementById("projectionOfWktResponse_promise").innerHTML = "";
+    document.getElementById("projectionOfWktResponse_callback").innerHTML = "";
+})

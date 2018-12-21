@@ -5,39 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ThinkGeoCloudClient</title>
+    <title>Projection</title>
     <link rel="stylesheet" href="../vectormap.css" type="text/css">
     <style>
         .map {
-            height: 400px;
+            height: 30vh;
             width: 100%;
+        }
+
+        .res-wrap{
+            height: calc(70vh - 30px);
+            overflow: auto
         }
 
         .res-box{
             border: 1px solid #ccc;
             padding: 20px;
         }
+
+        hr{
+            border: none;
+            border-top: dashed 1px #eee;
+        }
+
+        #clearBtn{
+            margin: 10px;
+        }
     </style>
     <script src="../vectormap-dev.js"></script>
 </head>
 
 <body>
-    <input type="text" id="input" value="31.9000,-95.0000">
-    <div class="res-box">
-        Projection Of Point Response:
-        <button id="search_projection">search_projection: </button>
-        <pre><code id="projectionResponse"></code></pre>
-    </div>
-    <div class="res-box">
-        Projection Of Wkt Response (drawLine):
-        <pre><code id="projectionOfWktResponse"></code></pre>
-    </div>
-    <div class="res-box">
-        Projection Of Multi Response (drawLine):
-        <pre><code id="projectionOfMultiResponse"></code></pre>
-    </div>
-
     <div id="map" class="map"></div>
+    <label>Geometry type &nbsp;</label>
+    <select id="type">
+        <option value="Point">Point</option>
+        <option value="LineString">LineString</option>
+        <option value="Polygon">Polygon</option>
+    </select>
+    <button id="clearBtn">Clear</button>
+    <div class="res-wrap">
+        <div class="res-box">
+            <h4>Projection Of Point Response:</h4>
+            <input type="text" id="input" value="31.9000,-95.0000">
+            <button id="search_projection">search_projection: </button>
+            <pre><h5>Promise: </h5>  <code id="projectionResponse_promise"></code></pre>
+            <hr>
+            <pre><h5>Callback: </h5>  <code id="projectionResponse_callback"></code></pre>
+        </div>
+        <div class="res-box">
+            <h4>Projection Of Wkt Response (draw):</h4>
+            <pre><h5>Promise:</h5> <code id="projectionOfWktResponse_promise"></code></pre>
+            <hr>
+            <pre><h5>Callback: </h5> <code id="projectionOfWktResponse_callback"></code></pre>
+        </div>
+        <div class="res-box">
+            <h4>Projection Of Multi Response (draw):</h4>
+            <pre><code id="projectionOfMultiResponse"></code></pre>
+        </div>
+    </div>
 </body>
 
 <script src="../../dist/ThinkGeoCloudClient.js"></script>
