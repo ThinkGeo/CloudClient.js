@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ThinkGeoCloudClient</title>
+    <link rel="stylesheet" href="../vectormap.css" type="text/css">
+    <style>
+        .map {
+            height: 400px;
+            width: 100%;
+        }
+
+        .res-box{
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
+    <script src="../vectormap-dev.js"></script>
+</head>
+
+<body>
+    <input type="text" id="input" value="31.9000,-95.0000">
+    <div class="res-box">
+        Projection Of Point Response:
+        <button id="search_projection">search_projection: </button>
+        <pre><code id="projectionResponse"></code></pre>
+    </div>
+    <div class="res-box">
+        Projection Of Wkt Response (drawLine):
+        <pre><code id="projectionOfWktResponse"></code></pre>
+    </div>
+    <div class="res-box">
+        Projection Of Multi Response (drawLine):
+        <pre><code id="projectionOfMultiResponse"></code></pre>
+    </div>
+
+    <div id="map" class="map"></div>
+</body>
+
+<script src="../../dist/ThinkGeoCloudClient.js"></script>
+<script src="index.js"></script>
+
+</html>
