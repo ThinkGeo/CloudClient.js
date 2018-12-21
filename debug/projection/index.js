@@ -51,16 +51,16 @@ var requestProjectOfMulti = function (wkt) {
         fromProjectionInSrid: 3857,
         toProjectionInSrid: 4326
     }).then(function (data) {
-        document.getElementById('projectionOfMultiResponse').innerText = JSON.stringify(JSON.parse(data), null, 4);
+        document.getElementById('projectionOfMultiResponse_promise').innerText = JSON.stringify(JSON.parse(data), null, 4);
     }, function (error) {
-        document.getElementById('projectionOfMultiResponse').innerText = error;
+        document.getElementById('projectionOfMultiResponse_promise').innerText = error;
     });
 
     projection.getProjectOfMulti(wkt, {
         fromProjectionInSrid: 3857,
         toProjectionInSrid: 4326
     }, function (status, data) {
-        document.getElementById('projectionOfMultiResponse').innerText = JSON.stringify(JSON.parse(data), null, 4);
+        document.getElementById('projectionOfMultiResponse_callback').innerText = JSON.stringify(JSON.parse(data), null, 4);
     })
 }
 
@@ -110,4 +110,6 @@ document.getElementById("clearBtn").addEventListener("click", function () {
     document.getElementById("projectionResponse_callback").innerHTML = "";
     document.getElementById("projectionOfWktResponse_promise").innerHTML = "";
     document.getElementById("projectionOfWktResponse_callback").innerHTML = "";
+    document.getElementById("projectionOfMultiResponse_promise").innerHTML = "";
+    document.getElementById("projectionOfMultiResponse_callback").innerHTML = "";
 })
