@@ -62,14 +62,16 @@ class BaseClient extends Eventable {
         this.fire(sendingWebRequestObj);
 
         if (!sendingWebRequestObj.cancel) {
-            sendingWebRequestObj.xhr.onload = function (event) {
-                if (callback) {
-                    callback(xhr.status, xhr.responseText);
+            if (callback) {
+                sendingWebRequestObj.xhr.onload = function (event) {
+                    if (callback) {
+                        callback(xhr.status, xhr.responseText);
+                    }
                 }
-            }
-            sendingWebRequestObj.xhr.onerror = function () {
-                if (callback) {
-                    callback("error", "request error");
+                sendingWebRequestObj.xhr.onerror = function () {
+                    if (callback) {
+                        callback("error", "request error");
+                    }
                 }
             }
             sendingWebRequestObj.xhr.send();

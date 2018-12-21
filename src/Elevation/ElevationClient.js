@@ -62,18 +62,17 @@ class ElevationClient extends BaseClient {
 
             let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
 
-            const handler = function () {
-                if (this.readyState !== 4) {
-                    return;
-                }
-                if (this.status === 200) {
-                    resolve(self.formatResponse(this.response));
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    resolve(self.formatResponse(xhr.response));
                 }
                 else {
-                    reject(self.formatResponse(this.response));
+                    reject(self.formatResponse(xhr.response))
                 }
-            };
-            xhr.onreadystatechange = handler;
+            }
+            xhr.onerror = function () {
+                reject(self.formatResponse(xhr.response));
+            }
             self.sendWebRequest(xhr, undefined);
         })
         return promise;
@@ -125,18 +124,18 @@ class ElevationClient extends BaseClient {
             )
             let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
 
-            const handler = function () {
-                if (this.readyState !== 4) {
-                    return;
-                }
-                if (this.status === 200) {
-                    resolve(self.formatResponse(this.response));
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    resolve(self.formatResponse(xhr.response));
                 }
                 else {
-                    reject(self.formatResponse(this.response));
+                    reject(self.formatResponse(xhr.response))
                 }
-            };
-            xhr.onreadystatechange = handler;
+            }
+            xhr.onerror = function () {
+                reject(self.formatResponse(xhr.response));
+            }
+
             self.sendWebRequest(xhr, undefined);
         })
         return promise;
@@ -144,6 +143,68 @@ class ElevationClient extends BaseClient {
 
 
     // Get Grade Of Line
+    getGradeOfLineInDecimalDegree(lineWellKnownText, opt_options, callback) {
+        const options = opt_options ? opt_options : ({});
+        options["projectionInSrid"] = "4326";
+        this.getGradeOfLine(lineWellKnownText, options, callback);
+    }
+    getGradeOfLine(lineWellKnownText, opt_options, callback) {
+        const options = opt_options ? opt_options : ({});
+        let baseUri = this.getNextCandidateBaseUri();
+        const apiPath = "/api/v1/elevation/grade/line";
+        var queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
+            options["projectionInSrid"],
+            options["projectionInProj4String"],
+            options["numberOfSegments"],
+            options["intervalDistance"],
+            options["intervalDistanceUnit"],
+            options["elevationUnit"],
+            this.apiKey
+        )
+        let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
+        this.sendWebRequest(xhr, callback);
+    }
+    getGradeOfLineInDecimalDegreePromise(lineWellKnownText, opt_options) {
+        const options = opt_options ? opt_options : ({});
+        options["projectionInSrid"] = "4326";
+        return this.getElevationOfLinePromise(lineWellKnownText, options);
+    }
+    getGradeOfLinePromise(lineWellKnownText, opt_options) {
+        const self = this;
+        const options = opt_options ? opt_options : ({});
+        const promise = new Promise(function (resolve, reject) {
+            let baseUri = self.getNextCandidateBaseUri();
+            const apiPath = "/api/v1/elevation/grade/line";
+            var queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
+                options["projectionInSrid"],
+                options["projectionInProj4String"],
+                options["numberOfSegments"],
+                options["intervalDistance"],
+                options["intervalDistanceUnit"],
+                options["elevationUnit"],
+                self.apiKey
+            )
+            let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    resolve(self.formatResponse(xhr.response));
+                }
+                else {
+                    reject(self.formatResponse(xhr.response))
+                }
+            }
+            xhr.onerror = function () {
+                reject(self.formatResponse(xhr.response));
+            }
+
+            self.sendWebRequest(xhr, undefined);
+
+        })
+        return promise;
+    }
+
+
 
     formatResponseCore(response) {
         // TODO Format as ElevationResult

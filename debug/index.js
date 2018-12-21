@@ -69,41 +69,66 @@ typeSelect.onchange = function () {
 var queryPoint = function (point) {
 
     // API 1:
-    ec.getElevationOfPoint(point[1], point[0], { projectionInSrid: "3857" }, function (status, elevationResponseText) {
-        let resultElement = document.createElement("code");
-        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-        wktElement.appendChild(resultElement);
-        scrollToTop()
-    })
-
-    // API 2:
-    // ec.getElevationOfPointPromise(point[0], point[1], {projectionInSrid: "3857"}).then(function (elevationResponseText) {
+    // ec.getElevationOfPoint(point[1], point[0], { projectionInSrid: "3857" }, function (status, elevationResponseText) {
     //     let resultElement = document.createElement("code");
     //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
     //     wktElement.appendChild(resultElement);
     //     scrollToTop()
-    // }, function (errorText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(errorText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
     // })
-}
-var queryLine = function (wkt) {
-    // API 3:
-    ec.getElevationOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
+
+    // API 2:
+    ec.getElevationOfPointPromise(point[0], point[1], {projectionInSrid: "3857"}).then(function (elevationResponseText) {
         let resultElement = document.createElement("code");
         resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
         wktElement.appendChild(resultElement);
         scrollToTop()
-    });
+    }, function (errorText) {
+        let resultElement = document.createElement("code");
+        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(errorText), null, 4);
+        wktElement.appendChild(resultElement);
+        scrollToTop()
+    })
+}
+var queryLine = function (wkt) {
+    // API 3:
+    // ec.getElevationOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
+    //     let resultElement = document.createElement("code");
+    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+    //     wktElement.appendChild(resultElement);
+    //     scrollToTop()
+    // });
 
     // API 4:
     // ec.getElevationOfLinePromise(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }).then(function (elevationResponseText) {
-    // let resultElement = document.createElement("code");
-    // resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    // wktElement.appendChild(resultElement);
+    //     let resultElement = document.createElement("code");
+    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+    //     wktElement.appendChild(resultElement);
+    //     scrollToTop()
+    // }).catch(function (elevationResponseText) {
+    //     let resultElement = document.createElement("code");
+    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+    //     wktElement.appendChild(resultElement);
+    //     scrollToTop()
+    // });
 
+    // API 5:
+    // ec.getGradeOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
+    //     let resultElement = document.createElement("code");
+    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+    //     wktElement.appendChild(resultElement);
+    //     scrollToTop()
+    // });
+
+    // API 6:
+    // ec.getGradeOfLinePromise(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (elevationResponseText) {
+    //     let resultElement = document.createElement("code");
+    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+    //     wktElement.appendChild(resultElement);
+    //     scrollToTop()
+    // }).catch(function (elevationResponseText) {
+    //     let resultElement = document.createElement("code");
+    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+    //     wktElement.appendChild(resultElement);
     //     scrollToTop()
     // });
 }
