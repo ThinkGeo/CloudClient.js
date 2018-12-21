@@ -7,9 +7,8 @@ class ProjectionClient extends BaseClient {
     }
 
     getProjectOfPoint(y, x, opt_options, callback) {
-        const self = this;
         const options = opt_options ? opt_options : ({});
-        let baseUri = self.getNextCandidateBaseUri();
+        let baseUri = this.getNextCandidateBaseUri();
         let apiPath = "/api/v1/projection/" + y + ',' + x;
         let queryParameters = ProjectionClient.getQueryParameters(
             undefined,
@@ -17,10 +16,10 @@ class ProjectionClient extends BaseClient {
             options['fromProjectionInProj4String'],
             options['toProjectionInSrid'],
             options['toProjectionInProj4String'],
-            self.apiKey
+            this.apiKey
         );
-        let xhr = self.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-        this.sendWebRequest(xhr, undefined, callback);
+        let xhr = this.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
+        this.sendWebRequest(xhr, callback);
     }
     getProjectOfPointPromise(y, x, opt_options) {
         const self = this;
@@ -48,15 +47,14 @@ class ProjectionClient extends BaseClient {
                 }
             };
             xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr, undefined, undefined);
+            self.sendWebRequest(xhr);
         });
         return promise;
     }
 
     getProjectOfWkt(wkt, opt_options, callback) {
-        const self = this;
         const options = opt_options ? opt_options : ({});
-        let baseUri = self.getNextCandidateBaseUri();
+        let baseUri = this.getNextCandidateBaseUri();
         let apiPath = "/api/v1/projection/";
         let queryParameters = ProjectionClient.getQueryParameters(
             wkt,
@@ -64,10 +62,10 @@ class ProjectionClient extends BaseClient {
             options['fromProjectionInProj4String'],
             options['toProjectionInSrid'],
             options['toProjectionInProj4String'],
-            self.apiKey
+            this.apiKey
         );
-        let xhr = self.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-        self.sendWebRequest(xhr, undefined, callback);
+        let xhr = this.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
+        this.sendWebRequest(xhr, callback);
     }
     getProjectOfWktPromise(wkt, opt_options) {
         const self = this;
@@ -95,15 +93,14 @@ class ProjectionClient extends BaseClient {
                 }
             };
             xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr, undefined, undefined);
+            self.sendWebRequest(xhr);
         });
         return promise;
     }
 
     getProjectOfMulti(wkt, opt_options, callback) {
-        const self = this;
         const options = opt_options ? opt_options : ({});
-        let baseUri = self.getNextCandidateBaseUri();
+        let baseUri = this.getNextCandidateBaseUri();
         let apiPath = "/api/v1/projection/multi";
         let queryParameters = ProjectionClient.getQueryParameters(
             undefined,
@@ -111,7 +108,7 @@ class ProjectionClient extends BaseClient {
             undefined,
             undefined,
             undefined,
-            self.apiKey
+            this.apiKey
         );
         let postBodyParameters = ProjectionClient.getPostBodyParameters(
             wkt,
@@ -119,11 +116,11 @@ class ProjectionClient extends BaseClient {
             options['fromProjectionInProj4String'],
             options['toProjectionInSrid'],
             options['toProjectionInProj4String'],
-            self.apiKey
+            this.apiKey
         );
 
-        let xhr = self.createRequestXHR(baseUri, apiPath, 'POST', queryParameters, postBodyParameters);
-        self.sendWebRequest(xhr, postBodyParameters, callback);
+        let xhr = this.createRequestXHR(baseUri, apiPath, 'POST', queryParameters, postBodyParameters);
+        this.sendWebRequest(xhr, callback, postBodyParameters);
     }
     getProjectOfMultiPromise(wkt, opt_options) {
         const self = this;
@@ -160,7 +157,7 @@ class ProjectionClient extends BaseClient {
                 }
             };
             xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr, postBodyParameters, undefined);
+            self.sendWebRequest(xhr, undefined, postBodyParameters);
         });
         return promise;
     }

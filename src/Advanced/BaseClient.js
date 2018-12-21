@@ -60,7 +60,7 @@ class BaseClient extends Eventable {
         }
     }
 
-    sendWebRequest(xhr, body, callback) {
+    sendWebRequest(xhr, callback, body) {
         let sendingWebRequestObj = {
             type: "sendingWebRequest",
             xhr: xhr,
