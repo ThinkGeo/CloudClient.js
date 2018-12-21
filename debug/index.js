@@ -21,8 +21,8 @@ var ec = new tg.ElevationClient({
     apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
 });
 
-ec.addEventListener("sendingWebRequest", function (e) {
-    console.log(e.xhr);
+ec.on("sendingWebRequest", function (e) {
+    console.log(e);
 });
 
 var typeSelect = document.getElementById('type');

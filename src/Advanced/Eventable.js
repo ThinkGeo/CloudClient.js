@@ -7,7 +7,7 @@ class Eventable extends Disposable {
         this.listeners = {};
     }
 
-    addEventListener(type, listener) {
+    on(type, listener) {
         let listeners = this.listeners[type];
         if (!listeners) {
             listeners = this.listeners[type] = [];
@@ -17,7 +17,7 @@ class Eventable extends Disposable {
         }
     }
 
-    dispatchEvent(event) {
+    fire(event) {
         const listeners = this.listeners[event.type];
         if (listeners) {
             for (let i = 0; i < listeners.length; ++i) {
@@ -26,7 +26,7 @@ class Eventable extends Disposable {
         }
     }
 
-    removeEventListener(type, listener) {
+    un(type, listener) {
         const listeners = this.listeners[type];
         if (listeners) {
             const index = listeners.indexOf(listener);
@@ -35,6 +35,10 @@ class Eventable extends Disposable {
                 delete this.listeners[type];
             }
         }
+    }
+
+    unAll() {
+        this.listeners = {};
     }
 
     disposeCore() {

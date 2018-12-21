@@ -1,6 +1,3 @@
-/**
- * @module T/BaseClient
- */
 import Eventable from './Eventable';
 
 class BaseClient extends Eventable {
@@ -11,10 +8,6 @@ class BaseClient extends Eventable {
         }
         super();
 
-        /**
-         * @type {string}
-         * @private
-         */
         this.clientId_ = options["clientId"];
         this.clientSecret_ = options["clientSecret"];
         this.apiKey = options["apiKey"];
@@ -66,7 +59,7 @@ class BaseClient extends Eventable {
 
     sendWebRequest(xhr, callback) {
         let sendingWebRequestObj = { type: "sendingWebRequest", xhr: xhr, cancel: false };
-        this.dispatchEvent(sendingWebRequestObj);
+        this.fire(sendingWebRequestObj);
 
         if (!sendingWebRequestObj.cancel) {
             sendingWebRequestObj.xhr.onload = function (event) {
@@ -84,10 +77,11 @@ class BaseClient extends Eventable {
     }
 
     getNextCandidateBaseUri() {
-        return "https://cloud.thinkgeo.com";
+        return this.getNextCandidateBaseUriCore()
     }
 
-    GetNextCandidateBaseUriCore() {
+    getNextCandidateBaseUriCore() {
+        return "https://cloud.thinkgeo.com";
     }
 
     formatResponse(response) {
