@@ -115,8 +115,7 @@ class ProjectionClient extends BaseClient {
             options['fromProjectionInSrid'],
             options['fromProjectionInProj4String'],
             options['toProjectionInSrid'],
-            options['toProjectionInProj4String'],
-            this.apiKey
+            options['toProjectionInProj4String']
         );
 
         let xhr = this.createRequestXHR(baseUri, apiPath, 'POST', queryParameters, postBodyParameters);
@@ -141,8 +140,7 @@ class ProjectionClient extends BaseClient {
                 options['fromProjectionInSrid'],
                 options['fromProjectionInProj4String'],
                 options['toProjectionInSrid'],
-                options['toProjectionInProj4String'],
-                self.apiKey
+                options['toProjectionInProj4String']
             );
 
             let xhr = self.createRequestXHR(baseUri, apiPath, 'POST', queryParameters, postBodyParameters);
