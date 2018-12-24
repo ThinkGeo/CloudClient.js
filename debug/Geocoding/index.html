@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Geocoding</title>
+    <link rel="stylesheet" href="../vectormap.css" type="text/css">
+    <style>
+        pre {
+            overflow-y: auto;
+        }
+
+        #clearBtn {
+            margin-left: 10px;
+        }
+    </style>
+    <script src="../vectormap-dev.js"></script>
+</head>
+
+<body>
+    <h2 style="margin: 0">Draw Feature and Query Geocoding</h2>
+    <input type="text" id="inputText" value="new york">
+    <button id="search">search</button>
+    <pre id="result">
+        <code id="response"></code>
+    </pre>
+</body>
+
+<script src="../../dist/ThinkGeoCloudClient.js"></script>
+<script src="index.js"></script>
+
+</html>
