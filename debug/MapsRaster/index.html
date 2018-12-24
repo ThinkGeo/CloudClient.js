@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MapsRaster</title>
+    <link rel="stylesheet" href="../vectormap.css" type="text/css">
+    <style>
+        body{
+            margin: 20px;
+        }
+        input{
+            display: inline-block;
+        }
+        label{
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+    <script src="../vectormap-dev.js"></script>
+</head>
+
+<body>
+    <h2 style="margin: 0">Query MapsRaster</h2>
+    <label>style:</label>
+    <input type="text" id="style" value="light"><br>
+    <label for="">resolution:</label><input type="text" id="resolution" value="1"><br>
+    <label for="">srid:</label><input type="text" id="srid" value="3857"><br>
+    <label for="">tileSize:</label><input type="text" id="tileSize" value="512"><br>
+    <label for="">tileZ:</label><input type="text" id="tileZ" value="3"><br>
+    <label for="">tileX:</label><input type="text" id="tileX" value="2"><br>
+    <label for="">tileY: </label><input type="text" id="tileY" value="3"><br>
+    <label for="">fileExtension:</label><input type="text" id="fileExtension" value="png"><br>
+    <button id="search">search</button>
+    <img src="" alt="" id="result">
+</body>
+<script src="../../dist/ThinkGeoCloudClient.js"></script>
+<script src="index.js"></script>
+
+</html>
