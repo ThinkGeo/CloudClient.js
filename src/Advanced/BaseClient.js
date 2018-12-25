@@ -7,27 +7,8 @@ class BaseClient extends Eventable {
             throw TypeError("BaseClient is an abstract class, so cannot instantiated.");
         }
         super();
-
-        this.clientId_ = options["clientId"];
-        this.clientSecret_ = options["clientSecret"];
         this.apiKey = options["apiKey"];
         this.BaseUris_ = new Set();
-    }
-
-    get ClientId() {
-        return this.clientId_;
-    }
-
-    set ClientId(value) {
-        this.clientId_ = value;
-    }
-
-    get ClientSecret() {
-        return this.clientSecret_;
-    }
-
-    set ClientSecret(value) {
-        this.clientSecret_ = value;
     }
 
     get BaseUris() {
@@ -49,7 +30,7 @@ class BaseClient extends Eventable {
     }
 
     authenticateWebRequest(xhr) {
-        if (string.IsNullOrWhiteSpace(ClientId) && string.IsNullOrWhiteSpace(ClientSecret)) {
+        if (string.IsNullOrWhiteSpace(apiKey)) {
             return;
         }
         if (token == null) {

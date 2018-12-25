@@ -1,7 +1,7 @@
 const TileResolution = {
-    Default: 0,
-    Standard: 1,
-    High: 2,
+    Default: 'Default',
+    Standard: 'Standard',
+    High: 'High',
 };
 
 Object.freeze(TileResolution);
