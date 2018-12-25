@@ -8,7 +8,7 @@ class MapsClient extends BaseClient {
 
     getRasterTile(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, callback) {
         if (srid !== "3857") {
-            throw "Currently only 'srid = 3857' is supported.";
+            throw new Error("Currently only 'srid = 3857' is supported.");
         }
 
         let baseUri = this.getNextCandidateBaseUri();
@@ -43,7 +43,7 @@ class MapsClient extends BaseClient {
 
     getVectorTile(srid, tileZ, tileX, tileY, callback) {
         if (srid !== "3857") {
-            throw "Currently only 'srid = 3857' is supported.";
+            throw new Error("Currently only 'srid = 3857' is supported.");
         }
         let baseUri = this.getNextCandidateBaseUri();
         let apiPath = `/api/v1/maps/vector/streets/${srid}/${tileZ}/${tileX}/${tileY}.pbf`;

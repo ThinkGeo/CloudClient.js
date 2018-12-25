@@ -59,7 +59,7 @@ class ReverseGeocodingClient extends BaseClient {
 
         if (ProjectionInSrid) {
             if (ProjectionInProj4String) {
-                throw 'You must specify either Srid or Proj4String, but not both.'
+                throw new Error('You must specify either Srid or Proj4String, but not both.')
             }
             queryString += "&Srid=" + ProjectionInSrid;
         } else if (ProjectionInProj4String) {

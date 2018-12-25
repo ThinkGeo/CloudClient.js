@@ -17,7 +17,9 @@ class ElevationClient extends BaseClient {
     }
     getElevationOfPoint(y, x, opt_options, callback) {
         const options = opt_options ? opt_options : ({});
-
+        if (x === undefined || x === null || x === '' || y === undefined || y === null || y === '') {
+            throw new Error("Missing the required parameter 'x or y' when calling getGradeOfLine");
+        }
         let baseUri = this.getNextCandidateBaseUri();
         let apiPath = "/api/v1/elevation/" + y + "," + x;
         let queryParameters = ElevationClient.getQueryParameters(
@@ -34,48 +36,48 @@ class ElevationClient extends BaseClient {
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
         this.sendWebRequest(xhr, callback);
     }
-    getElevationOfPointInDecimalDegreePromise(latitude, longitude, elevationUnit) {
-        let options = {
-            projectionInSrid: "4326",
-            elevationUnit: elevationUnit
-        }
+    // getElevationOfPointInDecimalDegreePromise(latitude, longitude, elevationUnit) {
+    //     let options = {
+    //         projectionInSrid: "4326",
+    //         elevationUnit: elevationUnit
+    //     }
 
-        return getElevationOfPointPromise(latitude, longitude, options)
-    }
-    getElevationOfPointPromise(y, x, opt_options) {
-        const self = this;
-        const options = opt_options ? opt_options : ({});
+    //     return getElevationOfPointPromise(latitude, longitude, options)
+    // }
+    // getElevationOfPointPromise(y, x, opt_options) {
+    //     const self = this;
+    //     const options = opt_options ? opt_options : ({});
 
-        const promise = new Promise(function (resolve, reject) {
-            let baseUri = self.getNextCandidateBaseUri();
-            let apiPath = "/api/v1/elevation/" + y + "," + x;
-            let queryParameters = ElevationClient.getQueryParameters(
-                undefined,
-                options["projectionInSrid"],
-                options["projectionInProj4String"],
-                undefined,
-                undefined,
-                undefined,
-                options["elevationUnit"],
-                self.apiKey
-            )
+    //     const promise = new Promise(function (resolve, reject) {
+    //         let baseUri = self.getNextCandidateBaseUri();
+    //         let apiPath = "/api/v1/elevation/" + y + "," + x;
+    //         let queryParameters = ElevationClient.getQueryParameters(
+    //             undefined,
+    //             options["projectionInSrid"],
+    //             options["projectionInProj4String"],
+    //             undefined,
+    //             undefined,
+    //             undefined,
+    //             options["elevationUnit"],
+    //             self.apiKey
+    //         )
 
-            let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
+    //         let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
 
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    resolve(self.formatResponse(xhr.response));
-                } else {
-                    reject(self.formatResponse(xhr.response))
-                }
-            }
-            xhr.onerror = function () {
-                reject(self.formatResponse(xhr.response));
-            }
-            self.sendWebRequest(xhr, undefined);
-        })
-        return promise;
-    }
+    //         xhr.onload = function () {
+    //             if (xhr.status === 200) {
+    //                 resolve(self.formatResponse(xhr.response));
+    //             } else {
+    //                 reject(self.formatResponse(xhr.response))
+    //             }
+    //         }
+    //         xhr.onerror = function () {
+    //             reject(self.formatResponse(xhr.response));
+    //         }
+    //         self.sendWebRequest(xhr, undefined);
+    //     })
+    //     return promise;
+    // }
 
 
     // Get Elevation of Line
@@ -88,6 +90,9 @@ class ElevationClient extends BaseClient {
         const options = opt_options ? opt_options : ({});
         let baseUri = this.getNextCandidateBaseUri();
         const apiPath = "/api/v1/elevation/line";
+        if (lineWellKnownText === undefined || lineWellKnownText === null || lineWellKnownText === '') {
+            throw new Error("Missing the required parameter 'wkt' when calling getGradeOfLine");
+        }
         var queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
             options["projectionInSrid"],
             options["projectionInProj4String"],
@@ -100,44 +105,44 @@ class ElevationClient extends BaseClient {
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
         this.sendWebRequest(xhr, callback);
     }
-    getElevationOfLineInDecimalDegreePromise(lineWellKnownText, opt_options) {
-        const options = opt_options ? opt_options : ({});
-        options["projectionInSrid"] = "4326";
-        return this.getElevationOfLinePromise(lineWellKnownText, options);
-    }
-    getElevationOfLinePromise(lineWellKnownText, opt_options) {
-        const self = this;
-        const options = opt_options ? opt_options : ({});
+    // getElevationOfLineInDecimalDegreePromise(lineWellKnownText, opt_options) {
+    //     const options = opt_options ? opt_options : ({});
+    //     options["projectionInSrid"] = "4326";
+    //     return this.getElevationOfLinePromise(lineWellKnownText, options);
+    // }
+    // getElevationOfLinePromise(lineWellKnownText, opt_options) {
+    //     const self = this;
+    //     const options = opt_options ? opt_options : ({});
 
-        const promise = new Promise(function (resolve, reject) {
-            let baseUri = self.getNextCandidateBaseUri();
-            const apiPath = "/api/v1/elevation/line";
-            var queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
-                options["projectionInSrid"],
-                options["projectionInProj4String"],
-                options["numberOfSegments"],
-                options["intervalDistance"],
-                options["intervalDistanceUnit"],
-                options["elevationUnit"],
-                self.apiKey
-            )
-            let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
+    //     const promise = new Promise(function (resolve, reject) {
+    //         let baseUri = self.getNextCandidateBaseUri();
+    //         const apiPath = "/api/v1/elevation/line";
+    //         var queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
+    //             options["projectionInSrid"],
+    //             options["projectionInProj4String"],
+    //             options["numberOfSegments"],
+    //             options["intervalDistance"],
+    //             options["intervalDistanceUnit"],
+    //             options["elevationUnit"],
+    //             self.apiKey
+    //         )
+    //         let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
 
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    resolve(self.formatResponse(xhr.response));
-                } else {
-                    reject(self.formatResponse(xhr.response))
-                }
-            }
-            xhr.onerror = function () {
-                reject(self.formatResponse(xhr.response));
-            }
+    //         xhr.onload = function () {
+    //             if (xhr.status === 200) {
+    //                 resolve(self.formatResponse(xhr.response));
+    //             } else {
+    //                 reject(self.formatResponse(xhr.response))
+    //             }
+    //         }
+    //         xhr.onerror = function () {
+    //             reject(self.formatResponse(xhr.response));
+    //         }
 
-            self.sendWebRequest(xhr, undefined);
-        })
-        return promise;
-    }
+    //         self.sendWebRequest(xhr, undefined);
+    //     })
+    //     return promise;
+    // }
 
 
     // Get Grade Of Line
@@ -150,6 +155,9 @@ class ElevationClient extends BaseClient {
         const options = opt_options ? opt_options : ({});
         let baseUri = this.getNextCandidateBaseUri();
         const apiPath = "/api/v1/elevation/grade/line";
+        if (lineWellKnownText === undefined || lineWellKnownText === null || lineWellKnownText === '') {
+            throw new Error("Missing the required parameter 'wkt' when calling getGradeOfLine");
+        }
         var queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
             options["projectionInSrid"],
             options["projectionInProj4String"],
@@ -162,44 +170,44 @@ class ElevationClient extends BaseClient {
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
         this.sendWebRequest(xhr, callback);
     }
-    getGradeOfLineInDecimalDegreePromise(lineWellKnownText, opt_options) {
-        const options = opt_options ? opt_options : ({});
-        options["projectionInSrid"] = "4326";
-        return this.getElevationOfLinePromise(lineWellKnownText, options);
-    }
-    getGradeOfLinePromise(lineWellKnownText, opt_options) {
-        const self = this;
-        const options = opt_options ? opt_options : ({});
-        const promise = new Promise(function (resolve, reject) {
-            let baseUri = self.getNextCandidateBaseUri();
-            const apiPath = "/api/v1/elevation/grade/line";
-            let queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
-                options["projectionInSrid"],
-                options["projectionInProj4String"],
-                options["numberOfSegments"],
-                options["intervalDistance"],
-                options["intervalDistanceUnit"],
-                options["elevationUnit"],
-                self.apiKey
-            )
-            let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
+    // getGradeOfLineInDecimalDegreePromise(lineWellKnownText, opt_options) {
+    //     const options = opt_options ? opt_options : ({});
+    //     options["projectionInSrid"] = "4326";
+    //     return this.getElevationOfLinePromise(lineWellKnownText, options);
+    // }
+    // getGradeOfLinePromise(lineWellKnownText, opt_options) {
+    //     const self = this;
+    //     const options = opt_options ? opt_options : ({});
+    //     const promise = new Promise(function (resolve, reject) {
+    //         let baseUri = self.getNextCandidateBaseUri();
+    //         const apiPath = "/api/v1/elevation/grade/line";
+    //         let queryParameters = ElevationClient.getQueryParameters(lineWellKnownText,
+    //             options["projectionInSrid"],
+    //             options["projectionInProj4String"],
+    //             options["numberOfSegments"],
+    //             options["intervalDistance"],
+    //             options["intervalDistanceUnit"],
+    //             options["elevationUnit"],
+    //             self.apiKey
+    //         )
+    //         let xhr = self.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
 
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    resolve(self.formatResponse(xhr.response));
-                } else {
-                    reject(self.formatResponse(xhr.response))
-                }
-            }
-            xhr.onerror = function () {
-                reject(self.formatResponse(xhr.response));
-            }
+    //         xhr.onload = function () {
+    //             if (xhr.status === 200) {
+    //                 resolve(self.formatResponse(xhr.response));
+    //             } else {
+    //                 reject(self.formatResponse(xhr.response))
+    //             }
+    //         }
+    //         xhr.onerror = function () {
+    //             reject(self.formatResponse(xhr.response));
+    //         }
 
-            self.sendWebRequest(xhr, undefined);
+    //         self.sendWebRequest(xhr, undefined);
 
-        })
-        return promise;
-    }
+    //     })
+    //     return promise;
+    // }
 
     // Get Elevation of Area
     getElevationOfAreaInDecimalDegree(areaWellKnowText, opt_options, callback) {
@@ -211,6 +219,9 @@ class ElevationClient extends BaseClient {
         const options = opt_options ? opt_options : ({});
         let baseUri = this.getNextCandidateBaseUri();
         const apiPath = "/api/v1/elevation/area";
+        if (areaWellKnowText === undefined || areaWellKnowText === null || areaWellKnowText === '') {
+            throw new Error("Missing the required parameter 'wkt' when calling getGradeOfLine");
+        }
         let queryParameters = ElevationClient.getQueryParameters(areaWellKnowText,
             options["projectionInSrid"],
             options["projectionInProj4String"],
@@ -223,39 +234,39 @@ class ElevationClient extends BaseClient {
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
         this.sendWebRequest(xhr, callback);
     }
-    getElevationOfAreaPromiseInDecimalDegree(areaWellKnowText, opt_options) {
-        let options = opt_options ? opt_options : ({});
-        options["projectionInSrid"] = "4326";
-        this.getElevationOfAreaPromise(areaWellKnowText, options);
-    }
-    getElevationOfAreaPromise(areaWellKnowText, opt_options) {
-        const options = opt_options ? opt_options : ({});
-        let baseUri = this.getNextCandidateBaseUri();
-        const apiPath = "/api/v1/elevation/area";
-        let queryParameters = ElevationClient.getQueryParameters(areaWellKnowText,
-            options["projectionInSrid"],
-            options["projectionInProj4String"],
-            options["numberOfSegments"],
-            options["intervalDistance"],
-            options["intervalDistanceUnit"],
-            options["elevationUnit"],
-            this.apiKey
-        )
+    // getElevationOfAreaPromiseInDecimalDegree(areaWellKnowText, opt_options) {
+    //     let options = opt_options ? opt_options : ({});
+    //     options["projectionInSrid"] = "4326";
+    //     this.getElevationOfAreaPromise(areaWellKnowText, options);
+    // }
+    // getElevationOfAreaPromise(areaWellKnowText, opt_options) {
+    //     const options = opt_options ? opt_options : ({});
+    //     let baseUri = this.getNextCandidateBaseUri();
+    //     const apiPath = "/api/v1/elevation/area";
+    //     let queryParameters = ElevationClient.getQueryParameters(areaWellKnowText,
+    //         options["projectionInSrid"],
+    //         options["projectionInProj4String"],
+    //         options["numberOfSegments"],
+    //         options["intervalDistance"],
+    //         options["intervalDistanceUnit"],
+    //         options["elevationUnit"],
+    //         this.apiKey
+    //     )
 
-        let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                resolve(self.formatResponse(xhr.response));
-            } else {
-                reject(self.formatResponse(xhr.response))
-            }
-        }
-        xhr.onerror = function () {
-            reject(self.formatResponse(xhr.response));
-        }
+    //     let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
+    //     xhr.onload = function () {
+    //         if (xhr.status === 200) {
+    //             resolve(self.formatResponse(xhr.response));
+    //         } else {
+    //             reject(self.formatResponse(xhr.response))
+    //         }
+    //     }
+    //     xhr.onerror = function () {
+    //         reject(self.formatResponse(xhr.response));
+    //     }
 
-        self.sendWebRequest(xhr);
-    }
+    //     self.sendWebRequest(xhr);
+    // }
 
     //Get Elevation of Multi Point
     getElevationOfMultiPoint(opt_options, callback) {
@@ -292,7 +303,7 @@ class ElevationClient extends BaseClient {
     static getQueryParameters(wellKnownText, projectionInSrid, projectionInProj4String, numberOfSegments, intervalDistance, intervalDistanceUnit, elevationUnit = "Feet", apiKey) {
         var queryString = "?";
 
-        if(elevationUnit){
+        if (elevationUnit) {
             queryString += "&elevationUnit=" + elevationUnit;
         }
 
@@ -328,7 +339,7 @@ class ElevationClient extends BaseClient {
     }
 
     static getPostBodyParameters(coord, projectionInSrid, projectionInProj4String, elevationUnit = "Feet") {
-        if(coord === undefined){
+        if (coord === undefined) {
             return;
         }
 

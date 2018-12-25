@@ -10,6 +10,10 @@ class GeocodingClient extends BaseClient {
         const options = opt_options ? opt_options : ({});
 
         let baseUri = this.getNextCandidateBaseUri();
+        // verify the required parameter 'searchText' is set
+        if (searchText === undefined || searchText === null || searchText === '') {
+            throw new Error("Missing the required parameter 'searchText' when calling getGeocodingResult");
+        }
         let apiPath = `/api/v1/location/geocode/${searchText}`
         let queryParameters = GeocodingClient.getQueryParameters(
             options["locationType"],
@@ -45,10 +49,10 @@ class GeocodingClient extends BaseClient {
 
         if (projectionInSrid !== '' && projectionInSrid !== undefined) {
             if (projectionInProj4String !== '' && projectionInProj4String !== undefined) {
-                throw 'You must specify either Srid or Proj4String, but not both.'
+                throw new Error('You must specify either Srid or Proj4String, but not both.')
             }
             queryString += "&Srid=" + projectionInSrid;
-        }else if (projectionInProj4String !== '' && projectionInProj4String !== undefined) {
+        } else if (projectionInProj4String !== '' && projectionInProj4String !== undefined) {
             queryString += "&Proj4String=" + projectionInProj4String;
         }
 
