@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reversegeocoding</title>
+    <link rel="stylesheet" href="../vectormap.css" type="text/css">
+    <style type="text/css">
+        .map {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            overflow-y: auto;
+            height: 400px;
+        }
+
+        #clearBtn {
+            margin-left: 10px;
+        }
+
+        input {
+            display: inline-block;
+        }
+
+        label {
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+    <script src="../vectormap-dev.js"></script>
+</head>
+
+<body>
+    <h2 style="margin: 0">Draw Feature and Query Reversegeocoding</h2>
+    <div id="map" class="map"></div>
+    <label>Geometry type &nbsp;</label>
+    <select id="type">
+        <option value="Point">Point</option>
+        <option value="LineString">LineString</option>
+        <option value="Polygon">Polygon</option>
+    </select>
+
+    <h4>Get Reversegeocoding Result:</h4>
+    <label>ProjectionInSrid:</label>
+    <input type="text" id="ProjectionInSrid" value="3857"><br>
+    <label>ProjectionInProj4String:</label>
+    <input type="text" id="ProjectionInProj4String" value=""><br>
+    <label>Lang:</label>
+    <input type="text" id="Lang" value=""><br>
+    <label>SearchRadius:</label>
+    <input type="text" id="SearchRadius" value=""><br>
+    <label>SearchRadiusUnit:</label>
+    <input type="text" id="SearchRadiusUnit" value=""><br>
+    <label>MaxResults:</label>
+    <input type="text" id="MaxResults" value=""><br>
+    <label>LocationCategories:</label>
+    <input type="text" id="LocationCategories" value=""><br>
+    <label>LocationTypes:</label>
+    <input type="text" id="LocationTypes" value=""><br>
+    <label>VerboseResults:</label>
+    <input type="text" id="VerboseResults" value=""><br>
+    <label>DistanceFromQueryFeatureUnit:</label>
+    <input type="text" id="DistanceFromQueryFeatureUnit" value=""><br>
+    ProjectionInSrid, ProjectionInProj4String, Lang, SearchRadius, SearchRadiusUnit, MaxResults, LocationCategories, LocationTypes, VerboseResults, DistanceFromQueryFeatureUnit
+    <button id="clearBtn">Clear</button>
+
+    <pre id="elevationResult">
+        <code id="response"></code>
+    </pre>
+</body>
+
+<script src="../../dist/ThinkGeoCloudClient.js"></script>
+<script src="index.js"></script>
+
+</html>
