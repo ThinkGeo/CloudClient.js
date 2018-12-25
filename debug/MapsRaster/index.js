@@ -14,8 +14,12 @@ var queryMapsRaster = function () {
     var tileX = document.getElementById('tileX').value;
     var tileY = document.getElementById('tileY').value;
     var fileExtension = document.getElementById('fileExtension').value;
-    mrc.GetRasterTile(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, function (status, elevationResponseText) {
-        console.log(elevationResponseText);
+    mrc.GetRasterTile(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, function (status, response) {
+
+        let blob = response;
+        let imgTag = document.querySelector("img");
+        let url = URL.createObjectURL(blob);
+        imgTag.src = url;
     });
 };
 var keyDownHandler = function (e) {
