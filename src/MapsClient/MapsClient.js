@@ -1,6 +1,6 @@
 import BaseClient from "../Advanced/BaseClient";
 
-class MapsRasterClient extends BaseClient {
+class MapsClient extends BaseClient {
     constructor(opt_options) {
         const options = opt_options ? opt_options : ({});
         super(options);
@@ -9,7 +9,7 @@ class MapsRasterClient extends BaseClient {
     GetRasterTile(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, callback) {
         let baseUri = this.getNextCandidateBaseUri();
         let apiPath = `/api/v1/maps/raster/${style}/x${resolution}/${srid}/${tileSize}/${tileZ}/${tileX}/${tileY}.${fileExtension}`;
-        let queryParameters = MapsRasterClient.getQueryParameters(this.apiKey);
+        let queryParameters = MapsClient.getQueryParameters(this.apiKey);
 
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
         xhr.responseType = "blob";
@@ -49,4 +49,4 @@ class MapsRasterClient extends BaseClient {
 
 }
 
-export default MapsRasterClient;
+export default MapsClient;

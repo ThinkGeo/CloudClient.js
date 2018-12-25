@@ -1,4 +1,4 @@
-var mrc = new tg.MapsRasterClient({
+var mrc = new tg.MapsClient({
     apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
 });
 var inputEle = document.getElementById('inputText');
