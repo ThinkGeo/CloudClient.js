@@ -6,8 +6,8 @@ var map = new ol.Map({
         })
     ],
     view: new ol.View({
-        center: ol.proj.fromLonLat([37.41, 8.82]),
-        zoom: 14
+        center: ol.proj.fromLonLat([-96.792873, 32.772348]),
+        zoom: 4
     })
 });
 
@@ -63,7 +63,6 @@ typeSelect.onchange = function () {
 };
 
 var queryPoint = function (point) {
-    //API 1: getReverseGeocodeOfPoint 
     var ProjectionInSrid = document.getElementById('ProjectionInSrid').value;
     var ProjectionInProj4String = document.getElementById('ProjectionInProj4String').value;
     var Lang = document.getElementById('Lang').value;
@@ -74,6 +73,8 @@ var queryPoint = function (point) {
     var LocationTypes = document.getElementById('LocationTypes').value;
     var VerboseResults = document.getElementById('VerboseResults').value;
     var DistanceFromQueryFeatureUnit = document.getElementById('DistanceFromQueryFeatureUnit').value;
+
+    //API 1: getReverseGeocodeOfPoint 
     rgc.getReverseGeocodeOfPoint(point[1], point[0], {
         ProjectionInSrid: ProjectionInSrid,
         ProjectionInProj4String: ProjectionInProj4String,
@@ -85,24 +86,43 @@ var queryPoint = function (point) {
         LocationTypes: LocationTypes,
         VerboseResults: VerboseResults,
         DistanceFromQueryFeatureUnit: DistanceFromQueryFeatureUnit
-    }, function (status, elevationResponseText) {
+    }, function (status, responseText) {
         let resultElement = document.createElement("code");
-        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(responseText), null, 4);
         wktElement.appendChild(resultElement);
         scrollToTop()
     });
 }
 var queryLine = function (wkt) {
-    // API 1: getElevationOfLineInDecimalDegree
-    // wkt = 'LINESTRING(-11.00 11.11,-12.00 12.11)';
-    // ec.getElevationOfLineInDecimalDegree(wkt, {
-    //     numberOfSegments: "2"
-    // }, function (status, elevationResponseText) {
-    //     var resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // })
+    var ProjectionInSrid = document.getElementById('ProjectionInSrid').value;
+    var ProjectionInProj4String = document.getElementById('ProjectionInProj4String').value;
+    var Lang = document.getElementById('Lang').value;
+    var SearchRadius = document.getElementById('SearchRadius').value;
+    var SearchRadiusUnit = document.getElementById('SearchRadiusUnit').value;
+    var MaxResults = document.getElementById('MaxResults').value;
+    var LocationCategories = document.getElementById('LocationCategories').value;
+    var LocationTypes = document.getElementById('LocationTypes').value;
+    var VerboseResults = document.getElementById('VerboseResults').value;
+    var DistanceFromQueryFeatureUnit = document.getElementById('DistanceFromQueryFeatureUnit').value;
+
+    // API 1: getReverseGeocodeOfLine
+    rgc.getReverseGeocodeOfLine(wkt, {
+        ProjectionInSrid: ProjectionInSrid,
+        ProjectionInProj4String: ProjectionInProj4String,
+        Lang: Lang,
+        SearchRadius: SearchRadius,
+        SearchRadiusUnit: SearchRadiusUnit,
+        MaxResults: MaxResults,
+        LocationCategories: LocationCategories,
+        LocationTypes: LocationTypes,
+        VerboseResults: VerboseResults,
+        DistanceFromQueryFeatureUnit: DistanceFromQueryFeatureUnit
+    }, function (status, responseText) {
+        let resultElement = document.createElement("code");
+        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(responseText), null, 4);
+        wktElement.appendChild(resultElement);
+        scrollToTop()
+    })
 }
 var queryArea = function (wkt) {
     // API 1: getElevationOfArea

@@ -11,6 +11,7 @@ class ReverseGeocodingClient extends BaseClient {
         let baseUri = this.getNextCandidateBaseUri();
         let apiPath = `/api/v1/location/reverse-geocode/${y},${x}`;
         let queryParameters = ReverseGeocodingClient.getQueryParameters(
+            undefined,
             options['ProjectionInSrid'],
             options['ProjectionInProj4String'],
             options['Lang'],
@@ -27,8 +28,34 @@ class ReverseGeocodingClient extends BaseClient {
         this.sendWebRequest(xhr, callback);
     }
 
-    static getQueryParameters(ProjectionInSrid, ProjectionInProj4String, Lang, SearchRadius, SearchRadiusUnit, MaxResults, LocationCategories, LocationTypes, VerboseResults, DistanceFromQueryFeatureUnit, apiKey) {
+    getReverseGeocodeOfLine(wkt, opt_options, callback) {
+        const options = opt_options ? opt_options : ({});
+        let baseUri = this.getNextCandidateBaseUri();
+        let apiPath = `/api/v1/location/reverse-geocode/line`;
+        let queryParameters = ReverseGeocodingClient.getQueryParameters(
+            wkt, 
+            options['ProjectionInSrid'],
+            options['ProjectionInProj4String'],
+            options['Lang'],
+            options['SearchRadius'],
+            options['SearchRadiusUnit'],
+            options['MaxResults'],
+            options['LocationCategories'],
+            options['LocationTypes'],
+            options['VerboseResults'],
+            options['DistanceFromQueryFeatureUnit'],
+            this.apiKey
+        );
+        let xhr = this.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
+        this.sendWebRequest(xhr, callback);
+    }
+
+    static getQueryParameters(wkt, ProjectionInSrid, ProjectionInProj4String, Lang, SearchRadius, SearchRadiusUnit, MaxResults, LocationCategories, LocationTypes, VerboseResults, DistanceFromQueryFeatureUnit, apiKey) {
         let queryString = '?';
+
+        if(wkt !== undefined){
+            queryString += "wkt=" + wkt;
+        }
 
         if (ProjectionInSrid) {
             if (ProjectionInProj4String) {
