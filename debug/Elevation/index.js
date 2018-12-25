@@ -78,14 +78,15 @@ var queryPoint = function (point) {
     // });
 
     // API 2: getElevationOfPoint
-    // ec.getElevationOfPoint(point[1], point[0], {
-    //     projectionInSrid: "3857"
-    // }, function (status, elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // })
+    ec.getElevationOfPoint(point[1], point[0], {
+        projectionInSrid: "3857",
+        elevationUnit:"meter"
+    }, function (status, elevationResponseText) {
+        let resultElement = document.createElement("code");
+        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+        wktElement.appendChild(resultElement);
+        scrollToTop()
+    })
 
     // API 3: getElevationOfPointPromise
     // ec.getElevationOfPointPromise(point[0], point[1], {
