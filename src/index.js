@@ -8,6 +8,6 @@ let tg = {};
 tg.ElevationClient = $Elevation$Client;
 tg.ProjectionClient = $Projection$Client;
 tg.GeocodingClient = $Geocoding$Client;
-tg.MapsRasterClient = $Maps$Client;
+tg.MapsClient = $Maps$Client;
 
 export default tg;
