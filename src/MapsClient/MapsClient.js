@@ -81,6 +81,10 @@ class MapsClient extends BaseClient {
             queryString = "?ApiKey=" + apiKey;
         }
 
+        if (queryString.indexOf('?&') > -1) {
+            queryString = queryString.replace('?&', '?');
+        }
+
         return queryString;
     }
 

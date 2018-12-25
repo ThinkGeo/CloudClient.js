@@ -55,7 +55,7 @@ class ProjectionClient extends BaseClient {
     getProjectOfWkt(wkt, opt_options, callback) {
         const options = opt_options ? opt_options : ({});
         let baseUri = this.getNextCandidateBaseUri();
-        let apiPath = "/api/v1/projection/";
+        let apiPath = "/api/v1/projection";
         let queryParameters = ProjectionClient.getQueryParameters(
             wkt,
             options['fromProjectionInSrid'],
@@ -163,14 +163,14 @@ class ProjectionClient extends BaseClient {
     static getQueryParameters(wkt, fromProjectionInSrid, fromProjectionInProj4String, toProjectionInSrid, toProjectionInProj4String, apiKey) {
         let queryString = '?';
         if (wkt !== undefined) {
-            queryString += 'wkt=' + wkt + '&';
+            queryString += '&wkt=' + wkt;
         }
 
         if (fromProjectionInSrid) {
-            queryString += "fromProj=" + fromProjectionInSrid;
+            queryString += "&fromProj=" + fromProjectionInSrid;
         } else {
             if (fromProjectionInProj4String) {
-                queryString += "fromProj=" + fromProjectionInProj4String;
+                queryString += "&fromProj=" + fromProjectionInProj4String;
             }
         }
 
@@ -181,17 +181,16 @@ class ProjectionClient extends BaseClient {
                 queryString += "&toProj=" + toProjectionInProj4String;
             }
         }
-
+        
         if (apiKey !== undefined) {
-            if (queryString.split('?')[1] !== "") {
-                queryString += "&apikey=" + apiKey;
-            } else {
-                queryString += "apikey=" + apiKey;
-            }
+            queryString += "&apikey=" + apiKey;
+        }
+
+        if (queryString.indexOf('?&') > -1) {
+            queryString = queryString.replace('?&', '?');
         }
 
         return queryString;
-
     }
 
     static getPostBodyParameters(wkt, fromProjectionInSrid, fromProjectionInProj4String, toProjectionInSrid, toProjectionInProj4String) {

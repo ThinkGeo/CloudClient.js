@@ -291,7 +291,10 @@ class ElevationClient extends BaseClient {
 
     static getQueryParameters(wellKnownText, projectionInSrid, projectionInProj4String, numberOfSegments, intervalDistance, intervalDistanceUnit, elevationUnit = "Feet", apiKey) {
         var queryString = "?";
-        queryString += "elevationUnit=" + elevationUnit;
+
+        if(elevationUnit){
+            queryString += "&elevationUnit=" + elevationUnit;
+        }
 
         if (projectionInSrid) {
             queryString += "&srid=" + projectionInSrid;
@@ -315,6 +318,10 @@ class ElevationClient extends BaseClient {
 
         if (apiKey !== undefined) {
             queryString += "&apikey=" + apiKey;
+        }
+
+        if (queryString.indexOf('?&') > -1) {
+            queryString = queryString.replace('?&', '?');
         }
 
         return queryString;

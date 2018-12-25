@@ -55,7 +55,7 @@ class GeocodingClient extends BaseClient {
         }
 
         if (queryString.indexOf('?&') > -1) {
-            queryString.replace('?&', '?');
+            queryString = queryString.replace('?&', '?');
         }
 
         return queryString;

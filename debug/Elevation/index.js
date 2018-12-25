@@ -116,12 +116,12 @@ var queryLine = function (wkt) {
     // })
 
     // API 2: getElevationOfLine
-    // ec.getElevationOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // });
+    ec.getElevationOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
+        let resultElement = document.createElement("code");
+        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+        wktElement.appendChild(resultElement);
+        scrollToTop()
+    });
 
     // API 3:
     // ec.getElevationOfLinePromise(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }).then(function (elevationResponseText) {
@@ -168,14 +168,14 @@ var queryLine = function (wkt) {
 }
 var queryArea = function (wkt) {
     // API 1: getElevationOfArea
-    // ec.getElevationOfArea(wkt, {
-    //     projectionInSrid: "3857"
-    // }, function (status, elevationResponseText) {
-    //     var resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop();
-    // });
+    ec.getElevationOfArea(wkt, {
+        projectionInSrid: "3857"
+    }, function (status, elevationResponseText) {
+        var resultElement = document.createElement("code");
+        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+        wktElement.appendChild(resultElement);
+        scrollToTop();
+    });
 
     // API 2: getElevationOfAreaInDecimalDegree
     // wkt = 'POLYGON((11.00 12.00,13.22 20.22,14.22 15.55,16.33 17.55,18.55 19.66))';
