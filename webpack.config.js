@@ -11,7 +11,7 @@ var developConfig = {
     },
     mode: 'development',
     devServer: {
-        openPage: "./debug",
+        openPage: "./samples",
         host: 'localhost',
         compress: true,
         port: 8080
