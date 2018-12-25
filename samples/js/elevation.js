@@ -188,12 +188,6 @@ var queryArea = function (wkt) {
     // API 3: getElevationOfAreaPromise
     // API 4: getElevationOfAreaPromiseInDecimalDegree
 }
-// var queryMultiPoint = function () { 
-//     // API 1:
-//     ec.getElevationOfMultiPoint({}, function(){
-
-//     });
-//  }
 
 addInteraction();
 

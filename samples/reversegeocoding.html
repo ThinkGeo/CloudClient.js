@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Reversegeocoding</title>
-    <link rel="stylesheet" href="../vectormap.css" type="text/css">
+    <link rel="stylesheet" href="./lib/vectormap.css" type="text/css">
     <style type="text/css">
         .map {
-            height: 400px;
+            height: 150px;
             width: 100%;
             margin-bottom: 10px;
         }
@@ -32,7 +32,7 @@
             width: 200px;
         }
     </style>
-    <script src="../vectormap-dev.js"></script>
+    <script src="./lib/vectormap-dev.js"></script>
 </head>
 
 <body>
@@ -66,15 +66,14 @@
     <input type="text" id="VerboseResults" value=""><br>
     <label>DistanceFromQueryFeatureUnit:</label>
     <input type="text" id="DistanceFromQueryFeatureUnit" value=""><br>
-    ProjectionInSrid, ProjectionInProj4String, Lang, SearchRadius, SearchRadiusUnit, MaxResults, LocationCategories, LocationTypes, VerboseResults, DistanceFromQueryFeatureUnit
     <button id="clearBtn">Clear</button>
-
+    <hr>
     <pre id="elevationResult">
         <code id="response"></code>
     </pre>
 </body>
 
-<script src="../../dist/ThinkGeoCloudClient.js"></script>
-<script src="index.js"></script>
+<script src="../dist/ThinkGeoCloudClient.js"></script>
+<script src="./js/reversegeocoding.js"></script>
 
 </html>

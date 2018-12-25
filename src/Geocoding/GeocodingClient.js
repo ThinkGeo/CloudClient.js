@@ -20,37 +20,39 @@ class GeocodingClient extends BaseClient {
             options["projectionInProj4String"],
             this.apiKey
         )
-
         let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
-        this.sendWebRequest(xhr, callback);
+        this.sendWebRequest(xhr, callback)
     }
 
     static getQueryParameters(locationType, fuzzyMatch, maxResults, verboseResults, projectionInSrid, projectionInProj4String, apiKey) {
         var queryString = "?";
 
-        if (locationType !== undefined) {
+        if (locationType !== '' && locationType !== undefined) {
             queryString += "&LocationType=" + locationType;
         }
 
-        if (fuzzyMatch !== undefined) {
+        if (fuzzyMatch !== '' && fuzzyMatch !== undefined) {
             queryString += "&FuzzyMatch=" + fuzzyMatch;
         }
 
-        if (maxResults !== undefined) {
+        if (maxResults !== '' && maxResults !== undefined) {
             queryString += "&MaxResults=" + maxResults;
         }
 
-        if (verboseResults !== undefined) {
+        if (verboseResults !== '' && verboseResults !== undefined) {
             queryString += "&VerboseResults=" + verboseResults;
         }
 
-        if (projectionInSrid !== undefined) {
+        if (projectionInSrid !== '' && projectionInSrid !== undefined) {
+            if (projectionInProj4String !== '' && projectionInProj4String !== undefined) {
+                throw 'You must specify either Srid or Proj4String, but not both.'
+            }
             queryString += "&Srid=" + projectionInSrid;
-        } else if (projectionInProj4String !== undefined) {
+        }else if (projectionInProj4String !== '' && projectionInProj4String !== undefined) {
             queryString += "&Proj4String=" + projectionInProj4String;
         }
 
-        if (apiKey !== undefined) {
+        if (apiKey !== '' && apiKey !== undefined) {
             queryString += "&ApiKey=" + apiKey;
         }
 

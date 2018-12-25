@@ -65,7 +65,11 @@ class BaseClient extends Eventable {
             if (body !== undefined) {
                 sendingWebRequestObj.xhr.send(body);
             } else {
-                sendingWebRequestObj.xhr.send();
+                try {
+                    sendingWebRequestObj.xhr.send();
+                } catch (err) {
+                    alert(err)
+                }
             }
         }
     }
