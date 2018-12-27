@@ -9,22 +9,22 @@ class ProjectionClient extends BaseClient {
     getProjectionOfPoint(pointY, pointX, fromProj, toProj, callback) {
         // verify the required parameter 'pointY' is set
         if (pointY === undefined || pointY === null || pointY === '') {
-            throw new Error("Missing the required parameter 'pointY' when calling projectPointV1");
+            throw new Error("Missing the required parameter 'pointY' when calling getProjectionOfPoint");
         }
 
         // verify the required parameter 'pointX' is set
         if (pointX === undefined || pointX === null || pointX === '') {
-            throw new Error("Missing the required parameter 'pointX' when calling projectPointV1");
+            throw new Error("Missing the required parameter 'pointX' when calling getProjectionOfPoint");
         }
 
         // verify the required parameter 'fromProj' is set
         if (fromProj === undefined || fromProj === null || fromProj === '') {
-            throw new Error("Missing the required parameter 'fromProj' when calling projectPointV1");
+            throw new Error("Missing the required parameter 'fromProj' when calling getProjectionOfPoint");
         }
 
         // verify the required parameter 'toProj' is set
         if (toProj === undefined || toProj === null || toProj === '') {
-            throw new Error("Missing the required parameter 'toProj' when calling projectPointV1");
+            throw new Error("Missing the required parameter 'toProj' when calling getProjectionOfPoint");
         }
         let path = '/api/v1/projection/{pointY},{pointX}';
         let httpMethod = 'GET';
@@ -47,17 +47,17 @@ class ProjectionClient extends BaseClient {
     getProjectionOfGeometry(wkt, fromProj, toProj, callback) {
         // verify the required parameter 'wkt' is set
         if (wkt === undefined || wkt === null) {
-            throw new Error("Missing the required parameter 'wkt' when calling projectGeometryV1");
+            throw new Error("Missing the required parameter 'wkt' when calling projectGeometry");
         }
 
         // verify the required parameter 'fromProj' is set
         if (fromProj === undefined || fromProj === null) {
-            throw new Error("Missing the required parameter 'fromProj' when calling projectGeometryV1");
+            throw new Error("Missing the required parameter 'fromProj' when calling projectGeometry");
         }
 
         // verify the required parameter 'toProj' is set
         if (toProj === undefined || toProj === null) {
-            throw new Error("Missing the required parameter 'toProj' when calling projectGeometryV1");
+            throw new Error("Missing the required parameter 'toProj' when calling projectGeometry");
         }
 
         let path = '/api/v1/projection';

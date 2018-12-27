@@ -45,7 +45,7 @@ class ElevationClient extends BaseClient {
 
         // verify the required parameter 'wkt' is set
         if (wkt === undefined || wkt === null) {
-            throw new Error("Missing the required parameter 'wkt' when calling getElevationOfLineV1");
+            throw new Error("Missing the required parameter 'wkt' when calling getElevationOfLine");
         }
 
         let path = '/api/v1/elevation/line';
@@ -74,7 +74,7 @@ class ElevationClient extends BaseClient {
 
         // verify the required parameter 'wkt' is set
         if (wkt === undefined || wkt === null) {
-            throw new Error("Missing the required parameter 'wkt' when calling getElevationOfAreaV1");
+            throw new Error("Missing the required parameter 'wkt' when calling getElevationOfArea");
         }
 
         let path = '/api/v1/elevation/area';
@@ -102,7 +102,7 @@ class ElevationClient extends BaseClient {
 
         // verify the required parameter 'wkt' is set
         if (wkt === undefined || wkt === null) {
-            throw new Error("Missing the required parameter 'wkt' when calling getElevationOfLineV1");
+            throw new Error("Missing the required parameter 'wkt' when calling getGradeOfLine");
         }
 
         let path = '/api/v1/elevation/grade/line';

@@ -32,23 +32,32 @@
             width: 250px;
             text-align: right;
         }
-
-        #count-wrap {
-            display: none;
-        }
     </style>
     <script src="./lib/vectormap-dev.js"></script>
 </head>
 
 <body>
     <h2 style="margin: 0">Draw Feature and Query Reversegeocoding</h2>
-    <div id="map" class="map"></div>
-    <label>Geometry type : &nbsp;</label>
-    <select id="type">
-        <option value="Point">Point</option>
-        <option value="LineString">LineString</option>
-        <option value="Polygon">Polygon</option>
-    </select>
+    <span id="count-wrap">
+        <label for="">body: </label>
+        <textarea name="" id="body" cols="30" rows="20">
+[
+  {
+    "coord": "32.0,22.0",
+    "srid": 4326,
+    "proj4String": "",
+    "lang": "string",
+    "searchRadius": 5,
+    "searchRadiusUnit": "Meter",
+    "maxResults": 6,
+    "locationCategories": "",
+    "locationTypes": "",
+    "verboseResults": true,
+    "distanceFromQueryFeatureUnit": "Meter"
+  }
+]
+        </textarea>
+    </span>
 
     <div id="queryParam">
         <h4>Get Reversegeocoding Result:</h4>
@@ -74,6 +83,7 @@
         <input type="text" id="DistanceFromQueryFeatureUnit" value=""><br>
     </div>
     <button id="clearBtn">Clear</button>
+    <button id="search">search</button>
     <hr>
     <pre id="result">
         <code id="response"></code>
@@ -81,6 +91,6 @@
 </body>
 
 <script src="../dist/ThinkGeoCloudClient.js"></script>
-<script src="./js/reversegeocoding.js"></script>
+<script src="./js/reversegeocodingpoints.js"></script>
 
 </html>
