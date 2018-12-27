@@ -6,65 +6,54 @@ class GeocodingClient extends BaseClient {
         super(options);
     }
 
-    getGeocodingResult(searchText, opt_options, callback) {
-        const options = opt_options ? opt_options : ({});
-
-        let baseUri = this.getNextCandidateBaseUri();
-        // verify the required parameter 'searchText' is set
+    getGeocodingAdress(searchText, callback, opts) {
         if (searchText === undefined || searchText === null || searchText === '') {
-            throw new Error("Missing the required parameter 'searchText' when calling getGeocodingResult");
+            throw new Error("Missing the required parameter 'searchText' when calling getGeocodingAdress");
         }
-        let apiPath = `/api/v1/location/geocode/${searchText}`
-        let queryParameters = GeocodingClient.getQueryParameters(
-            options["locationType"],
-            options["fuzzyMatch"],
-            options["maxResults"],
-            options["verboseResults"],
-            options["projectionInSrid"],
-            options["projectionInProj4String"],
-            this.apiKey
-        )
-        let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
-        this.sendWebRequest(xhr, callback)
+        opts = opts || {};
+
+        let path = '/api/v1/location/geocode/{searchText}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'searchText': searchText
+        };
+        let queryParams = {
+            'LocationType': opts['LocationType'],
+            'FuzzyMatch': opts['FuzzyMatch'],
+            'MaxResults': opts['MaxResults'],
+            'VerboseResults': opts['VerboseResults'],
+            'Srid': opts['Srid'],
+            'Proj4String': opts['Proj4String'],
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        let contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    static getQueryParameters(locationType, fuzzyMatch, maxResults, verboseResults, projectionInSrid, projectionInProj4String, apiKey) {
-        var queryString = "?";
+    getGeocodingAdressBatch(opts, callback) {
+        opts = opts || {};
 
-        if (locationType !== '' && locationType !== undefined) {
-            queryString += "&LocationType=" + locationType;
-        }
+        let path = '/api/v1/location/geocode/multi';
+        let httpMethod = 'POST';
+        let pathParams = {
+        };
+        let queryParams = {
+            'LocationType': opts['LocationType'],
+            'FuzzyMatch': opts['FuzzyMatch'],
+            'MaxResults': opts['MaxResults'],
+            'VerboseResults': opts['VerboseResults'],
+            'Srid': opts['Srid'],
+            'Proj4String': opts['Proj4String'],
+        };
+        let bodyParam = opts['body'];
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
+        let returnType = 'json';
 
-        if (fuzzyMatch !== '' && fuzzyMatch !== undefined) {
-            queryString += "&FuzzyMatch=" + fuzzyMatch;
-        }
-
-        if (maxResults !== '' && maxResults !== undefined) {
-            queryString += "&MaxResults=" + maxResults;
-        }
-
-        if (verboseResults !== '' && verboseResults !== undefined) {
-            queryString += "&VerboseResults=" + verboseResults;
-        }
-
-        if (projectionInSrid !== '' && projectionInSrid !== undefined) {
-            if (projectionInProj4String !== '' && projectionInProj4String !== undefined) {
-                throw new Error('You must specify either Srid or Proj4String, but not both.')
-            }
-            queryString += "&Srid=" + projectionInSrid;
-        } else if (projectionInProj4String !== '' && projectionInProj4String !== undefined) {
-            queryString += "&Proj4String=" + projectionInProj4String;
-        }
-
-        if (apiKey !== '' && apiKey !== undefined) {
-            queryString += "&ApiKey=" + apiKey;
-        }
-
-        if (queryString.indexOf('?&') > -1) {
-            queryString = queryString.replace('?&', '?');
-        }
-
-        return queryString;
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 }
 

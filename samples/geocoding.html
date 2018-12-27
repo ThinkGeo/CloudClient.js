@@ -26,22 +26,25 @@
 <body>
     <h2 style="margin: 0">Query Geocoding</h2>
     <button id="search">search</button>
-    <button id="clearBtn">clear</button><br>
+    <button id="clearBtn">clear</button>
+    <br>
     <label for="">Locaiton name:</label>
-    <input type="text" id="inputText" value="new york"><br><br><br>
+    <span id="inputBox"><input type="text" id="inputText1" class="inputText" value="new york"> </span><span id="add">+</span><br><br><br>
     <p>The below are queryParams :</p>
     <label for="">locationType:</label>
-    <input type="text" id="locationType" value="">(Possible values are Address, Street, State, City, County, Postcode, Zipcode, Country. Defaults to all types.)<br>
+    <input type="text" id="locationType" value="">(Possible values are Address, Street, State, City, County,
+    Postcode,
+    Zipcode, Country. Defaults to all types.)<br>
     <label for="">fuzzyMatch:</label>
     <input type="text" id="fuzzyMatch" value="">(true or false)<br>
     <label for="">maxResults:</label>
     <input type="text" id="maxResults" value=""><br>
     <label for="">verboseResults:</label>
     <input type="text" id="verboseResults" value="">(true or false)<br>
-    <label for="">projectionInSrid:</label>
-    <input type="text" id="projectionInSrid" value=""><br>
-    <label for="">projectionInProj4String:</label>
-    <input type="text" id="projectionInProj4String" value=""><br>
+    <label for="">Srid:</label>
+    <input type="text" id="Srid" value=""><br>
+    <label for="">Proj4String:</label>
+    <input type="text" id="Proj4String" value=""><br>
     <hr>
     <pre id="result">
         <code id="response"></code>
