@@ -7,41 +7,50 @@ class BaseClient extends Eventable {
             throw TypeError("BaseClient is an abstract class, so cannot instantiated.");
         }
         super();
-        this.apiKey = options["apiKey"];
-        this.BaseUris_ = new Set();
+
+        this.basePath = "https://cloud.thinkgeo.com";
+        this.authentications = {
+            'API Key': {
+                type: 'apiKey',
+                'in': 'query',
+                name: 'ApiKey',
+                'apiKey': options["apiKey"]
+            },
+            'Client Credentials': {
+                type: 'oauth2'
+            },
+            'Resource Owner Password': {
+                type: 'oauth2'
+            }
+        };
     }
 
-    get BaseUris() {
-        return this.BaseUris_;
-    }
+    callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback) {
+        let params = {
+            queryObj: queryParams,
+            setHeaderObj: {
+                "Content-type": contentTypes
+            }
+        }
 
-    createRequestXHR(baseUri, apiPath, method, parameters) {
-        if (baseUri.endsWith("/") && apiPath.endsWith("/")) {
-            apiPath = apiPath.trim('/');
-        }
-        var url = baseUri + apiPath + parameters;
+        let xhr = new XMLHttpRequest();
 
-        var xhr = new XMLHttpRequest();
-        xhr.open(method, url, true);
-        if (method.toUpperCase() === 'POST') {
-            xhr.setRequestHeader("Content-type", "application/json");
-        }
-        return xhr;
-    }
+        params = this.applyAuthToRequest(authNames, params);
 
-    authenticateWebRequest(xhr) {
-        if (string.IsNullOrWhiteSpace(apiKey)) {
-            return;
-        }
-        if (token == null) {
-            ///
-        }
-        if (token) {
-            xhr.setRequestHeader('Authorization', 'Bearer ' + requestToken);
-        }
-    }
+        let url = this.buildUrl(path, pathParams, params.queryObj);
 
-    sendWebRequest(xhr, callback, body) {
+        xhr.open(httpMethod, url, true);
+
+        this.setHeader(xhr, params.setHeaderObj);
+
+        if (returnType.toLowerCase() === 'blob') {
+            xhr.responseType = "blob";
+        } else if (returnType.toLowerCase() === 'string') {
+            xhr.responseType = "string";
+        } else if (returnType.toLowerCase() === 'json') {
+            xhr.responseType = "json";
+        }
+
         let sendingWebRequestObj = {
             type: "sendingWebRequest",
             xhr: xhr,
@@ -53,7 +62,7 @@ class BaseClient extends Eventable {
             if (callback) {
                 sendingWebRequestObj.xhr.onload = function (event) {
                     if (callback) {
-                        callback(xhr.status, xhr.responseText);
+                        callback(xhr.status, xhr.response);
                     }
                 }
                 sendingWebRequestObj.xhr.onerror = function () {
@@ -62,24 +71,98 @@ class BaseClient extends Eventable {
                     }
                 }
             }
-            if (body !== undefined) {
-                sendingWebRequestObj.xhr.send(body);
+
+            if (bodyParam) {
+                sendingWebRequestObj.xhr.send(bodyParam);
             } else {
-                try {
-                    sendingWebRequestObj.xhr.send();
-                } catch (err) {
-                    alert(err)
-                }
+                sendingWebRequestObj.xhr.send();
             }
         }
     }
 
-    getNextCandidateBaseUri() {
-        return this.getNextCandidateBaseUriCore()
+    setHeader(xhr, setHeaderObj) {
+        Object.keys(setHeaderObj).forEach(function (key) {
+            xhr.setRequestHeader(key, setHeaderObj[key]);
+        });
     }
 
-    getNextCandidateBaseUriCore() {
-        return "https://cloud.thinkgeo.com";
+    buildUrl(path, pathParams, queryParams) {
+        if (!path.match(/^\//)) {
+            path = '/' + path;
+        }
+        let url = this.basePath + path;
+        url = url.replace(/\{([\w-]+)\}/g, (fullMatch, key) => {
+            let value;
+            if (pathParams.hasOwnProperty(key)) {
+                value = this.paramToString(pathParams[key]);
+            } else {
+                value = fullMatch;
+            }
+            return encodeURIComponent(value);
+        });
+
+        let queryString = '';
+        let keysArr = Object.keys(queryParams);
+        keysArr.forEach((key) => {
+            if (queryParams[key] !== undefined && queryParams[key] !== null && queryParams[key] !== '') {
+                if (queryString === '') {
+                    queryString += `?${key}=${queryParams[key]}`
+                } else {
+                    queryString += `&${key}=${queryParams[key]}`
+                }
+            }
+        });
+        url += queryString;
+        return url;
+    }
+
+    paramToString(param) {
+        if (param === undefined || param === null) {
+            return '';
+        }
+        if (param instanceof Date) {
+            return param.toJSON();
+        }
+        return param.toString();
+    }
+
+    applyAuthToRequest(authNames, params) {
+        authNames.forEach((authName) => {
+            let auth = this.authentications[authName];
+            switch (auth.type) {
+                case 'basic':
+                    if (auth.username || auth.password) {
+                        let username = auth.username || '';
+                        let password = auth.password || '';
+                        params.setHeaderObj['Authorization'] = "Basic " + btoa(`${username}:${password}`);
+                    }
+                    break;
+                case 'apiKey':
+                    if (auth.apiKey) {
+                        let data = {};
+                        if (auth.apiKeyPrefix) {
+                            data[auth.name] = auth.apiKeyPrefix + ' ' + auth.apiKey;
+                        } else {
+                            data[auth.name] = auth.apiKey;
+                        }
+                        if (auth['in'] === 'header') {
+                            params.setHeaderObj['X-API-Key'] = data[auth.name]; //data[auth.name] -> apiKey
+                        } else { //apiKey in query
+                            params.queryObj['apikey'] = data[auth.name];
+                        }
+                    }
+                    break;
+                case 'oauth2':
+                    if (auth.accessToken) {
+                        params.setHeaderObj['Authorization'] = 'Bearer ' + auth.accessToken; //data[auth.name] -> apiKey
+                    }
+                    break;
+                default:
+                    throw new Error('Unknown authentication type: ' + auth.type);
+            }
+        });
+
+        return params
     }
 
     formatResponse(response) {

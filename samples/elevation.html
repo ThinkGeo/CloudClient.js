@@ -22,6 +22,10 @@
         #clearBtn {
             margin-left: 10px;
         }
+
+        #method{
+            display: none;
+        }
     </style>
     <script src="./lib/vectormap-dev.js"></script>
 </head>
@@ -34,6 +38,14 @@
         <option value="Point">Point</option>
         <option value="LineString">LineString</option>
         <option value="Polygon">Polygon</option>
+    </select>
+    <select id="method">
+        <option value="getElevationOfLine">getElevationOfLine</option>
+        <option value="getGradeOfLine">getGradeOfLine</option>
+    </select>
+    <select id="pointMethod">
+        <option value="getElevationOfPoint">getElevationOfPoint</option>
+        <option value="getElevationOfPoints">getElevationOfPoints</option>
     </select>
 
     <button id="clearBtn">Clear</button>

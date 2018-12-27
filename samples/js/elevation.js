@@ -6,7 +6,7 @@ var map = new ol.Map({
         })
     ],
     view: new ol.View({
-        center: ol.proj.fromLonLat([37.41, 8.82]),
+        center: ol.proj.fromLonLat([-96.222, 32.777]),
         zoom: 14
     })
 });
@@ -69,124 +69,78 @@ typeSelect.onchange = function () {
 };
 
 var queryPoint = function (point) {
-    //API 1: getElevationOfPointInDecimalDegree 
-    // ec.getElevationOfPointInDecimalDegree(23.000, 11.000, "Feet", function (status, elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // });
+    var pointMethod = document.getElementById('pointMethod').value;
+    if (pointMethod === 'getElevationOfPoint') {
+        ec.getElevationOfPoint(point[1], point[0], function (status, response) {
+            let resultElement = document.createElement("code");
+            resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
+            wktElement.appendChild(resultElement);
+            scrollToTop()
+        }, {
+            Srid: "3857",
+            elevationUnit: "meter"
+        })
+    } else {
+        ec.getElevationOfPoints({
+            body: [{
+                    "coord": "-10695576.730685642,3867065.21978586"
+                },
+                {
+                    "coord": "-10704195.10648191,3867409.9548177104"
+                }
+            ],
+            srid: 3857,
+            elevationUnit: "Meter"
+        }, function (status, response) {
+            let resultElement = document.createElement("code");
+            resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
+            wktElement.appendChild(resultElement);
+            scrollToTop()
+        })
+    }
 
-    // API 2: getElevationOfPoint
-    ec.getElevationOfPoint(point[1], point[0], {
-        projectionInSrid: "3857",
-        elevationUnit:"meter"
-    }, function (status, elevationResponseText) {
-        let resultElement = document.createElement("code");
-        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-        wktElement.appendChild(resultElement);
-        scrollToTop()
-    })
-
-    // API 3: getElevationOfPointPromise
-    // ec.getElevationOfPointPromise(point[0], point[1], {
-    //     projectionInSrid: "3857"
-    // }).then(function (elevationResponseText) {
+    // API 2: getElevationOfPointInDecimalDegree
+    // ec.getElevationOfPointInDecimalDegree(-90, 3.0, 'meter', function (status, response) {
     //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // }, function (errorText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(errorText), null, 4);
+    //     resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
     //     wktElement.appendChild(resultElement);
     //     scrollToTop()
     // })
 }
 var queryLine = function (wkt) {
-    // API 1: getElevationOfLineInDecimalDegree
-    // wkt = 'LINESTRING(-11.00 11.11,-12.00 12.11)';
-    // ec.getElevationOfLineInDecimalDegree(wkt, {
-    //     numberOfSegments: "2"
-    // }, function (status, elevationResponseText) {
-    //     var resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // })
+    var method = document.getElementById('method').value;
+    if (method === 'getElevationOfLine') {
+        ec.getElevationOfLine(wkt, function (status, response) {
+            let resultElement = document.createElement("code");
+            resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
+            wktElement.appendChild(resultElement);
+            scrollToTop()
+        }, {
+            IntervalDistance: 10,
+            Srid: 3857
+        });
+    } else {
+        ec.getGradeOfLine(wkt, function (status, response) {
+            let resultElement = document.createElement("code");
+            resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
+            wktElement.appendChild(resultElement);
+            scrollToTop()
+        }, {
+            IntervalDistance: 10,
+            Srid: 3857
+        })
+    }
+}
 
-    // API 2: getElevationOfLine
-    ec.getElevationOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
+var queryArea = function (wkt) {
+    ec.getElevationOfArea(wkt, function (status, response) {
         let resultElement = document.createElement("code");
-        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
+        resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
         wktElement.appendChild(resultElement);
         scrollToTop()
+    }, {
+        Srid: 3857
     });
-
-    // API 3:
-    // ec.getElevationOfLinePromise(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }).then(function (elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // }).catch(function (elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // });
-
-    // API 4: getGradeOfLineInDecimalDegree
-    // wkt = 'LINESTRING(-11.00 11.11,-12.00 12.11)';
-    // ec.getGradeOfLineInDecimalDegree(wkt, { numberOfSegments: "2" }, function (status, elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // });
-
-    // API 5:
-    // ec.getGradeOfLine(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (status, elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop();
-    // });
-
-    // API 6:
-    // ec.getGradeOfLinePromise(wkt, { projectionInSrid: "3857", numberOfSegments: "2" }, function (elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // }).catch(function (elevationResponseText) {
-    //     let resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop()
-    // });
-}
-var queryArea = function (wkt) {
-    // API 1: getElevationOfArea
-    ec.getElevationOfArea(wkt, {
-        projectionInSrid: "3857"
-    }, function (status, elevationResponseText) {
-        var resultElement = document.createElement("code");
-        resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-        wktElement.appendChild(resultElement);
-        scrollToTop();
-    });
-
-    // API 2: getElevationOfAreaInDecimalDegree
-    // wkt = 'POLYGON((11.00 12.00,13.22 20.22,14.22 15.55,16.33 17.55,18.55 19.66))';
-    // ec.getElevationOfAreaInDecimalDegree(wkt, undefined, function (status, elevationResponseText) {
-    //     var resultElement = document.createElement("code");
-    //     resultElement.innerHTML = "<br/>" + JSON.stringify(JSON.parse(elevationResponseText), null, 4);
-    //     wktElement.appendChild(resultElement);
-    //     scrollToTop();
-    // });
-    // API 3: getElevationOfAreaPromise
-    // API 4: getElevationOfAreaPromiseInDecimalDegree
 }
 
 addInteraction();
@@ -196,7 +150,23 @@ var scrollToTop = function () {
     elevationResult.scrollTop = elevationResult.scrollHeight;
 }
 
+var selectChangeHandle = function () {
+    var typeValue = document.getElementById('type').value;
+    if (typeValue === 'LineString') {
+        document.getElementById('method').style.display = 'inline-block';
+        document.getElementById('pointMethod').style.display = 'none';
+    } else if (typeValue === 'Point') {
+        document.getElementById('pointMethod').style.display = 'inline-block';
+        document.getElementById('method').style.display = 'none';
+    } else {
+        document.getElementById('method').style.display = 'none';
+        document.getElementById('pointMethod').style.display = 'none';
+    }
+}
+
 document.getElementById("clearBtn").addEventListener("click", function () {
     source.clear();
     document.getElementById("response").innerHTML = "";
 })
+
+document.getElementById('type').addEventListener("change", selectChangeHandle);
