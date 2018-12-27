@@ -6,88 +6,105 @@ class MapsClient extends BaseClient {
         super(options);
     }
 
-    getRasterTile(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, callback) {
-        if (srid !== "3857") {
-            throw new Error("Currently only 'srid = 3857' is supported.");
+    getMapsRasterTileByXyz(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, callback) {
+        // verify the required parameter 'style' is set
+        if (style === undefined || style === null || style === '') {
+            throw new Error("Missing the required parameter 'style' when calling getMapsRasterTileByXyz");
         }
 
-        let baseUri = this.getNextCandidateBaseUri();
-        let apiPath = `/api/v1/maps/raster/${style}/x${resolution}/${srid}/${tileSize}/${tileZ}/${tileX}/${tileY}.${fileExtension}`;
-        let queryParameters = MapsClient.getQueryParameters(this.apiKey);
+        // verify the required parameter 'resolution' is set
+        if (resolution === undefined || resolution === null || resolution === '') {
+            throw new Error("Missing the required parameter 'resolution' when calling getMapsRasterTileByXyz");
+        }
 
-        let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
-        xhr.responseType = "blob";
-        let sendingWebRequestObj = {
-            type: "sendingWebRequest",
-            xhr: xhr,
-            cancel: false
+        // verify the required parameter 'srid' is set
+        if (srid === undefined || srid === null || srid === '') {
+            throw new Error("Missing the required parameter 'srid' when calling getMapsRasterTileByXyz");
+        }
+
+        // verify the required parameter 'tileSize' is set
+        if (tileSize === undefined || tileSize === null || tileSize === '') {
+            throw new Error("Missing the required parameter 'tileSize' when calling getMapsRasterTileByXyz");
+        }
+
+        // verify the required parameter 'tileZ' is set
+        if (tileZ === undefined || tileZ === null || tileZ === '') {
+            throw new Error("Missing the required parameter 'tileZ' when calling getMapsRasterTileByXyz");
+        }
+
+        // verify the required parameter 'tileX' is set
+        if (tileX === undefined || tileX === null || tileX === '') {
+            throw new Error("Missing the required parameter 'tileX' when calling getMapsRasterTileByXyz");
+        }
+
+        // verify the required parameter 'tileY' is set
+        if (tileY === undefined || tileY === null || tileY === '') {
+            throw new Error("Missing the required parameter 'tileY' when calling getMapsRasterTileByXyz");
+        }
+
+        // verify the required parameter 'fileExtension' is set
+        if (fileExtension === undefined || fileExtension === null || fileExtension === '') {
+            throw new Error("Missing the required parameter 'fileExtension' when calling getMapsRasterTileByXyz");
+        }
+
+        let path = '/api/v1/maps/raster/{style}/x{resolution}/{srid}/{tileSize}/{tileZ}/{tileX}/{tileY}.{fileExtension}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'style': style,
+            'resolution': resolution,
+            'srid': srid,
+            'tileSize': tileSize,
+            'tileZ': tileZ,
+            'tileX': tileX,
+            'tileY': tileY,
+            'fileExtension': fileExtension
         };
-        this.fire(sendingWebRequestObj);
+        let queryParams = {};
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        let contentTypes = [];
+        let returnType = 'Blob';
 
-        if (!sendingWebRequestObj.cancel) {
-            if (callback) {
-                sendingWebRequestObj.xhr.onload = function (event) {
-                    if (callback) {
-                        callback(xhr.status, xhr.response);
-                    }
-                }
-                sendingWebRequestObj.xhr.onerror = function () {
-                    if (callback) {
-                        callback("error", "request error");
-                    }
-                }
-            }
-            sendingWebRequestObj.xhr.send();
-        }
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getVectorTile(srid, tileZ, tileX, tileY, callback) {
-        if (srid !== "3857") {
-            throw new Error("Currently only 'srid = 3857' is supported.");
+    getMapsStreetsVectorTileByXyz(srid, tileZ, tileX, tileY, callback) {
+        // verify the required parameter 'srid' is set
+        if (srid === undefined || srid === null) {
+            throw new Error("Missing the required parameter 'srid' when calling getMapsStreetsVectorTileByXyz");
         }
-        let baseUri = this.getNextCandidateBaseUri();
-        let apiPath = `/api/v1/maps/vector/streets/${srid}/${tileZ}/${tileX}/${tileY}.pbf`;
-        let queryParameters = MapsClient.getQueryParameters(this.apiKey);
-        let xhr = this.createRequestXHR(baseUri, apiPath, "GET", queryParameters);
-        xhr.responseType = "arraybuffer";
-        let sendingWebRequestObj = {
-            type: "sendingWebRequest",
-            xhr: xhr,
-            cancel: false
+
+        // verify the required parameter 'tileZ' is set
+        if (tileZ === undefined || tileZ === null) {
+            throw new Error("Missing the required parameter 'tileZ' when calling getMapsStreetsVectorTileByXyz");
+        }
+
+        // verify the required parameter 'tileX' is set
+        if (tileX === undefined || tileX === null) {
+            throw new Error("Missing the required parameter 'tileX' when calling getMapsStreetsVectorTileByXyz");
+        }
+
+        // verify the required parameter 'tileY' is set
+        if (tileY === undefined || tileY === null) {
+            throw new Error("Missing the required parameter 'tileY' when calling getMapsStreetsVectorTileByXyz");
+        }
+
+        let path = '/api/v1/maps/vector/streets/{srid}/{tileZ}/{tileX}/{tileY}.pbf';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'srid': srid,
+            'tileZ': tileZ,
+            'tileX': tileX,
+            'tileY': tileY
         };
-        this.fire(sendingWebRequestObj);
+        let queryParams = {};
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        let contentTypes = [];
+        let returnType = 'arrayBuffer';
 
-        if (!sendingWebRequestObj.cancel) {
-            if (callback) {
-                sendingWebRequestObj.xhr.onload = function (event) {
-                    if (callback) {
-                        callback(xhr.status, xhr.response);
-                    }
-                }
-                sendingWebRequestObj.xhr.onerror = function () {
-                    if (callback) {
-                        callback("error", "request error");
-                    }
-                }
-            }
-            sendingWebRequestObj.xhr.send();
-        }
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
-
-    static getQueryParameters(apiKey) {
-        let queryString;
-
-        if (apiKey !== undefined) {
-            queryString = "?ApiKey=" + apiKey;
-        }
-
-        if (queryString.indexOf('?&') > -1) {
-            queryString = queryString.replace('?&', '?');
-        }
-
-        return queryString;
-    }
-
 }
 
 export default MapsClient;

@@ -45,8 +45,8 @@ class BaseClient extends Eventable {
 
         if (returnType.toLowerCase() === 'blob') {
             xhr.responseType = "blob";
-        } else if (returnType.toLowerCase() === 'string') {
-            xhr.responseType = "string";
+        } else if (returnType.toLowerCase() === 'arrayBuffer') {
+            xhr.responseType = "arrayBuffer";
         } else if (returnType.toLowerCase() === 'json') {
             xhr.responseType = "json";
         }

@@ -14,7 +14,7 @@ var queryMapsTile = function () {
     var tileX = document.getElementById('tileX').value;
     var tileY = document.getElementById('tileY').value;
     var fileExtension = document.getElementById('fileExtension').value;
-    mrc.getRasterTile(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, function (status, response) {
+    mrc.getMapsRasterTileByXyz(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, function (status, response) {
         let blob = response;
         let imgTag = document.querySelector("img");
         let url = URL.createObjectURL(blob);
@@ -27,7 +27,7 @@ var queryMapsTile = function () {
     var tileZ = document.getElementById('tileZ2').value;
     var tileX = document.getElementById('tileX2').value;
     var tileY = document.getElementById('tileY2').value;
-    mrc.getVectorTile(srid, tileZ, tileX, tileY, function (status, response) {
+    mrc.getMapsStreetsVectorTileByXyz(srid, tileZ, tileX, tileY, function (status, response) {
         var blob = new Blob([response], {
             type: "application/pbf"
         });
