@@ -43,12 +43,14 @@ class BaseClient extends Eventable {
 
         this.setHeader(xhr, params.setHeaderObj);
 
-        if (returnType.toLowerCase() === 'blob') {
-            xhr.responseType = "blob";
-        } else if (returnType.toLowerCase() === 'arrayBuffer') {
-            xhr.responseType = "arrayBuffer";
-        } else if (returnType.toLowerCase() === 'json') {
-            xhr.responseType = "json";
+        if (returnType) {
+            if (returnType.toLowerCase() === 'blob') {
+                xhr.responseType = "blob";
+            } else if (returnType.toLowerCase() === 'arrayBuffer') {
+                xhr.responseType = "arrayBuffer";
+            } else if (returnType.toLowerCase() === 'json') {
+                xhr.responseType = "json";
+            }
         }
 
         let sendingWebRequestObj = {
