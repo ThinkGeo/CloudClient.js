@@ -13,23 +13,42 @@
             width: 100%;
         }
 
-        .res-wrap{
-            height: calc(70vh - 50px);
-            overflow: auto
-        }
-
         .res-box{
-            border: 1px solid #ccc;
             padding: 20px;
         }
         #clearBtn{
             margin: 10px;
+        }
+        hr{
+            margin: 0
+        }
+        #projectionResult{
+            height: 300px;
+            overflow: auto;
+        }
+        #count-wrap{
+            display: none;
         }
     </style>
     <script src="./lib/vectormap-dev.js"></script>
 </head>
 
 <body>
+    <div class="res-box">
+        <h4>1.Projection Of Point Response: (enter the point and transform)</h4>
+        <input type="text" id="input" value="31.9000,-55.0000">
+        <input type="text" id="fromProj" value="4326">
+        <input type="text" id="toProj" value="3857">
+        <button id="transform">transform</button>
+        <pre><code id="projectionResponse_callback"></code></pre>
+    </div>
+    <hr>
+    <hr>
+    <hr>
+    <div class="res-box">
+        <h4>2.Projection Of Wkt Response (draw):</h4>
+        <pre><code id="projectionOfWktResponse_callback"></code></pre>
+    </div>
     <div id="map" class="map"></div>
     <label>Geometry type &nbsp;</label>
     <select id="type">
@@ -37,23 +56,20 @@
         <option value="LineString">LineString</option>
         <option value="Polygon">Polygon</option>
     </select>
+    <select id="method">
+        <option value="getProjectionOfGeometry">getProjectionOfGeometry</option>
+        <option value="getProjectionOfGeometries">getProjectionOfGeometries</option>
+    </select>
+    <span id="count-wrap">
+        <label for="">Geometry count:</label>
+        <input type="number" value="3" id="count">
+    </span>
+
     <button id="clearBtn">Clear</button>
-    <div class="res-wrap">
-        <div class="res-box">
-            <h4>Projection Of Point Response:</h4>
-            <input type="text" id="input" value="31.9000,-95.0000">
-            <button id="search_projection">search_projection: </button>
-            <pre><code id="projectionResponse_callback"></code></pre>
-        </div>
-        <div class="res-box">
-            <h4>Projection Of Wkt Response (draw):</h4>
-            <pre><code id="projectionOfWktResponse_callback"></code></pre>
-        </div>
-        <!-- <div class="res-box">
-            <h4>Projection Of Multi Response (draw):</h4>
-            <pre><code id="projectionOfMultiResponse_callback"></code></pre>
-        </div> -->
-    </div>
+
+    <pre id="projectionResult">
+            <code id="response"></code>
+        </pre>
 </body>
 
 <script src="../dist/ThinkGeoCloudClient.js"></script>

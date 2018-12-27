@@ -6,221 +6,93 @@ class ProjectionClient extends BaseClient {
         super(options);
     }
 
-    getProjectOfPoint(y, x, opt_options, callback) {
-        const options = opt_options ? opt_options : ({});
-        let baseUri = this.getNextCandidateBaseUri();
-        let apiPath = "/api/v1/projection/" + y + ',' + x;
-        let queryParameters = ProjectionClient.getQueryParameters(
-            undefined,
-            options['fromProjectionInSrid'],
-            options['fromProjectionInProj4String'],
-            options['toProjectionInSrid'],
-            options['toProjectionInProj4String'],
-            this.apiKey
-        );
-        let xhr = this.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-        this.sendWebRequest(xhr, callback);
-    }
-    getProjectOfPointPromise(y, x, opt_options) {
-        const self = this;
-        const options = opt_options ? opt_options : ({});
-        const promise = new Promise(function (resolve, reject) {
-            let baseUri = self.getNextCandidateBaseUri();
-            let apiPath = "/api/v1/projection/" + y + ',' + x;
-            let queryParameters = ProjectionClient.getQueryParameters(
-                undefined,
-                options['fromProjectionInSrid'],
-                options['fromProjectionInProj4String'],
-                options['toProjectionInSrid'],
-                options['toProjectionInProj4String'],
-                self.apiKey
-            );
-            let xhr = self.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-            const handler = function () {
-                if (this.readyState !== 4) {
-                    return;
-                }
-                if (this.status === 200) {
-                    resolve(this.response);
-                } else {
-                    reject(new Error(this.statusText));
-                }
-            };
-            xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr);
-        });
-        return promise;
+    getProjectionOfPoint(pointY, pointX, fromProj, toProj, callback) {
+        // verify the required parameter 'pointY' is set
+        if (pointY === undefined || pointY === null || pointY === '') {
+            throw new Error("Missing the required parameter 'pointY' when calling projectPointV1");
+        }
+
+        // verify the required parameter 'pointX' is set
+        if (pointX === undefined || pointX === null || pointX === '') {
+            throw new Error("Missing the required parameter 'pointX' when calling projectPointV1");
+        }
+
+        // verify the required parameter 'fromProj' is set
+        if (fromProj === undefined || fromProj === null || fromProj === '') {
+            throw new Error("Missing the required parameter 'fromProj' when calling projectPointV1");
+        }
+
+        // verify the required parameter 'toProj' is set
+        if (toProj === undefined || toProj === null || toProj === '') {
+            throw new Error("Missing the required parameter 'toProj' when calling projectPointV1");
+        }
+        let path = '/api/v1/projection/{pointY},{pointX}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'pointY': pointY,
+            'pointX': pointX
+        };
+        let queryParams = {
+            'fromProj': fromProj,
+            'toProj': toProj,
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        let contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getProjectOfWkt(wkt, opt_options, callback) {
-        const options = opt_options ? opt_options : ({});
-        let baseUri = this.getNextCandidateBaseUri();
-        let apiPath = "/api/v1/projection";
-        let queryParameters = ProjectionClient.getQueryParameters(
-            wkt,
-            options['fromProjectionInSrid'],
-            options['fromProjectionInProj4String'],
-            options['toProjectionInSrid'],
-            options['toProjectionInProj4String'],
-            this.apiKey
-        );
-        let xhr = this.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-        this.sendWebRequest(xhr, callback);
-    }
-    getProjectOfWktPromise(wkt, opt_options) {
-        const self = this;
-        const options = opt_options ? opt_options : ({});
-        const promise = new Promise(function (resolve, reject) {
-            let baseUri = self.getNextCandidateBaseUri();
-            let apiPath = "/api/v1/projection/";
-            let queryParameters = ProjectionClient.getQueryParameters(
-                wkt,
-                options['fromProjectionInSrid'],
-                options['fromProjectionInProj4String'],
-                options['toProjectionInSrid'],
-                options['toProjectionInProj4String'],
-                self.apiKey
-            );
-            let xhr = self.createRequestXHR(baseUri, apiPath, 'GET', queryParameters);
-            const handler = function () {
-                if (this.readyState !== 4) {
-                    return;
-                }
-                if (this.status === 200) {
-                    resolve(this.response);
-                } else {
-                    reject(new Error(this.statusText));
-                }
-            };
-            xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr);
-        });
-        return promise;
+    getProjectionOfGeometry(wkt, fromProj, toProj, callback) {
+        // verify the required parameter 'wkt' is set
+        if (wkt === undefined || wkt === null) {
+            throw new Error("Missing the required parameter 'wkt' when calling projectGeometryV1");
+        }
+
+        // verify the required parameter 'fromProj' is set
+        if (fromProj === undefined || fromProj === null) {
+            throw new Error("Missing the required parameter 'fromProj' when calling projectGeometryV1");
+        }
+
+        // verify the required parameter 'toProj' is set
+        if (toProj === undefined || toProj === null) {
+            throw new Error("Missing the required parameter 'toProj' when calling projectGeometryV1");
+        }
+
+        let path = '/api/v1/projection';
+        let httpMethod = 'GET';
+        let pathParams = {};
+        let queryParams = {
+            'wkt': wkt,
+            'fromProj': fromProj,
+            'toProj': toProj,
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        let contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getProjectOfMulti(wkt, opt_options, callback) {
-        const options = opt_options ? opt_options : ({});
-        let baseUri = this.getNextCandidateBaseUri();
-        let apiPath = "/api/v1/projection/multi";
-        let queryParameters = ProjectionClient.getQueryParameters(
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            this.apiKey
-        );
-        let postBodyParameters = ProjectionClient.getPostBodyParameters(
-            wkt,
-            options['fromProjectionInSrid'],
-            options['fromProjectionInProj4String'],
-            options['toProjectionInSrid'],
-            options['toProjectionInProj4String']
-        );
+    getProjectionOfGeometries(opts, callback) {
+        opts = opts || {};
 
-        let xhr = this.createRequestXHR(baseUri, apiPath, 'POST', queryParameters, postBodyParameters);
-        this.sendWebRequest(xhr, callback, postBodyParameters);
-    }
-    getProjectOfMultiPromise(wkt, opt_options) {
-        const self = this;
-        const options = opt_options ? opt_options : ({});
-        const promise = new Promise(function (resolve, reject) {
-            let baseUri = self.getNextCandidateBaseUri();
-            let apiPath = "/api/v1/projection/multi";
-            let queryParameters = ProjectionClient.getQueryParameters(
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                undefined,
-                self.apiKey
-            );
-            let postBodyParameters = ProjectionClient.getPostBodyParameters(
-                wkt,
-                options['fromProjectionInSrid'],
-                options['fromProjectionInProj4String'],
-                options['toProjectionInSrid'],
-                options['toProjectionInProj4String']
-            );
+        let path = '/api/v1/projection/multi';
+        let httpMethod = 'POST';
+        let pathParams = {};
+        let queryParams = {
+            'Srid': opts['Srid'],
+            'Proj4String': opts['Proj4String'],
+            'ElevationUnit': opts['ElevationUnit'],
+        };
+        let bodyParam = JSON.stringify(opts['body']);
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
+        let returnType = 'json';
 
-            let xhr = self.createRequestXHR(baseUri, apiPath, 'POST', queryParameters, postBodyParameters);
-            const handler = function () {
-                if (this.readyState !== 4) {
-                    return;
-                }
-                if (this.status === 200) {
-                    resolve(this.response);
-                } else {
-                    reject(new Error(this.statusText));
-                }
-            };
-            xhr.onreadystatechange = handler;
-            self.sendWebRequest(xhr, undefined, postBodyParameters);
-        });
-        return promise;
-    }
-
-    static getQueryParameters(wkt, fromProjectionInSrid, fromProjectionInProj4String, toProjectionInSrid, toProjectionInProj4String, apiKey) {
-        let queryString = '?';
-        if (wkt !== undefined) {
-            queryString += '&wkt=' + wkt;
-        }
-
-        if (fromProjectionInSrid) {
-            queryString += "&fromProj=" + fromProjectionInSrid;
-        } else {
-            if (fromProjectionInProj4String) {
-                queryString += "&fromProj=" + fromProjectionInProj4String;
-            }
-        }
-
-        if (toProjectionInSrid) {
-            queryString += "&toProj=" + toProjectionInSrid;
-        } else {
-            if (toProjectionInProj4String) {
-                queryString += "&toProj=" + toProjectionInProj4String;
-            }
-        }
-        
-        if (apiKey !== undefined) {
-            queryString += "&apikey=" + apiKey;
-        }
-
-        if (queryString.indexOf('?&') > -1) {
-            queryString = queryString.replace('?&', '?');
-        }
-
-        return queryString;
-    }
-
-    static getPostBodyParameters(wkt, fromProjectionInSrid, fromProjectionInProj4String, toProjectionInSrid, toProjectionInProj4String) {
-        let fromProj, toProj;
-        if (fromProjectionInSrid) {
-            fromProj = fromProjectionInSrid;
-        } else {
-            if (fromProjectionInProj4String) {
-                fromProj = fromProjectionInProj4String;
-            }
-        }
-
-        if (toProjectionInSrid) {
-            toProj = toProjectionInSrid;
-        } else {
-            if (toProjectionInProj4String) {
-                toProj = toProjectionInProj4String;
-            }
-        }
-
-        let body = {
-            "wkt": [
-                wkt
-            ],
-            "fromProj": fromProj,
-            "toProj": toProj
-        }
-
-        body = JSON.stringify(body);
-        return body;
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 }
 

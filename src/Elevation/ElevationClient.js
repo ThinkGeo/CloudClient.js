@@ -137,7 +137,7 @@ class ElevationClient extends BaseClient {
             'Proj4String': opts['Proj4String'],
             'ElevationUnit': opts['ElevationUnit'],
         };
-        let bodyParam = JSON.stringify(opts['body']);;
+        let bodyParam = JSON.stringify(opts['body']);
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';

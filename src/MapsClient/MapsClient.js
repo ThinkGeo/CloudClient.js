@@ -70,22 +70,22 @@ class MapsClient extends BaseClient {
 
     getMapsStreetsVectorTileByXyz(srid, tileZ, tileX, tileY, callback) {
         // verify the required parameter 'srid' is set
-        if (srid === undefined || srid === null) {
+        if (srid === undefined || srid === null || srid === '') {
             throw new Error("Missing the required parameter 'srid' when calling getMapsStreetsVectorTileByXyz");
         }
 
         // verify the required parameter 'tileZ' is set
-        if (tileZ === undefined || tileZ === null) {
+        if (tileZ === undefined || tileZ === null || tileZ === '') {
             throw new Error("Missing the required parameter 'tileZ' when calling getMapsStreetsVectorTileByXyz");
         }
 
         // verify the required parameter 'tileX' is set
-        if (tileX === undefined || tileX === null) {
+        if (tileX === undefined || tileX === null || tileX === '') {
             throw new Error("Missing the required parameter 'tileX' when calling getMapsStreetsVectorTileByXyz");
         }
 
         // verify the required parameter 'tileY' is set
-        if (tileY === undefined || tileY === null) {
+        if (tileY === undefined || tileY === null || tileY === '') {
             throw new Error("Missing the required parameter 'tileY' when calling getMapsStreetsVectorTileByXyz");
         }
 

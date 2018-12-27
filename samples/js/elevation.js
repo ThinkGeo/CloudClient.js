@@ -131,7 +131,6 @@ var queryLine = function (wkt) {
         })
     }
 }
-
 var queryArea = function (wkt) {
     ec.getElevationOfArea(wkt, function (status, response) {
         let resultElement = document.createElement("code");
