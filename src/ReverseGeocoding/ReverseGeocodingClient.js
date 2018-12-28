@@ -6,8 +6,8 @@ class ReverseGeocodingClient extends BaseClient {
         super(options);
     }
 
-    searchPlaceByPoint(pointY, pointX, callback, opts) {
-        opts = opts || {};
+    searchPlaceByPoint(pointY, pointX, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'pointY' is set
         if (pointY === undefined || pointY === null || pointY === '') {
@@ -44,8 +44,8 @@ class ReverseGeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    searchPlaceByLine(wkt, callback, opts) {
-        opts = opts || {};
+    searchPlaceByLine(wkt, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'wkt' is set
         if (wkt === undefined || wkt === null || wkt === '') {
@@ -75,8 +75,8 @@ class ReverseGeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    searchPlaceByArea(wkt, callback, opts) {
-        opts = opts || {};
+    searchPlaceByArea(wkt, callback, options) {
+        let opts = options || {};
         // verify the required parameter 'wkt' is set
         if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling searchPlaceByArea");
@@ -105,8 +105,8 @@ class ReverseGeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    searchPlaceById(placeId, callback, opts) {
-        var opts = opts || {};
+    searchPlaceById(placeId, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'placeId' is set
         if (placeId === undefined || placeId === null || placeId === '') {
@@ -164,8 +164,8 @@ class ReverseGeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    searchPlaceByPoints(opts, callback) {
-        opts = opts || {};
+    searchPlaceByPoints(options, callback) {
+        let opts = options || {};
 
         let path = '/api/v1/location/reverse-geocode/multi';
         let httpMethod = 'POST';

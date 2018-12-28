@@ -69,7 +69,7 @@ class BaseClient extends Eventable {
                 }
                 sendingWebRequestObj.xhr.onerror = function () {
                     if (callback) {
-                        callback("error", "request error");
+                        callback("error", error);
                     }
                 }
             }

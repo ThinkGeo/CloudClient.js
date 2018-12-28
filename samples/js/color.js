@@ -1,5 +1,5 @@
 var cc = new tg.ColorClient({
-    apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
+    // apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
 });
 // inputColor:
 document.getElementById("analogous_generate").addEventListener("click", function () {

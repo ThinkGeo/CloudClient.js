@@ -6,11 +6,11 @@ class GeocodingClient extends BaseClient {
         super(options);
     }
 
-    getGeocodingAdress(searchText, callback, opts) {
+    getGeocodingAdress(searchText, callback, options) {
         if (searchText === undefined || searchText === null || searchText === '') {
             throw new Error("Missing the required parameter 'searchText' when calling getGeocodingAdress");
         }
-        opts = opts || {};
+        let opts = options || {};
 
         let path = '/api/v1/location/geocode/{searchText}';
         let httpMethod = 'GET';
@@ -33,8 +33,8 @@ class GeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getGeocodingAdressBatch(opts, callback) {
-        opts = opts || {};
+    getGeocodingAdressBatch(options, callback) {
+        let opts = options || {};
 
         let path = '/api/v1/location/geocode/multi';
         let httpMethod = 'POST';
