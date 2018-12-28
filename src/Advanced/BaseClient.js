@@ -17,10 +17,13 @@ class BaseClient extends Eventable {
                 'apiKey': options["apiKey"]
             },
             'Client Credentials': {
-                type: 'oauth2'
+                type: 'oauth2',
+                // accessToken: 
             },
             'Resource Owner Password': {
-                type: 'oauth2'
+                type: 'basic',
+                username: options["username"],
+                password: options["password"]
             }
         };
     }
@@ -67,9 +70,9 @@ class BaseClient extends Eventable {
                         callback(xhr.status, xhr.response);
                     }
                 }
-                sendingWebRequestObj.xhr.onerror = function () {
+                sendingWebRequestObj.xhr.onerror = function (error) {
                     if (callback) {
-                        callback("error", error);
+                        callback("error", error.type);
                     }
                 }
             }
@@ -127,6 +130,24 @@ class BaseClient extends Eventable {
         }
         return param.toString();
     }
+
+    // getToken() {
+    //     let data = {
+    //         "grant_type": "client_credentials",
+    //         "client_id": "HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~",
+    //         "client_secret": "oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~"
+    //     }
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open('POST', 'https://cloud.thinkgeo.com/identity/connect/token', true);
+    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    //     xhr.onreadystatechange = function (e) {
+    //         if (xhr.readyState === 4 && xhr.status === 200) {
+    //             console.log(xhr.responseText);
+    //         }
+    //     }
+    //     xhr.send('client_id=HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~&client_secret=oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~&grant_type=client_credentials&redirect_uri=http://localhost:8080/samples/color.html');
+    //     // xhr.send(JSON.stringify(data));
+    // }
 
     applyAuthToRequest(authNames, params) {
         authNames.forEach((authName) => {
