@@ -14,11 +14,11 @@ class ElevationClient extends BaseClient {
 
     //     this.getElevationOfPoint(latitude, longitude, options, callback)
     // }
-    getElevationOfPoint(pointY, pointX, callback, opts) {
+    getElevationOfPoint(pointY, pointX, callback, options) {
         if (pointX === undefined || pointX === null || pointX === '' || pointY === undefined || pointY === null || pointY === '') {
             throw new Error("Missing the required parameter 'pointY or pointY' when calling getElevationOfPoint");
         }
-        opts = opts || {};
+        let opts = options || {};
 
         let path = '/api/v1/elevation/{pointY},{pointX}';
         let httpMethod = 'GET';
@@ -40,11 +40,11 @@ class ElevationClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getElevationOfLine(wkt, callback, opts) {
-        opts = opts || {};
+    getElevationOfLine(wkt, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'wkt' is set
-        if (wkt === undefined || wkt === null) {
+        if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling getElevationOfLine");
         }
 
@@ -69,11 +69,11 @@ class ElevationClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getElevationOfArea(wkt, callback, opts) {
-        opts = opts || {};
+    getElevationOfArea(wkt, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'wkt' is set
-        if (wkt === undefined || wkt === null) {
+        if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling getElevationOfArea");
         }
 
@@ -97,11 +97,11 @@ class ElevationClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getGradeOfLine(wkt, callback, opts) {
-        opts = opts || {};
+    getGradeOfLine(wkt, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'wkt' is set
-        if (wkt === undefined || wkt === null) {
+        if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling getGradeOfLine");
         }
 
@@ -126,8 +126,8 @@ class ElevationClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getElevationOfPoints(opts, callback) {
-        opts = opts || {};
+    getElevationOfPoints(options, callback) {
+        let opts = options || {};
 
         let path = '/api/v1/elevation/point/multi';
         let httpMethod = 'POST';
@@ -139,7 +139,7 @@ class ElevationClient extends BaseClient {
         };
         let bodyParam = JSON.stringify(opts['body']);
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
-        var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
+        let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);

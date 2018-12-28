@@ -7,6 +7,7 @@ document.getElementById("clearBtn").addEventListener("click", function () {
 })
 
 document.getElementById('search').addEventListener("click", function () {
+    var coord = document.getElementById('coord').value;
     var Srid = document.getElementById('Srid').value;
     var Proj4String = document.getElementById('Proj4String').value;
     var Lang = document.getElementById('Lang').value;
@@ -17,31 +18,29 @@ document.getElementById('search').addEventListener("click", function () {
     var LocationTypes = document.getElementById('LocationTypes').value;
     var VerboseResults = document.getElementById('VerboseResults').value;
     var DistanceFromQueryFeatureUnit = document.getElementById('DistanceFromQueryFeatureUnit').value;
-    var bodyParam = document.getElementById('body').value;
-    bodyParam = bodyParam.replace(/[\r\n]/g,"");
-    bodyParam = bodyParam.replace(/ /ig,'');
-    bodyParamString = bodyParam.replace(/\[/g,'');
-    bodyParamString = bodyParamString.replace(/\]/g,'');
-    console.log(bodyParamString);
 
     var bodyArr = [];
-    bodyArr.push(bodyParamString);
 
     rgc.searchPlaceByPoints({
-        body: bodyArr,
-        Srid: Srid,
-        Proj4String: Proj4String,
-        Lang: Lang,
-        SearchRadius: SearchRadius,
-        SearchRadiusUnit: SearchRadiusUnit,
-        MaxResults: MaxResults,
-        LocationCategories: LocationCategories,
-        LocationTypes: LocationTypes,
-        VerboseResults: VerboseResults,
-        DistanceFromQueryFeatureUnit: DistanceFromQueryFeatureUnit
+        body: [{
+            "coord": coord,
+            "srid": Srid,
+            MaxResults: MaxResults,
+        }],
     }, function (status, response) {
         let resultElement = document.createElement("code");
         resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
         document.getElementById('response').appendChild(resultElement);
     })
 });
+
+// Srid: Srid,
+//     Proj4String: Proj4String,
+//     Lang: Lang,
+//     SearchRadius: SearchRadius,
+//     SearchRadiusUnit: SearchRadiusUnit,
+//     MaxResults: MaxResults,
+//     LocationCategories: LocationCategories,
+//     LocationTypes: LocationTypes,
+//     VerboseResults: VerboseResults,
+//     DistanceFromQueryFeatureUnit: DistanceFromQueryFeatureUnit

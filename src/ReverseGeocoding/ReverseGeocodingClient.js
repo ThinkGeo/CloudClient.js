@@ -10,12 +10,12 @@ class ReverseGeocodingClient extends BaseClient {
         opts = opts || {};
 
         // verify the required parameter 'pointY' is set
-        if (pointY === undefined || pointY === null) {
+        if (pointY === undefined || pointY === null || pointY === '') {
             throw new Error("Missing the required parameter 'pointY' when calling searchPlaceByPoint");
         }
 
         // verify the required parameter 'pointX' is set
-        if (pointX === undefined || pointX === null) {
+        if (pointX === undefined || pointX === null || pointX === '') {
             throw new Error("Missing the required parameter 'pointX' when calling searchPlaceByPoint");
         }
         let path = '/api/v1/location/reverse-geocode/{pointY},{pointX}';
@@ -48,7 +48,7 @@ class ReverseGeocodingClient extends BaseClient {
         opts = opts || {};
 
         // verify the required parameter 'wkt' is set
-        if (wkt === undefined || wkt === null) {
+        if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling searchPlaceByLine");
         }
         let path = '/api/v1/location/reverse-geocode/line';
@@ -78,7 +78,7 @@ class ReverseGeocodingClient extends BaseClient {
     searchPlaceByArea(wkt, callback, opts) {
         opts = opts || {};
         // verify the required parameter 'wkt' is set
-        if (wkt === undefined || wkt === null) {
+        if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling searchPlaceByArea");
         }
         let path = '/api/v1/location/reverse-geocode/area';
@@ -109,7 +109,7 @@ class ReverseGeocodingClient extends BaseClient {
         var opts = opts || {};
 
         // verify the required parameter 'placeId' is set
-        if (placeId === undefined || placeId === null) {
+        if (placeId === undefined || placeId === null || placeId === '') {
             throw new Error("Missing the required parameter 'placeId' when calling searchPlaceById");
         }
 

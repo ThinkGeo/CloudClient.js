@@ -83,14 +83,14 @@ var queryPoint = function (point) {
     } else {
         ec.getElevationOfPoints({
             body: [{
-                    "coord": "-10695576.730685642,3867065.21978586"
+                    "coord": "2,32",
+                    "srid": 4326,
                 },
                 {
-                    "coord": "-10704195.10648191,3867409.9548177104"
+                    "coord": "3864541.494556084, -10713681.4140493",
+                    "srid": 3857,
                 }
-            ],
-            srid: 3857,
-            elevationUnit: "Meter"
+            ]
         }, function (status, response) {
             let resultElement = document.createElement("code");
             resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
@@ -120,7 +120,7 @@ var queryLine = function (wkt) {
             Srid: 3857
         });
     } else {
-        ec.getGradeOfLine(wkt, function (status, response) {
+        ec.getGradeOfLine('', function (status, response) {
             let resultElement = document.createElement("code");
             resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
             wktElement.appendChild(resultElement);

@@ -9,12 +9,12 @@ class ColorClient extends BaseClient {
     getColorSchemeAnalogousByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
-        if (inputColor === undefined || inputColor === null) {
+        if (inputColor === undefined || inputColor === null || inputColor === '') {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeAnalogousByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeAnalogousByInputColorByNumberOfColor");
         }
 
@@ -39,12 +39,12 @@ class ColorClient extends BaseClient {
     getColorSchemeComplementaryByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
-        if (inputColor === undefined || inputColor === null) {
+        if (inputColor === undefined || inputColor === null || inputColor === '') {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeComplementaryByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeComplementaryByInputColorByNumberOfColor");
         }
 
@@ -69,12 +69,12 @@ class ColorClient extends BaseClient {
     getColorSchemeContrastingByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
-        if (inputColor === undefined || inputColor === null) {
+        if (inputColor === undefined || inputColor === null || inputColor === '') {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeContrastingByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeContrastingByInputColorByNumberOfColor");
         }
 
@@ -99,12 +99,12 @@ class ColorClient extends BaseClient {
     getColorSchemeSequentialByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
-        if (inputColor === undefined || inputColor === null) {
+        if (inputColor === undefined || inputColor === null || inputColor === '') {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeSequentialByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeSequentialByInputColorByNumberOfColor");
         }
 
@@ -129,12 +129,12 @@ class ColorClient extends BaseClient {
     getColorSchemeQualitativeByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
-        if (inputColor === undefined || inputColor === null) {
+        if (inputColor === undefined || inputColor === null || inputColor === '') {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeQualitativeByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeQualitativeByInputColorByNumberOfColor");
         }
 
@@ -159,12 +159,12 @@ class ColorClient extends BaseClient {
     getColorSchemeTetradByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
-        if (inputColor === undefined || inputColor === null) {
+        if (inputColor === undefined || inputColor === null || inputColor === '') {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeTetradByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeTetradByInputColorByNumberOfColor");
         }
 
@@ -189,12 +189,12 @@ class ColorClient extends BaseClient {
     getColorSchemeTriadByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
-        if (inputColor === undefined || inputColor === null) {
+        if (inputColor === undefined || inputColor === null || inputColor === '') {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeTriadByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeTriadByInputColorByNumberOfColor");
         }
 
@@ -220,7 +220,7 @@ class ColorClient extends BaseClient {
         let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeAnalogousRandomByNumberOfColor");
         }
 
@@ -246,7 +246,7 @@ class ColorClient extends BaseClient {
         let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeComplementaryRandomByNumberOfColorV1");
         }
 
@@ -271,7 +271,7 @@ class ColorClient extends BaseClient {
         let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeContrastingRandomByNumberOfColor");
         }
 
@@ -296,7 +296,7 @@ class ColorClient extends BaseClient {
         let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeSequentialRandomByNumberOfColor");
         }
 
@@ -321,7 +321,7 @@ class ColorClient extends BaseClient {
         let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeQualitativeRandomByNumberOfColor");
         }
 
@@ -346,7 +346,7 @@ class ColorClient extends BaseClient {
         let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeTetradRandomByNumberOfColor");
         }
 
@@ -371,7 +371,7 @@ class ColorClient extends BaseClient {
         let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
-        if (numberOfColors === undefined || numberOfColors === null) {
+        if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeTriadRandomByNumberOfColor");
         }
 

@@ -46,17 +46,17 @@ class ProjectionClient extends BaseClient {
 
     getProjectionOfGeometry(wkt, fromProj, toProj, callback) {
         // verify the required parameter 'wkt' is set
-        if (wkt === undefined || wkt === null) {
+        if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling projectGeometry");
         }
 
         // verify the required parameter 'fromProj' is set
-        if (fromProj === undefined || fromProj === null) {
+        if (fromProj === undefined || fromProj === null || fromProj === '') {
             throw new Error("Missing the required parameter 'fromProj' when calling projectGeometry");
         }
 
         // verify the required parameter 'toProj' is set
-        if (toProj === undefined || toProj === null) {
+        if (toProj === undefined || toProj === null || toProj === '') {
             throw new Error("Missing the required parameter 'toProj' when calling projectGeometry");
         }
 

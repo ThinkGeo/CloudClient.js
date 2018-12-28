@@ -31,22 +31,18 @@
 </head>
 
 <body>
-    <h2 style="margin: 0">Draw Feature and Query Elevation</h2>
-    <div id="map" class="map"></div>
-    <label>Geometry type &nbsp;</label>
-    <select id="type">
-        <option value="Point">Point</option>
-        <option value="LineString">LineString</option>
-        <option value="Polygon">Polygon</option>
-    </select>
-    <select id="method">
-        <option value="getElevationOfLine">getElevationOfLine</option>
-        <option value="getGradeOfLine">getGradeOfLine</option>
-    </select>
-    <select id="pointMethod">
-        <option value="getElevationOfPoint">getElevationOfPoint</option>
-    </select>
+    <h2 style="margin: 0">Query Elevation of Points</h2>
+    <label for="">coord:</label>
+    <input type="text" value="2,32" id="coord1">
+    <label for="">Srid: </label> 
+    <input type="number" value="4326" id="srid1">
+    <br>
+    <label for="">coord:</label>
+    <input type="text" value="3864541.494556084, -10713681.4140493" id="coord2">
+    <label for="">Srid: </label> 
+    <input type="number" value="3857" id="srid2">
 
+    <button id="search">search</button>
     <button id="clearBtn">Clear</button>
 
     <pre id="elevationResult">
@@ -55,6 +51,6 @@
 </body>
 
 <script src="../dist/ThinkGeoCloudClient.js"></script>
-<script src="./js/elevation.js"></script>
+<script src="./js/elevationOfPoints.js"></script>
 
 </html>

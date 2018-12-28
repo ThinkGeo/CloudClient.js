@@ -38,41 +38,25 @@
 
 <body>
     <h2 style="margin: 0">Draw Feature and Query Reversegeocoding</h2>
-    <span id="count-wrap">
-        <label for="">body: </label>
-        <textarea name="" id="body" cols="30" rows="20">
-[
-  {
-    "coord": "32.0,22.0",
-    "srid": 4326,
-    "proj4String": "",
-    "lang": "string",
-    "searchRadius": 5,
-    "searchRadiusUnit": "Meter",
-    "maxResults": 6,
-    "locationCategories": "",
-    "locationTypes": "",
-    "verboseResults": true,
-    "distanceFromQueryFeatureUnit": "Meter"
-  }
-]
-        </textarea>
-    </span>
 
     <div id="queryParam">
         <h4>Get Reversegeocoding Result:</h4>
+        
+        <label>coord:</label>
+        <input type="text" id="coord" value="32.8345,-96.8616"><br>
+
         <label>Srid:</label>
-        <input type="text" id="Srid" value="3857"><br>
+        <input type="text" id="Srid" value="4326"><br>
         <label>Proj4String:</label>
         <input type="text" id="Proj4String" value=""><br>
         <label>Lang:</label>
         <input type="text" id="Lang" value=""><br>
         <label>SearchRadius:</label>
-        <input type="text" id="SearchRadius" value=""><br>
+        <input type="text" id="SearchRadius" value="5"><br>
         <label>SearchRadiusUnit:</label>
         <input type="text" id="SearchRadiusUnit" value=""><br>
         <label>MaxResults:</label>
-        <input type="text" id="MaxResults" value=""><br>
+        <input type="text" id="MaxResults" value="5"><br>
         <label>LocationCategories:</label>
         <input type="text" id="LocationCategories" value=""><br>
         <label>LocationTypes:</label>
