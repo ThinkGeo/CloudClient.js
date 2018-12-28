@@ -5,53 +5,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Query location-categories of Common</title>
+    <title>Query Color</title>
 </head>
 
 <body>
-    <input type="text" id="triad">
+    <h4>InputColor:</h4>
+
+    <label for="">color:</label>
+    <input type="text" id="analogous_color" value="4,4,4">
+    <label for="">numberOfColors:</label>
+    <input type="number" id="analogous_number" value="6">
+    <label for="">inFormat:</label>
+    <input type="text" id="analogous_input" value="RGB">
+    <label for="">outFormat:</label>
+    <input type="text" id="analogous_output" value="RGB">
+    <button id="analogous_generate">Search analogous</button>
+    <pre class="result">
+            <code id="res_analogous"></code>
+        </pre>
+    <hr>
+
+    <label for="">color:</label>
+    <input type="text" id="complementary_color" value="4,4,4">
+    <label for="">numberOfColors:</label>
+    <input type="number" id="complementary_number" value="6">
+    <label for="">inFormat:</label>
+    <input type="text" id="complementary_input" value="RGB">
+    <label for="">outFormat:</label>
+    <input type="text" id="complementary_output" value="RGB">
+    <button id="complementary_generate">Search complementary</button>
+    <pre class="result">
+            <code id="res_complementary"></code>
+        </pre>
+    <hr>
+
+    <label for="">color:</label>
+    <input type="text" id="contrasting_color" value="4,4,4">
+    <label for="">numberOfColors:</label>
+    <input type="number" id="contrasting_number" value="6">
+    <label for="">inFormat:</label>
+    <input type="text" id="contrasting_input" value="RGB">
+    <label for="">outFormat:</label>
+    <input type="text" id="contrasting_output" value="RGB">
+    <button id="contrasting_generate">Search contrasting</button>
+    <pre class="result">
+            <code id="res_contrasting"></code>
+        </pre>
+    <hr>
+
+    <label for="">color:</label>
+    <input type="text" id="sequential_color" value="4,4,4">
+    <label for="">numberOfColors:</label>
+    <input type="number" id="sequential_number" value="6">
+    <label for="">inFormat:</label>
+    <input type="text" id="sequential_input" value="RGB">
+    <label for="">outFormat:</label>
+    <input type="text" id="sequential_output" value="RGB">
+    <button id="sequential_generate">Search sequential</button>
+    <pre class="result">
+            <code id="res_sequential"></code>
+        </pre>
+    <hr>
+
+    <label for="">color:</label>
+    <input type="text" id="qualitative_color" value="4,4,4">
+    <label for="">numberOfColors:</label>
+    <input type="number" id="qualitative_number" value="6">
+    <label for="">inFormat:</label>
+    <input type="text" id="qualitative_input" value="RGB">
+    <label for="">outFormat:</label>
+    <input type="text" id="qualitative_output" value="RGB">
+    <button id="qualitative_generate">Search qualitative</button>
+    <pre class="result">
+            <code id="res_qualitative"></code>
+        </pre>
+    <hr>
+
+    <label for="">color:</label>
+    <input type="text" id="tetrad_color" value="4,4,4">
+    <label for="">numberOfColors:</label>
+    <input type="number" id="tetrad_number" value="6">
+    <label for="">inFormat:</label>
+    <input type="text" id="tetrad_input" value="RGB">
+    <label for="">outFormat:</label>
+    <input type="text" id="tetrad_output" value="RGB">
+    <button id="tetrad_generate">Search tetrad</button>
+    <pre class="result">
+            <code id="res_tetrad"></code>
+        </pre>
+    <hr>
+
+    <label for="">color:</label>
+    <input type="text" id="triad_color" value="4,4,4">
+    <label for="">numberOfColors:</label>
+    <input type="number" id="triad_number" value="6">
+    <label for="">inFormat:</label>
+    <input type="text" id="triad_input" value="RGB">
+    <label for="">outFormat:</label>
+    <input type="text" id="triad_output" value="RGB">
+    <button id="triad_generate">Search triad</button>
+    <pre class="result">
+            <code id="res_triad"></code>
+        </pre>
+    <hr>
+
+    <hr>
+    <h4>Random:</h4>
+    <input type="number" id="triad" value="6">
     <button id="search_triad">Search triad</button>
     <pre class="result">
             <code id="response_triad"></code>
         </pre>
     <hr>
-    
-    <input type="text" id="tetrad">
+
+    <input type="number" id="tetrad" value="6">
     <button id="search_tetrad">Search tetrad</button>
     <pre class="result">
             <code id="response_tetrad"></code>
         </pre>
     <hr>
 
-    <input type="text" id="qualitative">
+    <input type="number" id="qualitative" value="6">
     <button id="search_qualitative">Search qualitative</button>
     <pre class="result">
             <code id="response_qualitative"></code>
         </pre>
     <hr>
 
-    <input type="text" id="sequential">
+    <input type="number" id="sequential" value="6">
     <button id="search_sequential">Search sequential</button>
     <pre class="result">
             <code id="response_sequential"></code>
         </pre>
     <hr>
 
-    <input type="text" id="contrasting">
+    <input type="number" id="contrasting" value="6">
     <button id="search_contrasting">Search contrasting</button>
     <pre class="result">
             <code id="response_contrasting"></code>
         </pre>
     <hr>
 
-    <input type="text" id="complementary">
+    <input type="number" id="complementary" value="6">
     <button id="search_complementary">Search complementary</button>
     <pre class="result">
             <code id="response_complementary"></code>
         </pre>
     <hr>
 
-    <input type="text" id="analogous">
+    <input type="number" id="analogous" value="6">
     <button id="search_analogous">Search analogous</button>
     <pre class="result">
             <code id="response_analogous"></code>

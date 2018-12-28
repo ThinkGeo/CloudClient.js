@@ -6,8 +6,8 @@ class ColorClient extends BaseClient {
         super(options);
     }
 
-    getColorSchemeAnalogousByInputColorByNumberOfColor(inputColor, numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeAnalogousByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
+        let opts = options || {};
         // verify the required parameter 'inputColor' is set
         if (inputColor === undefined || inputColor === null) {
             throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeAnalogousByInputColorByNumberOfColor");
@@ -19,7 +19,7 @@ class ColorClient extends BaseClient {
         }
 
         let path = '/api/v1/color/scheme/analogous/{inputColor}/{numberOfColors}';
-        let httpMethod = 'POST';
+        let httpMethod = 'GET';
         let pathParams = {
             'inputColor': inputColor,
             'numberOfColors': numberOfColors
@@ -28,16 +28,196 @@ class ColorClient extends BaseClient {
             'inFormat': opts['inFormat'],
             'outFormat': opts['outFormat'],
         };
-        let bodyParam = JSON.stringify(opts['body']);
+        let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         var contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getColorSchemeAnalogousRandomByNumberOfColor(numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeComplementaryByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
+        let opts = options || {};
+        // verify the required parameter 'inputColor' is set
+        if (inputColor === undefined || inputColor === null) {
+            throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeComplementaryByInputColorByNumberOfColor");
+        }
+
+        // verify the required parameter 'numberOfColors' is set
+        if (numberOfColors === undefined || numberOfColors === null) {
+            throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeComplementaryByInputColorByNumberOfColor");
+        }
+
+        let path = '/api/v1/color/scheme/complementary/{inputColor}/{numberOfColors}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'inputColor': inputColor,
+            'numberOfColors': numberOfColors
+        };
+        let queryParams = {
+            'inFormat': opts['inFormat'],
+            'outFormat': opts['outFormat'],
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        var contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+    }
+
+    getColorSchemeContrastingByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
+        let opts = options || {};
+        // verify the required parameter 'inputColor' is set
+        if (inputColor === undefined || inputColor === null) {
+            throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeContrastingByInputColorByNumberOfColor");
+        }
+
+        // verify the required parameter 'numberOfColors' is set
+        if (numberOfColors === undefined || numberOfColors === null) {
+            throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeContrastingByInputColorByNumberOfColor");
+        }
+
+        let path = '/api/v1/color/scheme/contrasting/{inputColor}/{numberOfColors}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'inputColor': inputColor,
+            'numberOfColors': numberOfColors
+        };
+        let queryParams = {
+            'inFormat': opts['inFormat'],
+            'outFormat': opts['outFormat'],
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        var contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+    }
+
+    getColorSchemeSequentialByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
+        let opts = options || {};
+        // verify the required parameter 'inputColor' is set
+        if (inputColor === undefined || inputColor === null) {
+            throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeSequentialByInputColorByNumberOfColor");
+        }
+
+        // verify the required parameter 'numberOfColors' is set
+        if (numberOfColors === undefined || numberOfColors === null) {
+            throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeSequentialByInputColorByNumberOfColor");
+        }
+
+        let path = '/api/v1/color/scheme/sequential/{inputColor}/{numberOfColors}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'inputColor': inputColor,
+            'numberOfColors': numberOfColors
+        };
+        let queryParams = {
+            'inFormat': opts['inFormat'],
+            'outFormat': opts['outFormat'],
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        var contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+    }
+
+    getColorSchemeQualitativeByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
+        let opts = options || {};
+        // verify the required parameter 'inputColor' is set
+        if (inputColor === undefined || inputColor === null) {
+            throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeQualitativeByInputColorByNumberOfColor");
+        }
+
+        // verify the required parameter 'numberOfColors' is set
+        if (numberOfColors === undefined || numberOfColors === null) {
+            throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeQualitativeByInputColorByNumberOfColor");
+        }
+
+        let path = '/api/v1/color/scheme/qualitative/{inputColor}/{numberOfColors}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'inputColor': inputColor,
+            'numberOfColors': numberOfColors
+        };
+        let queryParams = {
+            'inFormat': opts['inFormat'],
+            'outFormat': opts['outFormat'],
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        var contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+    }
+
+    getColorSchemeTetradByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
+        let opts = options || {};
+        // verify the required parameter 'inputColor' is set
+        if (inputColor === undefined || inputColor === null) {
+            throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeTetradByInputColorByNumberOfColor");
+        }
+
+        // verify the required parameter 'numberOfColors' is set
+        if (numberOfColors === undefined || numberOfColors === null) {
+            throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeTetradByInputColorByNumberOfColor");
+        }
+
+        let path = '/api/v1/color/scheme/tetrad/{inputColor}/{numberOfColors}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'inputColor': inputColor,
+            'numberOfColors': numberOfColors
+        };
+        let queryParams = {
+            'inFormat': opts['inFormat'],
+            'outFormat': opts['outFormat'],
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        var contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+    }
+
+    getColorSchemeTriadByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
+        let opts = options || {};
+        // verify the required parameter 'inputColor' is set
+        if (inputColor === undefined || inputColor === null) {
+            throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeTriadByInputColorByNumberOfColor");
+        }
+
+        // verify the required parameter 'numberOfColors' is set
+        if (numberOfColors === undefined || numberOfColors === null) {
+            throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeTriadByInputColorByNumberOfColor");
+        }
+
+        let path = '/api/v1/color/scheme/triad/{inputColor}/{numberOfColors}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            'inputColor': inputColor,
+            'numberOfColors': numberOfColors
+        };
+        let queryParams = {
+            'inFormat': opts['inFormat'],
+            'outFormat': opts['outFormat'],
+        };
+        let bodyParam = {};
+        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        var contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+    }
+
+    getColorSchemeAnalogousRandomByNumberOfColor(numberOfColors, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
         if (numberOfColors === undefined || numberOfColors === null) {
@@ -57,13 +237,13 @@ class ColorClient extends BaseClient {
         let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getColorSchemeComplementaryRandomByNumberOfColor(numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeComplementaryRandomByNumberOfColor(numberOfColors, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
         if (numberOfColors === undefined || numberOfColors === null) {
@@ -82,13 +262,13 @@ class ColorClient extends BaseClient {
         let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getColorSchemeContrastingRandomByNumberOfColor(numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeContrastingRandomByNumberOfColor(numberOfColors, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
         if (numberOfColors === undefined || numberOfColors === null) {
@@ -107,13 +287,13 @@ class ColorClient extends BaseClient {
         let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getColorSchemeSequentialRandomByNumberOfColor(numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeSequentialRandomByNumberOfColor(numberOfColors, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
         if (numberOfColors === undefined || numberOfColors === null) {
@@ -132,13 +312,13 @@ class ColorClient extends BaseClient {
         let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getColorSchemeQualitativeRandomByNumberOfColor(numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeQualitativeRandomByNumberOfColor(numberOfColors, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
         if (numberOfColors === undefined || numberOfColors === null) {
@@ -157,13 +337,13 @@ class ColorClient extends BaseClient {
         let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getColorSchemeTetradRandomByNumberOfColor(numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeTetradRandomByNumberOfColor(numberOfColors, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
         if (numberOfColors === undefined || numberOfColors === null) {
@@ -182,13 +362,13 @@ class ColorClient extends BaseClient {
         let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
 
-    getColorSchemeTriadRandomByNumberOfColor(numberOfColors, callback, opts) {
-        var opts = opts || {};
+    getColorSchemeTriadRandomByNumberOfColor(numberOfColors, callback, options) {
+        let opts = options || {};
 
         // verify the required parameter 'numberOfColors' is set
         if (numberOfColors === undefined || numberOfColors === null) {
@@ -207,7 +387,7 @@ class ColorClient extends BaseClient {
         let bodyParam = {};
         let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
-        let returnType = null;
+        let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }

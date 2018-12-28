@@ -150,6 +150,7 @@ class ReverseGeocodingClient extends BaseClient {
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
     }
+    
     searchPlaceByCatergoriesOfCommon(callback) {
         let path = '/api/v1/location/reverse-geocode/location-categories/common';
         let httpMethod = 'GET';
