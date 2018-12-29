@@ -42,7 +42,7 @@ class Eventable extends Disposable {
     }
 
     disposeCore() {
-        unlistenAll(this);
+        unAll(this);
     }
 }
 
