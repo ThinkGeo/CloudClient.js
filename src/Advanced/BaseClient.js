@@ -8,13 +8,20 @@ class BaseClient extends Eventable {
         }
         super();
 
-        this.basePath = "https://cloud.thinkgeo.com";
+        this.baseUrls = options["urls"];
+        this.baseUrlIndex = -1;
+        this.apiKey = options["apiKey"];
+        this.username = options["username"];
+        this.password = options["password"];
+        this.clientId = options["clientId"];
+        this.clientSecret = options["clientSecret"];
+        this.tokenUrl = options["tokenUrl"];
         this.authentications = {
             'API Key': {
                 type: 'apiKey',
-                'in': 'query',
+                in: 'query',
                 name: 'ApiKey',
-                'apiKey': options["apiKey"]
+                apiKey: this.apiKey
             },
             'Client Credentials': {
                 type: 'oauth2',
@@ -27,6 +34,23 @@ class BaseClient extends Eventable {
             }
         };
     }
+
+    // get baseUrls() {
+    //     return this.baseUrls;
+    // }
+
+    GetNextCandidateBaseUri() {
+        return this.GetNextCandidateBaseUriCore();
+    }
+
+    GetNextCandidateBaseUriCore() {
+        this.baseUrlIndex++;
+        let baseUrlsLength = this.baseUrls.length;
+        if (this.baseUrlIndex > baseUrlsLength - 1) {
+            this.baseUrlIndex = 0;
+        }
+        return this.baseUrls[this.baseUrlIndex];
+    };
 
     callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback) {
         let params = {
@@ -61,7 +85,15 @@ class BaseClient extends Eventable {
             xhr: xhr,
             cancel: false
         };
+
+        let GettingAccessTokenObj = {
+            type: "GettingAccessTokenObj",
+            xhr: xhr,
+            cancel: false
+        };
+
         this.fire(sendingWebRequestObj);
+        this.fire(GettingAccessTokenObj);
 
         if (!sendingWebRequestObj.cancel) {
             if (callback) {
@@ -95,7 +127,7 @@ class BaseClient extends Eventable {
         if (!path.match(/^\//)) {
             path = '/' + path;
         }
-        let url = this.basePath + path;
+        let url = this.GetNextCandidateBaseUri() + path;
         url = url.replace(/\{([\w-]+)\}/g, (fullMatch, key) => {
             let value;
             if (pathParams.hasOwnProperty(key)) {
@@ -131,23 +163,22 @@ class BaseClient extends Eventable {
         return param.toString();
     }
 
-    // getToken() {
-    //     let data = {
-    //         "grant_type": "client_credentials",
-    //         "client_id": "HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~",
-    //         "client_secret": "oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~"
-    //     }
-    //     let xhr = new XMLHttpRequest();
-    //     xhr.open('POST', 'https://cloud.thinkgeo.com/identity/connect/token', true);
-    //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    //     xhr.onreadystatechange = function (e) {
-    //         if (xhr.readyState === 4 && xhr.status === 200) {
-    //             console.log(xhr.responseText);
-    //         }
-    //     }
-    //     xhr.send('client_id=HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~&client_secret=oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~&grant_type=client_credentials&redirect_uri=http://localhost:8080/samples/color.html');
-    //     // xhr.send(JSON.stringify(data));
-    // }
+    getToken() {
+        let data = {
+            "grant_type": "client_credentials",
+            "client_id": this.clientId,
+            "client_secret": this.clientSecret
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', this.tokenUrl, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function (e) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.send(`client_id=${this.clientId}&client_secret=${this.clientSecret}&grant_type=${data.grant_type}&redirect_uri=http://localhost:8080/samples/color.html`);
+    }
 
     applyAuthToRequest(authNames, params) {
         authNames.forEach((authName) => {
@@ -196,7 +227,9 @@ class BaseClient extends Eventable {
         return response;
     }
 
-    disposeCore() {}
+    disposeCore() {
+
+    }
 }
 
 export default BaseClient;
