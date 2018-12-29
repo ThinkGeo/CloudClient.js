@@ -1,33 +1,9 @@
 class GradeSegment {
-    constructor() {
-
-    }
-
-    /**
-     * @param {double} grade
-     * @param {LineShape} gradeLine
-     * @param {double} startingElevation
-     * @param {double} endingElevation
-     * @public
-     */
-    GradeSegment(grade, gradeLine, startingElevation, endingElevation) {
-
-    }
-
-    get Grade(){
-
-    }
-
-    get GradeLine(){
-
-    }
-
-    get StartingElevation(){
-
-    }
-
-    get EndingElevation(){
-        
+    constructor(grade, gradeLine, startingElevation, endingElevation) {
+        this.grade = grade;
+        this.gradeLine = gradeLine;
+        this.startingElevation = startingElevation;
+        this.endingElevation = endingElevation;
     }
 }
 

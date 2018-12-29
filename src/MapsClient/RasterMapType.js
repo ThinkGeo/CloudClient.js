@@ -1,10 +1,10 @@
 const RasterMapType = {
-    Default: 0,
-    Light: 1,
-    Dark: 2,
-    Hybrid: 3,
-    Aerial: 4,
-    TransparentBackground: 5,
+    Default: 'Default',
+    Light: 'Light',
+    Dark: 'Dark',
+    Hybrid: 'Hybrid',
+    Aerial: 'Aerial',
+    TransparentBackground: 'TransparentBackground',
 };
 
 Object.freeze(RasterMapType);

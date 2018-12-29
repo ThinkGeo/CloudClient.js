@@ -1,5 +1,5 @@
 const MapProjection = {
-    SphericalMercator: 0
+    SphericalMercator: 'SphericalMercator'
 };
 
 Object.freeze(MapProjection);

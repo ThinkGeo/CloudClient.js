@@ -1,4 +1,0 @@
-class ElevationRquest extends Request{
-    // 
-    
-}

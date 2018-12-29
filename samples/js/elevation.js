@@ -95,35 +95,15 @@ typeSelect.onchange = function () {
 };
 
 var queryPoint = function (point) {
-    var pointMethod = document.getElementById('pointMethod').value;
-    if (pointMethod === 'getElevationOfPoint') {
-        ec.getElevationOfPoint(point[1], point[0], function (status, response) {
-            let resultElement = document.createElement("code");
-            resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
-            wktElement.appendChild(resultElement);
-            scrollToTop()
-        }, {
-            Srid: "3857",
-            elevationUnit: "meter"
-        })
-    } else {
-        ec.getElevationOfPoints({
-            body: [{
-                    "coord": "2,32",
-                    "srid": 4326,
-                },
-                {
-                    "coord": "3864541.494556084, -10713681.4140493",
-                    "srid": 3857,
-                }
-            ]
-        }, function (status, response) {
-            let resultElement = document.createElement("code");
-            resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
-            wktElement.appendChild(resultElement);
-            scrollToTop()
-        })
-    }
+    ec.getElevationOfPoint(point[1], point[0], function (status, response) {
+        let resultElement = document.createElement("code");
+        resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
+        wktElement.appendChild(resultElement);
+        scrollToTop()
+    }, {
+        Srid: "3857",
+        elevationUnit: "meter"
+    })
 
     // API 2: getElevationOfPointInDecimalDegree
     // ec.getElevationOfPointInDecimalDegree(-90, 3.0, 'meter', function (status, response) {

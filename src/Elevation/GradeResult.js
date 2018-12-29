@@ -1,32 +1,9 @@
 class GradeResult {
-    constructor() {
-
-    }
-
-    /**
-     * @param {GradeSegment} highestGradeSegment
-     * @param {GradeSegment} lowestGradeSegment
-     * @param {double} averageGrade
-     * @public
-     */
-    GradeResult(highestGradeSegment,lowestGradeSegment,averageGrade) {
-
-    }
-
-    get GradeSegments(){
-
-    }
-
-    get HighestGradeSegment(){
-
-    }
-
-    get LowestGradeSegment(){
-
-    }
-
-    get AverageGrade(){
-
+    constructor(highestGradeSegment, lowestGradeSegment, averageGrade) {
+        this.highestGradeSegment = highestGradeSegment;
+        this.lowestGradeSegment = lowestGradeSegment;
+        this.averageGrade = averageGrade;
+        this.gradeSegments;
     }
 }
 

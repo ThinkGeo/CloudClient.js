@@ -1,29 +1,11 @@
 class ReverseGeocodingOptions{
     constructor(){
-
+        this.axResults;
+        this.locationCategories;
+        this.resultDetail;
+        this.distanceUnit;
+        this.locationTypes;
     }
-
-    ReverseGeocodingOptions(){
-
-    }
-
-    get MaxResults(){}
-
-    set MaxResults(value){}
-
-    get LocationCategories(){}
-
-    set LocationCategories(value){}
-
-    get ResultDetail(){}
-
-    set ResultDetail(value){}
-
-    get DistanceUnit(){}
-
-    set DistanceUnit(value){}
-
-    get LocationTypes(){}
 }
 
 export default ReverseGeocodingOptions;
