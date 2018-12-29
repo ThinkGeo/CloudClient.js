@@ -1,3 +1,16 @@
+/**
+ *         
+    apiKey = Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~;
+    username = tgadmin;
+    password = H3QW9-ippVqnv75e2saW;
+    clientId = HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~;
+    clientSecret = oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~;
+    tokenUrl = https://cloud.thinkgeo.com/identity/connect/token;
+ */
+
+// let grade = new tg.GradeSegment(5.46806568893481, 'LINESTRING(-10713289.6742793 3865821.81477986,-10713292.2405644 3865824.38106417)', 534.120729045114, 534.667535695114);
+
+
 var map = new ol.Map({
     target: 'map',
     layers: [
@@ -18,10 +31,23 @@ var vector = new ol.layer.Vector({
 map.addLayer(vector);
 
 var ec = new tg.ElevationClient({
+    urls: [
+        'https://cloud1.thinkgeo.com',
+        'https://cloud2.thinkgeo.com',
+        'https://cloud3.thinkgeo.com',
+        'https://cloud4.thinkgeo.com',
+        'https://cloud5.thinkgeo.com',
+        'https://cloud6.thinkgeo.com'
+    ],
     apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
 });
+
 ec.on("sendingWebRequest", function (e) {
-    console.log(e);
+    console.log('sendingWebRequest--', e);
+});
+
+ec.on("GettingAccessToken", function (e) {
+    console.log('GettingAccessToken--', e);
 });
 
 var typeSelect = document.getElementById('type');
@@ -120,7 +146,7 @@ var queryLine = function (wkt) {
             Srid: 3857
         });
     } else {
-        ec.getGradeOfLine('', function (status, response) {
+        ec.getGradeOfLine(wkt, function (status, response) {
             let resultElement = document.createElement("code");
             resultElement.innerHTML = "<br/>" + JSON.stringify(response, null, 4);
             wktElement.appendChild(resultElement);
