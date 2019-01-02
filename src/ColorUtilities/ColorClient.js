@@ -1,4 +1,5 @@
 import BaseClient from "../Advanced/BaseClient";
+import ThinkGeoCloudApplicationException from "../Advanced/ThinkGeoCloudApplicationException";
 
 class ColorClient extends BaseClient {
     constructor(opt_options) {
@@ -10,7 +11,8 @@ class ColorClient extends BaseClient {
         let opts = options || {};
         // verify the required parameter 'inputColor' is set
         if (inputColor === undefined || inputColor === null || inputColor === '') {
-            throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeAnalogousByInputColorByNumberOfColor");
+            throw new ThinkGeoCloudApplicationException("Missing the required parameter 'inputColor' when calling getColorSchemeAnalogousByInputColorByNumberOfColor");
+            // throw new Error("Missing the required parameter 'inputColor' when calling getColorSchemeAnalogousByInputColorByNumberOfColor");
         }
 
         // verify the required parameter 'numberOfColors' is set
