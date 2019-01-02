@@ -50,7 +50,7 @@ class BaseClient extends Eventable {
             this.baseUrlIndex = 0;
         }
         return this.baseUrls[this.baseUrlIndex];
-    };
+    }
 
     callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback) {
         let params = {
