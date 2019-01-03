@@ -2,7 +2,7 @@ import BaseClient from "./Advanced/BaseClient";
 import $Elevation$Client from "./Elevation/ElevationClient";
 import $Projection$Client from "./Projection/ProjectionClient";
 import $Geocoding$Client from "./Geocoding/GeocodingClient";
-import $Maps$Client from "./MapsClient/MapsClient";
+import $Maps$Client from "./Maps/MapsClient";
 import $ReverseGeocoding$Client from "./ReverseGeocoding/ReverseGeocodingClient";
 import $Color$Client from "./ColorUtilities/ColorClient";
 

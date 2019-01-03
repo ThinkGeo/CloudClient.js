@@ -4,18 +4,19 @@ class BaseClient extends Eventable {
     constructor(opt_options) {
         const options = opt_options ? opt_options : ({});
         if (new.target === BaseClient) {
-            throw TypeError("BaseClient is an abstract class, so cannot instantiated.");
+            throw new Error("BaseClient is an abstract class, so cannot instantiated.");
         }
         super();
 
         this.baseUrls = options["urls"];
         this.baseUrlIndex = -1;
         this.apiKey = options["apiKey"];
-        this.username = options["username"];
-        this.password = options["password"];
+
         this.clientId = options["clientId"];
         this.clientSecret = options["clientSecret"];
-        this.tokenUrl = options["tokenUrl"];
+
+        this.tokenUrl = 'https://cloud.thinkgeo.com/identity/connect/token';
+        this.accessToken = '';
         this.authentications = {
             'API Key': {
                 type: 'apiKey',
@@ -34,10 +35,6 @@ class BaseClient extends Eventable {
             }
         };
     }
-
-    // get baseUrls() {
-    //     return this.baseUrls;
-    // }
 
     GetNextCandidateBaseUri() {
         return this.GetNextCandidateBaseUriCore();
@@ -97,12 +94,12 @@ class BaseClient extends Eventable {
 
         if (!sendingWebRequestObj.cancel) {
             if (callback) {
-                sendingWebRequestObj.xhr.onload = function (event) {
+                sendingWebRequestObj.xhr.onload = (event) => {
                     if (callback) {
                         callback(xhr.status, xhr.response);
                     }
                 }
-                sendingWebRequestObj.xhr.onerror = function (error) {
+                sendingWebRequestObj.xhr.onerror = (error) => {
                     if (callback) {
                         callback("error", error.type);
                     }
@@ -174,10 +171,31 @@ class BaseClient extends Eventable {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function (e) {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log(xhr.responseText);
+                let accessToken = JSON.stringify(xhr.response.access_token);
+                setCookie('accessToken', accessToken, 3600);
             }
         };
-        xhr.send(`client_id=${this.clientId}&client_secret=${this.clientSecret}&grant_type=${data.grant_type}&redirect_uri=http://localhost:8080/samples/color.html`);
+        xhr.send(`client_id=${this.clientId}&client_secret=${this.clientSecret}&grant_type=${data.grant_type}`);
+    }
+
+    setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 1000));
+        // d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
     }
 
     applyAuthToRequest(authNames, params) {
@@ -209,6 +227,9 @@ class BaseClient extends Eventable {
                 case 'oauth2':
                     if (auth.accessToken) {
                         params.setHeaderObj['Authorization'] = 'Bearer ' + auth.accessToken; //data[auth.name] -> apiKey
+                    }else{
+                        this.getToken();
+                        params.setHeaderObj['Authorization'] = 'Bearer ' + auth.accessToken; 
                     }
                     break;
                 default:
