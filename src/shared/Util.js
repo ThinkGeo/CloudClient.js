@@ -1,5 +1,4 @@
 class Util {
-
     static getAccessTokenFromLocalStorage(accessToken) {
         for (let key in accessToken) {
             let itemValue = localStorage.getItem(key);
@@ -14,6 +13,11 @@ class Util {
     static setAccessTokenToLocalStorage(accessToken) {
         for (let key in accessToken) {
             localStorage.setItem(key, accessToken[key])
+        }
+    }
+    static removeAccessTokenFromLocalStorage(accessToken) {
+        for (let key in accessToken) {
+            localStorage.removeItem(key)
         }
     }
 

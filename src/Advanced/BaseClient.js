@@ -185,14 +185,14 @@ class BaseClient extends Eventable {
     getTokenCore() {
         let accessToken = new AccessToken();
         Util.getAccessTokenFromLocalStorage(accessToken);
-        if (accessToken) {
-            var now = Date.now();
-            var expiresTime = accessToken.expiresTime;
 
-            // expiresTime buffer is 3000 millis
-            if (now > expiresTime - 3000) {
-                accessToken = undefined;
-            }
+        var now = Date.now();
+        var expiresTime = accessToken.expiresTime;
+
+        // expiresTime buffer is 3000 millis
+        if (now > expiresTime - 3000) {
+            Util.removeAccessTokenFromLocalStorage(accessToken);
+            accessToken = undefined;
         }
 
         if (!accessToken) {
@@ -205,13 +205,11 @@ class BaseClient extends Eventable {
     }
 
     requestAccessToken() {
-
         let requestTokenTime = Date.now();
         let accessTokenObject = undefined;
         let xhr = new XMLHttpRequest();
         xhr.open('POST', this.tokenUrl, false);
-        xhr.setRequestHeader(
-            'X-Custom-Header', 'value');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function (e) {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 let accessToken = JSON.stringify(xhr.response.access_token);
