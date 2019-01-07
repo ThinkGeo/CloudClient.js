@@ -33,11 +33,11 @@ class ElevationClient extends BaseClient {
         };
         let bodyParam = {};
 
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getElevationOfLine(wkt, callback, options) {
@@ -61,12 +61,12 @@ class ElevationClient extends BaseClient {
             'IntervalDistance': opts['IntervalDistance'],
             'IntervalDistanceUnit': opts['IntervalDistanceUnit'],
         };
+
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getElevationOfArea(wkt, callback, options) {
@@ -90,11 +90,10 @@ class ElevationClient extends BaseClient {
         };
 
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getGradeOfLine(wkt, callback, options) {
@@ -119,11 +118,10 @@ class ElevationClient extends BaseClient {
             'IntervalDistanceUnit': opts['IntervalDistanceUnit'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getElevationOfPoints(options, callback) {
@@ -138,11 +136,10 @@ class ElevationClient extends BaseClient {
             'ElevationUnit': opts['ElevationUnit'],
         };
         let bodyParam = JSON.stringify(opts['body']);
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 }
 

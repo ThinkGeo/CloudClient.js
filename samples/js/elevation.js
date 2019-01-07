@@ -26,7 +26,9 @@ var ec = new tg.ElevationClient({
         'https://cloud5.thinkgeo.com',
         'https://cloud6.thinkgeo.com'
     ],
-    apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
+    // apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
+    clientId: 'HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~',
+    clientSecret: 'oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~'
 });
 
 ec.on("sendingWebRequest", function (e) {
@@ -88,9 +90,9 @@ var queryPoint = function (point) {
         wktElement.appendChild(resultElement);
         scrollToTop()
     }, {
-        Srid: "3857",
-        elevationUnit: "meter"
-    })
+            Srid: "3857",
+            elevationUnit: "meter"
+        })
 
     // API 2: getElevationOfPointInDecimalDegree
     // ec.getElevationOfPointInDecimalDegree(-90, 3.0, 'meter', function (status, response) {
@@ -109,9 +111,9 @@ var queryLine = function (wkt) {
             wktElement.appendChild(resultElement);
             scrollToTop()
         }, {
-            IntervalDistance: 10,
-            Srid: 3857
-        });
+                IntervalDistance: 10,
+                Srid: 3857
+            });
     } else {
         ec.getGradeOfLine(wkt, function (status, response) {
             let resultElement = document.createElement("code");
@@ -119,9 +121,9 @@ var queryLine = function (wkt) {
             wktElement.appendChild(resultElement);
             scrollToTop()
         }, {
-            IntervalDistance: 10,
-            Srid: 3857
-        })
+                IntervalDistance: 10,
+                Srid: 3857
+            })
     }
 }
 var queryArea = function (wkt) {
@@ -131,8 +133,8 @@ var queryArea = function (wkt) {
         wktElement.appendChild(resultElement);
         scrollToTop()
     }, {
-        Srid: 3857
-    });
+            Srid: 3857
+        });
 }
 
 addInteraction();
