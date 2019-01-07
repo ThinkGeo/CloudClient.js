@@ -89,13 +89,14 @@ class BaseClient extends Eventable {
 
         let xhr = new XMLHttpRequest();
 
-        params = this.applyAuthToRequest(applyAuthNames, params);
+        params = Util.applyAuthToRequest(applyAuthNames, this.authentications, params);
 
-        let url = this.buildUrl(path, pathParams, params.queryObj);
+        let url = Util.buildUrl(this.GetNextCandidateBaseUri(), path, pathParams, params.queryObj);
 
         xhr.open(httpMethod, url, true);
 
-        this.setHeader(xhr, params.setHeaderObj);
+
+        Util.setRequestHeader(xhr, params.setHeaderObj);
 
         if (returnType) {
             if (returnType.toLowerCase() === 'blob') {
@@ -135,51 +136,7 @@ class BaseClient extends Eventable {
         }
     }
 
-    setHeader(xhr, setHeaderObj) {
-        Object.keys(setHeaderObj).forEach(function (key) {
-            xhr.setRequestHeader(key, setHeaderObj[key]);
-        });
-    }
 
-    buildUrl(path, pathParams, queryParams) {
-        if (!path.match(/^\//)) {
-            path = '/' + path;
-        }
-        let url = this.GetNextCandidateBaseUri() + path;
-        url = url.replace(/\{([\w-]+)\}/g, (fullMatch, key) => {
-            let value;
-            if (pathParams.hasOwnProperty(key)) {
-                value = this.paramToString(pathParams[key]);
-            } else {
-                value = fullMatch;
-            }
-            return encodeURIComponent(value);
-        });
-
-        let queryString = '';
-        let keysArr = Object.keys(queryParams);
-        keysArr.forEach((key) => {
-            if (queryParams[key] !== undefined && queryParams[key] !== null && queryParams[key] !== '') {
-                if (queryString === '') {
-                    queryString += `?${key}=${queryParams[key]}`
-                } else {
-                    queryString += `&${key}=${queryParams[key]}`
-                }
-            }
-        });
-        url += queryString;
-        return url;
-    }
-
-    paramToString(param) {
-        if (param === undefined || param === null) {
-            return '';
-        }
-        if (param instanceof Date) {
-            return param.toJSON();
-        }
-        return param.toString();
-    }
 
     // // comments accessToken Code
     // getToken() {
@@ -230,49 +187,6 @@ class BaseClient extends Eventable {
 
     //     return accessTokenObject;
     // }
-
-    applyAuthToRequest(authNames, params) {
-        authNames.forEach((authName) => {
-            let auth = this.authentications[authName];
-            switch (auth.type) {
-                case 'basic':
-                    if (auth.username || auth.password) {
-                        let username = auth.username || '';
-                        let password = auth.password || '';
-                        params.setHeaderObj['Authorization'] = "Basic " + btoa(`${username}:${password}`);
-                    }
-                    break;
-                case 'apiKey':
-                    if (auth.apiKey) {
-                        let data = {};
-                        if (auth.apiKeyPrefix) {
-                            data[auth.name] = auth.apiKeyPrefix + ' ' + auth.apiKey;
-                        } else {
-                            data[auth.name] = auth.apiKey;
-                        }
-                        if (auth['in'] === 'header') {
-                            params.setHeaderObj['X-API-Key'] = data[auth.name]; //data[auth.name] -> apiKey
-                        } else { //apiKey in query
-                            params.queryObj['apikey'] = data[auth.name];
-                        }
-                    }
-                    break;
-                case 'oauth2':
-                    // // comments accessToken code
-                    // let accessToken = this.getToken();
-                    // if (accessToken) {
-                    //     params.setHeaderObj['Authorization'] = accessToken["tokenType"] + ' ' + accessToken["accessToken"];
-                    // } else {
-                    //     params.setHeaderObj['Authorization'] = accessToken["tokenType"] + ' ' + accessToken["accessToken"];
-                    // }
-                    break;
-                default:
-                    throw new Error('Unknown authentication type: ' + auth.type);
-            }
-        });
-
-        return params
-    }
 
     formatResponse(response) {
         return this.formatResponseCore(response);
