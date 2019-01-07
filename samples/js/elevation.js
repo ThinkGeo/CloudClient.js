@@ -31,12 +31,14 @@ var ec = new tg.ElevationClient({
     clientSecret: 'oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~'
 });
 
-ec.on("sendingWebRequest", function (e) {
-    console.log('sendingWebRequest--', e);
+ec.on("sendingrequest", function (e) {
+    console.log('sendingrequest--', e);
 });
-
-ec.on("GettingAccessToken", function (e) {
-    console.log('GettingAccessToken--', e);
+ec.on("gettingaccesstoken", function (e) {
+    console.log('gettingaccesstoken--', e);
+});
+ec.on("sentrequest", function (e) {
+    console.log('sentrequest--', e);
 });
 
 var typeSelect = document.getElementById('type');
