@@ -26,9 +26,10 @@ var ec = new tg.ElevationClient({
         'https://cloud5.thinkgeo.com',
         'https://cloud6.thinkgeo.com'
     ],
-    // apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
-    clientId: 'HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~',
-    clientSecret: 'oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~'
+    apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
+    // // comments accessToken code
+    // clientId: 'HG1tYAsAFcRjHUw2B8qrOtx9e5eLZVeNc6J6rxPUjo4~',
+    // clientSecret: 'oeRQZNUiUIbDVU4iirL6Q1gUQpFTqo_-8OQjiunrQ9ArNbvSf9325w~~'
 });
 
 ec.on("sendingrequest", function (e) {
