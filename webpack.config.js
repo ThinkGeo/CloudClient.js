@@ -4,7 +4,7 @@ var developConfig = {
     entry: './src/index.js',
     devtool: 'source-map',
     output: {
-        filename: 'ThinkGeoCloudClient.js',
+        filename: 'ThinkGeoCloudClient-dev.js',
         library: 'tg',
         libraryTarget: 'umd',
         libraryExport: 'default'
@@ -17,4 +17,18 @@ var developConfig = {
         port: 8080
     }
 }
-module.exports = [developConfig];
+
+var legacyConfig = {
+    entry: './src/index.js',
+    devtool: 'source-map',
+    mode: 'production',
+    output: {
+        filename: 'ThinkGeoCloudClient.js',
+        library: 'tg',
+        libraryTarget: 'umd',
+        libraryExport: 'default'
+    }
+}
+
+
+module.exports = [developConfig, legacyConfig];
