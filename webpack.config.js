@@ -4,7 +4,7 @@ var developConfig = {
     entry: './src/index.js',
     devtool: 'source-map',
     output: {
-        filename: 'thinkgeocloudclient-dev.js',
+        filename: 'cloudclient-dev.js',
         library: 'tg',
         libraryTarget: 'umd',
         libraryExport: 'default'
@@ -23,7 +23,7 @@ var legacyConfig = {
     devtool: 'source-map',
     mode: 'production',
     output: {
-        filename: 'thinkgeocloudclient.js',
+        filename: 'cloudclient.js',
         library: 'tg',
         libraryTarget: 'umd',
         libraryExport: 'default'
