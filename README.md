@@ -1,2 +1,4 @@
 # ThinkGeoCloudClient.js
-JavaScript SDK for making maps.
+
+A JavaScript library for ThinkGeo Cloud Server.
+
