@@ -37,11 +37,10 @@ class ProjectionClient extends BaseClient {
             'toProj': toProj,
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getProjectionOfGeometry(wkt, fromProj, toProj, callback) {
@@ -69,11 +68,10 @@ class ProjectionClient extends BaseClient {
             'toProj': toProj,
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getProjectionOfGeometries(options, callback) {
@@ -88,11 +86,10 @@ class ProjectionClient extends BaseClient {
             'ElevationUnit': opts['ElevationUnit'],
         };
         let bodyParam = JSON.stringify(opts['body']);
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 }
 

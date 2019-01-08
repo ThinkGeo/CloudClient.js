@@ -37,11 +37,10 @@ class ReverseGeocodingClient extends BaseClient {
             'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     searchPlaceByLine(wkt, callback, options) {
@@ -68,11 +67,10 @@ class ReverseGeocodingClient extends BaseClient {
             'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     searchPlaceByArea(wkt, callback, options) {
@@ -98,11 +96,10 @@ class ReverseGeocodingClient extends BaseClient {
             'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     searchPlaceById(placeId, callback, options) {
@@ -131,11 +128,10 @@ class ReverseGeocodingClient extends BaseClient {
             'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     searchPlaceByCatergories(callback) {
@@ -144,11 +140,10 @@ class ReverseGeocodingClient extends BaseClient {
         let pathParams = {};
         let queryParams = {};
         let bodyParam = null;
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
     
     searchPlaceByCatergoriesOfCommon(callback) {
@@ -157,11 +152,10 @@ class ReverseGeocodingClient extends BaseClient {
         let pathParams = {};
         let queryParams = {};
         let bodyParam = null;
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     searchPlaceByPoints(options, callback) {
@@ -183,11 +177,10 @@ class ReverseGeocodingClient extends BaseClient {
             'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
         };
         let bodyParam = JSON.stringify(opts['body']);
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 }
 

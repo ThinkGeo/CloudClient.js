@@ -26,11 +26,10 @@ class GeocodingClient extends BaseClient {
             'Proj4String': opts['Proj4String'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getGeocodingAdressBatch(options, callback) {
@@ -49,11 +48,10 @@ class GeocodingClient extends BaseClient {
             'Proj4String': opts['Proj4String'],
         };
         let bodyParam = opts['body'];
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 }
 

@@ -61,11 +61,10 @@ class MapsClient extends BaseClient {
         };
         let queryParams = {};
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'Blob';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getMapsStreetsVectorTileByXyz(srid, tileZ, tileX, tileY, callback) {
@@ -99,11 +98,10 @@ class MapsClient extends BaseClient {
         };
         let queryParams = {};
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
         let contentTypes = [];
         let returnType = 'arrayBuffer';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 }
 

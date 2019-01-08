@@ -27,14 +27,14 @@ tg.MapsClient = $Maps$Client;
 tg.ReverseGeocodingClient = $ReverseGeocoding$Client;
 tg.ColorClient = $Color$Client;
 
-tg.GradeResult = GradeResult;
-tg.GradeSegment = GradeSegment;
-tg.ElevationPointResult = ElevationPointResult;
-tg.ElevationResult = ElevationResult;
-tg.ReverseGeocodingLocation = ReverseGeocodingLocation;
-tg.ReverseGeocodingOptions = ReverseGeocodingOptions;
-tg.ReverseGeocodingResult = ReverseGeocodingResult;
-tg.ReverseGeocodingResultDetail = ReverseGeocodingResultDetail;
+// tg.GradeResult = GradeResult;
+// tg.GradeSegment = GradeSegment;
+// tg.ElevationPointResult = ElevationPointResult;
+// tg.ElevationResult = ElevationResult;
+// tg.ReverseGeocodingLocation = ReverseGeocodingLocation;
+// tg.ReverseGeocodingOptions = ReverseGeocodingOptions;
+// tg.ReverseGeocodingResult = ReverseGeocodingResult;
+// tg.ReverseGeocodingResultDetail = ReverseGeocodingResultDetail;
 
 tg.LocationCategories = LocationCategories;
 tg.TileResolution = TileResolution;

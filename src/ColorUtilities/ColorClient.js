@@ -31,11 +31,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         var contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeComplementaryByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
@@ -61,11 +61,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         var contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeContrastingByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
@@ -91,11 +91,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         var contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeSequentialByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
@@ -121,11 +121,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         var contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeQualitativeByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
@@ -151,11 +151,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         var contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeTetradByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
@@ -181,11 +181,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         var contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeTriadByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {
@@ -211,11 +211,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         var contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeAnalogousRandomByNumberOfColor(numberOfColors, callback, options) {
@@ -225,7 +225,6 @@ class ColorClient extends BaseClient {
         if (numberOfColors === undefined || numberOfColors === null || numberOfColors === '') {
             throw new Error("Missing the required parameter 'numberOfColors' when calling getColorSchemeAnalogousRandomByNumberOfColor");
         }
-
 
         let path = '/api/v1/color/scheme/analogous/random/{numberOfColors}';
         let httpMethod = 'GET';
@@ -237,11 +236,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeComplementaryRandomByNumberOfColor(numberOfColors, callback, options) {
@@ -262,11 +261,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeContrastingRandomByNumberOfColor(numberOfColors, callback, options) {
@@ -287,11 +286,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeSequentialRandomByNumberOfColor(numberOfColors, callback, options) {
@@ -312,11 +311,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeQualitativeRandomByNumberOfColor(numberOfColors, callback, options) {
@@ -337,11 +336,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeTetradRandomByNumberOfColor(numberOfColors, callback, options) {
@@ -362,11 +361,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
     getColorSchemeTriadRandomByNumberOfColor(numberOfColors, callback, options) {
@@ -387,11 +386,11 @@ class ColorClient extends BaseClient {
             'outFormat': opts['outFormat'],
         };
         let bodyParam = {};
-        let authNames = ['API Key', 'Client Credentials', 'Resource Owner Password'];
+        
         let contentTypes = [];
         let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback);
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
 }
