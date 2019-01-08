@@ -9,32 +9,24 @@ import SentRequestEventArgs from './SentRequestEventArgs';
 class BaseClient extends Eventable {
     constructor(opt_options) {
         const options = opt_options ? opt_options : ({});
-        if (new.target === BaseClient) {
-            throw new Error("BaseClient is an abstract class, so cannot instantiated.");
-        }
         super();
 
-        this.baseUrls = options["urls"];
-        this.baseUrlIndex = -1;
-        this.authNames = [];
-        this.authentications = {
+        this.baseUrls_ = options["urls"];
+        this.baseUrlIndex_ = -1;
+        this.authNames_ = [];
+        this.authentications_ = {
             'API Key': {
                 type: 'apiKey',
                 in: 'query',
-                name: 'ApiKey',
-                // apiKey:
+                name: 'ApiKey'
             },
             'Client Credentials': {
-                type: 'oauth2',
-                // clientSecret:
-                // clientId:
-                // accessToken: 
-                // 
+                type: 'oauth2'
             }
         };
         if (options["apiKey"]) {
-            this.authentications["API Key"]["apiKey"] = options["apiKey"];
-            this.authNames.push("API Key");
+            this.authentications_["API Key"]["apiKey"] = options["apiKey"];
+            this.authNames_.push("API Key");
         }
 
         //// comments accessToken code
@@ -66,16 +58,17 @@ class BaseClient extends Eventable {
     }
 
     GetNextCandidateBaseUri() {
-        return this.GetNextCandidateBaseUriCore();
-    }
-
-    GetNextCandidateBaseUriCore() {
-        this.baseUrlIndex++;
-        let baseUrlsLength = this.baseUrls.length;
-        if (this.baseUrlIndex > baseUrlsLength - 1) {
-            this.baseUrlIndex = 0;
+        this.baseUrlIndex_++;
+        if (this.baseUrls_) {
+            let baseUrlsLength = this.baseUrls_.length;
+            if (this.baseUrlIndex_ > baseUrlsLength - 1) {
+                this.baseUrlIndex_ = 0;
+            }
+            return this.baseUrls_[this.baseUrlIndex_];
         }
-        return this.baseUrls[this.baseUrlIndex];
+        else {
+            throw new ThinkGeoCloudApplicationException("the urls is empty, please set it in option of client");
+        }
     }
 
     callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback) {
@@ -85,16 +78,14 @@ class BaseClient extends Eventable {
                 "Content-type": contentTypes
             }
         }
-        let applyAuthNames = authNames === undefined ? this.authNames : authNames;
+        let applyAuthNames = authNames === undefined ? this.authNames_ : authNames;
 
         let xhr = new XMLHttpRequest();
 
-        params = Util.applyAuthToRequest(applyAuthNames, this.authentications, params);
-
+        params = Util.applyAuthToRequest(applyAuthNames, this.authentications_, params);
         let url = Util.buildUrl(this.GetNextCandidateBaseUri(), path, pathParams, params.queryObj);
 
         xhr.open(httpMethod, url, true);
-
 
         Util.setRequestHeader(xhr, params.setHeaderObj);
 
@@ -135,8 +126,6 @@ class BaseClient extends Eventable {
             }
         }
     }
-
-
 
     // // comments accessToken Code
     // getToken() {
@@ -189,10 +178,6 @@ class BaseClient extends Eventable {
     // }
 
     formatResponse(response) {
-        return this.formatResponseCore(response);
-    }
-
-    formatResponseCore(response) {
         return response;
     }
 
