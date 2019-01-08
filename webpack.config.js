@@ -30,5 +30,4 @@ var legacyConfig = {
     }
 }
 
-
 module.exports = [developConfig, legacyConfig];
