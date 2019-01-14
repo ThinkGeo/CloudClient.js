@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Vector Mapping for JavaScript Library - Build Better Apps Faster</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--SNS-->
+    <meta property="og:image" content="image/style/thinkgeo.png" />
+    <meta property="og:site_name" content="ThinkGeo.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.thinkgeo.com/" />
+    <meta property="og:title" content="Online Example" />
+    <meta property="og:description" content=" ThinkGeo vector map Example online." />
+
+
+    <link href="./example/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <link href="./example/style/font-awesome.min.css" rel="stylesheet">
+    <link href="./example/style/main.css" rel="stylesheet">
+    <link href="./example/style/media.css" rel="stylesheet">
+    <link href="./example/lib/highlight/css/github.css" rel="stylesheet">
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="./example/image/favicon.png" />
+    <link rel="apple-touch-icon" href="./example/image/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="./example/image/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="./example/image/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="./example/image/apple-touch-icon-144x144.png" />
+</head>
+
+<body>
+    <nav class="navbar bg-dark fixed-top">
+        <a class="navbar-brand" href="https://thinkgeo.com/"> </a>
+        <span class="navbar-text mr-auto">
+            <h4>
+                ThinkGeo Cloud Online Samples</h4>
+            <h6>Samples for ThinkGeo Cloud Services</h6>
+        </span>
+       
+        <button class="navbar-toggler collapsed mr-4" type="button" data-toggle="collapse" data-target="#sidebar"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span>
+        </button>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="https://cloud.thinkgeo.com" target="_blank" rel="noopener"> Cloud Service</a>
+            </li>
+            |
+            <li class="nav-item">
+                <a href="https://github.com/ThinkGeo/VectorMap-js/wiki" target="_blank" rel="noopener">Documentation</a>
+            </li>
+            |
+            <li class="nav-item">
+                <a href="http://community.thinkgeo.com/" target="_blank" rel="noopener">Support</a>
+            </li>
+            |
+            <li class="nav-item">
+                <a href="https://github.com/ThinkGeo/VectorMap-js" target="_blank" rel="noopener">GitHub</a>
+            </li>
+            |
+            <li class="nav-item">
+                <a href=" https://github.com/ThinkGeo/VectorMap-js/releases" target="_blank" rel="noopener"> Release
+                    History </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container-fluid">
+        <div class="row justify-content-end">
+            <div class="sidebar collapse" id="sidebar">
+                <ul id="menu-bar" class="nav nav-sidebar">
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" id="sidebar-search" type="text" placeholder="search" aria-label="Search" />
+                    <div id="search" aria-hidden="true">
+                        <i class="fa fa-search"></i>
+                    </div>
+                </form>
+            </div>
+            <div class="main" id="content"></div>
+        </div>
+    </div>
+    <div id="loadingImage">
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+    </div>
+</body>
+<script>
+    function IsPC() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone",
+            "iPod"
+        ];
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+ 
+</script>
+
+<script src="./example/lib/jquery/jquery.min.js"></script>
+<script src="./example/lib/bootstrap/bootstrap.min.js"></script>
+<script src="./example/lib/highlight/js/highlight.pack.js"></script>
+<script src="./example/temp/bundle.js"></script>
+
+</html>
