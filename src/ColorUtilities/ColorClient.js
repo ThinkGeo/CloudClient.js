@@ -2,9 +2,8 @@ import BaseClient from "../Advanced/BaseClient";
 import ThinkGeoCloudApplicationException from "../Advanced/ThinkGeoCloudApplicationException";
 
 class ColorClient extends BaseClient {
-    constructor(opt_options) {
-        const options = opt_options ? opt_options : ({});
-        super(options);
+    constructor(apiKey) {
+        super(apiKey);
     }
 
     getColorSchemeAnalogousByInputColorByNumberOfColor(inputColor, numberOfColors, callback, options) {

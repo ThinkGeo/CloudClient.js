@@ -7,11 +7,10 @@ import SendingRequestEventArgs from './SendingRequestEventArgs';
 import SentRequestEventArgs from './SentRequestEventArgs';
 
 class BaseClient extends Eventable {
-    constructor(opt_options) {
-        const options = opt_options ? opt_options : ({});
+    constructor(apiKey) {
         super();
 
-        this.baseUrls_ =  [
+        this.baseUrls_ = [
             'https://cloud1.thinkgeo.com',
             'https://cloud2.thinkgeo.com',
             'https://cloud3.thinkgeo.com',
@@ -31,8 +30,8 @@ class BaseClient extends Eventable {
                 type: 'oauth2'
             }
         };
-        if (options["apiKey"]) {
-            this.authentications_["API Key"]["apiKey"] = options["apiKey"];
+        if (apiKey) {
+            this.authentications_["API Key"]["apiKey"] = apiKey;
             this.authNames_.push("API Key");
         }
 

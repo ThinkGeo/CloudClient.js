@@ -1,9 +1,8 @@
 import BaseClient from '../Advanced/BaseClient';
 
 class ElevationClient extends BaseClient {
-    constructor(opt_options) {
-        const options = opt_options ? opt_options : ({});
-        super(options);
+    constructor(apiKey) {
+        super(apiKey);
     }
     // Get Elevation of Point
     // getElevationOfPointInDecimalDegree(latitude, longitude, elevationUnit, callback) {

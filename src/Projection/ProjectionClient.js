@@ -1,9 +1,8 @@
 import BaseClient from "../Advanced/BaseClient";
 
 class ProjectionClient extends BaseClient {
-    constructor(opt_options) {
-        const options = opt_options ? opt_options : ({});
-        super(options);
+    constructor(apiKey) {
+        super(apiKey);
     }
 
     getProjectionOfPoint(pointY, pointX, fromProj, toProj, callback) {

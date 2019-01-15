@@ -1,9 +1,8 @@
 import BaseClient from "../Advanced/BaseClient";
 
 class MapsClient extends BaseClient {
-    constructor(opt_options) {
-        const options = opt_options ? opt_options : ({});
-        super(options);
+    constructor(apiKey) {
+        super(apiKey);
     }
 
     getMapsRasterTileByXyz(style, resolution, srid, tileSize, tileZ, tileX, tileY, fileExtension, callback) {
