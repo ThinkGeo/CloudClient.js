@@ -11,7 +11,14 @@ class BaseClient extends Eventable {
         const options = opt_options ? opt_options : ({});
         super();
 
-        this.baseUrls_ = options["urls"];
+        this.baseUrls_ =  [
+            'https://cloud1.thinkgeo.com',
+            'https://cloud2.thinkgeo.com',
+            'https://cloud3.thinkgeo.com',
+            'https://cloud4.thinkgeo.com',
+            'https://cloud5.thinkgeo.com',
+            'https://cloud6.thinkgeo.com'
+        ];
         this.baseUrlIndex_ = -1;
         this.authNames_ = [];
         this.authentications_ = {
