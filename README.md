@@ -83,4 +83,16 @@ npm i thinkgeocloudclient-js
 
 **Step 4:** At the bottom of your page, add a JavaScript section to consume the services. 
  
- 
+ ```JavaScript
+ let reverse-geocodingClient = new tg.ReverseGeocodingClient('Your-Cloud-Service-Api-Key');
+
+// Find the ThinkGeo office address by coordinate
+reverse-geocodingClient.searchPlaceByPoint(33.128367, -96.809847, function(status, response){
+	
+	if(response.data.bestMatchLocation){
+		let address = response.data.bestMatchLocation.data.address;
+	
+		document.getElementById('response').innerHTML = responseData;		
+	}
+})
+ ```
