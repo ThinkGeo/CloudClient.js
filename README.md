@@ -29,7 +29,7 @@ npm i thinkgeocloudclient-js
 ```
  
 
-## Versions of CloudClient.js
+### Versions of CloudClient.js
 
 CloudClient.js uses descriptive versioning to allow you to choose a specific release to develop with, as well as describe the scope of code changes in a release. Versions follow a format of MAJOR.MINOR.PATCH version indicator. 
 
