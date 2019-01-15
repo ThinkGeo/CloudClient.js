@@ -7,17 +7,7 @@ WebFont.load({
 
 const apiKey = 'Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~' // please go to https://cloud.thinkgeo.com to create
 
-let geocodingClient = new tg.GeocodingClient({
-    urls: [
-        'https://cloud1.thinkgeo.com',
-        'https://cloud2.thinkgeo.com',
-        'https://cloud3.thinkgeo.com',
-        'https://cloud4.thinkgeo.com',
-        'https://cloud5.thinkgeo.com',
-        'https://cloud6.thinkgeo.com'
-    ],
-    apiKey: apiKey
-});
+let geocodingClient = new tg.GeocodingClient("Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~");
 
 //layer style
 let _styles = {
