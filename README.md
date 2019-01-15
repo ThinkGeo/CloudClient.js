@@ -16,11 +16,11 @@ ThinkGeoCloudClient.js is an open-source JavaScript SDK for making request to Th
 
 In this walkthrough, you will learn how to create a basic web application with CloudClient.js. You should have some familiarity with HTML/CSS and JavaScript, but the source code is provided. Any operating system or text editor will work, but you will need an internet connection while you are working. 
 
-### Create an API Key
+**Step 1** Create an API Key
 
 CloudClient.js requires an API key for access to ThinkGeo Cloud services, it can be created following the guide of "[Create a Client Key](http://wiki.thinkgeo.com/wiki/thinkgeo_cloud_quick_start_guide)". For help, see the [API Reference](https://cloud.thinkgeo.com/help) or [Quick Start Guide](http://wiki.thinkgeo.com/wiki/thinkgeo_cloud_quick_start_guide).
 
-### Create an index page
+**Step 2** Create an index page
 
 To get started making your application with Cloud Service, you need to use a text editor to update the HTML.
 
@@ -39,11 +39,11 @@ To get started making your application with Cloud Service, you need to use a tex
 
 2. In the `<head>` tag, add a title, such as `<title>My Cloud Service Sample</title>`.
 
-### Add references JavaScript files
+**Step 3** Add references JavaScript files
 
 To get started using CloudClient.js, you need to link to the JS files in the '<head>' section. Both NPM or CDN provides the minified version, which is a compressed file that improves performance. 
   
-### CDN
+#### CDN
 Load from CDN in your project:
 
 ```html
@@ -51,7 +51,7 @@ Load from CDN in your project:
 <script src="https://cdn.thinkgeo.com/cloudclient-js/1.0.0/thinkgeocloudclient.js"></script>
 ```
 
-### NPM
+#### NPM
 
 - Install the package:
 ```
