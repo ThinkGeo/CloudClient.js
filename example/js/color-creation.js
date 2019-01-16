@@ -1,19 +1,9 @@
 
-let ColorClient = new tg.ColorClient({
-    urls: [
-        'https://cloud1.thinkgeo.com',
-        'https://cloud2.thinkgeo.com',
-        'https://cloud3.thinkgeo.com',
-        'https://cloud4.thinkgeo.com',
-        'https://cloud5.thinkgeo.com',
-        'https://cloud6.thinkgeo.com'
-    ],
-    apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
-});
+let ColorClient = new tg.ColorClient("Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~");
 
 //Render data
 const renderData = (data) => {
-   let outputData=[]
+    let outputData = []
     if (data) {
         if (data.data.colors) {
             outputData = data.data.colors;
@@ -25,7 +15,7 @@ const renderData = (data) => {
     }
     updateStyle(outputData)
 }
- 
+
 //Use cloudclient to get data
 const getResponse = () => {
     const categoryColor = document.getElementById('category');
@@ -36,94 +26,54 @@ const getResponse = () => {
         number: 20,
     }
 
-    if (options.isRandom) {
-        switch (options.category) {
-            case 'analogous':
-                ColorClient.getColorSchemeAnalogousRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'complementary':
-                ColorClient.getColorSchemeComplementaryRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'qualitative':
-                ColorClient.getColorSchemeQualitativeRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                  
-                });
-                break;
-            case 'sequential':
-                ColorClient.getColorSchemeSequentialRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'tetrad':
-                ColorClient.getColorSchemeTetradRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'contrasting':
-                ColorClient.getColorSchemeContrastingRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'triad':
-                ColorClient.getColorSchemeTriadRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            default:
-                ColorClient.getColorSchemeAnalogousRandomByNumberOfColor(options.number, function (status, response) {
-                    renderData(response)
-                });
-        }
-    } else {
-        switch (options.category) {
-            case 'analogous':
-                ColorClient.getColorSchemeAnalogousByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'complementary':
-                ColorClient.getColorSchemeComplementaryByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'qualitative':
-                ColorClient.getColorSchemeQualitativeByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'sequential':
-                ColorClient.getColorSchemeSequentialByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'tetrad':
-                ColorClient.getColorSchemeTetradByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'contrasting':
-                ColorClient.getColorSchemeContrastingByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            case 'triad':
-                ColorClient.getColorSchemeTriadByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-                break;
-            default:
-                ColorClient.getColorSchemeAnalogousByInputColorByNumberOfColor(options.color, options.number, function (status, response) {
-                    renderData(response)
-                });
-
-        }
+    let opts = {
+        numberOfColors: options.number
+    }
+    if (!options.isRandom) {
+        opts.color = options.color;
     }
 
+    switch (options.category) {
+        case 'analogous':
+            ColorClient.getColorsInAnalogousFamily(opts, function (status, response) {
+                renderData(response)
+            });
+            break;
+        case 'complementary':
+            ColorClient.getColorsInComplementaryFamily(opts, function (status, response) {
+                renderData(response)
+            });
+            break;
+        case 'qualitative':
+            ColorClient.getColorsInQualityFamily(opts, function (status, response) {
+                renderData(response)
+            });
+            break;
+        case 'sequential':
+            ColorClient.getColorsInHueFamily(opts, function (status, response) {
+                renderData(response)
+            });
+            break;
+        case 'tetrad':
+            ColorClient.getColorsInTetradFamily(opts, function (status, response) {
+                renderData(response)
+            });
+            break;
+        case 'contrasting':
+            ColorClient.getColorsInContrastingFamily(opts, function (status, response) {
+                renderData(response)
+            });
+            break;
+        case 'triad':
+            ColorClient.getColorsInTriadFamily(opts, function (status, response) {
+                renderData(response)
+            });
+            break;
+        default:
+            ColorClient.getColorsInAnalogousFamily(opts, function (status, response) {
+                renderData(response)
+            });
+    }
 }
 
 //render base map

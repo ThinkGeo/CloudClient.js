@@ -27,7 +27,7 @@ app.drawLineControl = function (opt_options) {
 
 ol.inherits(app.drawLineControl, ol.control.Control);
 
- 
+
 
 let satelliteLayer = new ol.layer.Tile({
   source: new ol.source.XYZ({
@@ -126,17 +126,7 @@ map.addInteraction(new ol.interaction.DragPan({
 
 
 var drawLineElevation = function (feature) {
-  let elevationClient = new tg.ElevationClient({
-    urls: [
-      'https://cloud1.thinkgeo.com',
-      'https://cloud2.thinkgeo.com',
-      'https://cloud3.thinkgeo.com',
-      'https://cloud4.thinkgeo.com',
-      'https://cloud5.thinkgeo.com',
-      'https://cloud6.thinkgeo.com'
-    ],
-    apiKey: "Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~"
-  });
+  let elevationClient = new tg.ElevationClient("Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~");
   var line = feature.getGeometry();
   $("#IntervalDistance").html(parseInt(line.getLength() / $("#samples-number").val()) + " (feet)")
   if (line.getLength() > 5000) {
@@ -152,6 +142,7 @@ var drawLineElevation = function (feature) {
     var format = new ol.format.WKT();
     var wkt = format.writeGeometry(feature.getGeometry());
     var opts = {
+      'wkt': wkt,
       'Srid': 3857,
       'NumberOfSegments': _samplesNumber || 15,
       'IntervalDistance': intervalLine || null,
@@ -159,15 +150,15 @@ var drawLineElevation = function (feature) {
       'IntervalDistanceUnit': intervalDistanceUnit || "Feet"
     };
     var grades = [];
-    elevationClient.getElevationOfLine(wkt, function (status, data) {
-          for (let i = 0; i < data.data.length; i++) {
-          var grade = data.data[i].grade;
-          grades.push(grade);
-        }
-    }, opts);
-    elevationClient.getElevationOfLine(wkt, function (status, data) {
+    elevationClient.getElevationOfLine(opts, function (status, data) {
       for (let i = 0; i < data.data.length; i++) {
-           var coordinates = feature.getGeometry().getLastCoordinate();
+        var grade = data.data[i].grade;
+        grades.push(grade);
+      }
+    });
+    elevationClient.getElevationOfLine(opts, function (status, data) {
+      for (let i = 0; i < data.data.length; i++) {
+        var coordinates = feature.getGeometry().getLastCoordinate();
         addFeature(new ol.Feature({
           geometry: new ol.geom.Point(coordinates),
           type: 'end'
@@ -185,7 +176,7 @@ var drawLineElevation = function (feature) {
         var datas = getChartDataSet(data.data)
         drawChart(datas, grades);
       }
-    }, opts);
+    });
   }
 }
 
@@ -249,7 +240,7 @@ $('#samples-number').on('change', function () {
 });
 var featureDefault;
 var polygonDefault = function () {
-  
+
   featureDefault = new ol.Feature({
     geometry: new ol.geom.LineString([
       [-13541888.484786397, 6056958.501631321],
