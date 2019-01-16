@@ -179,8 +179,8 @@ const renderBestMatchLoaction = function (place, coordinate, address) {
         geocodingLayer.getSource().addFeature(feature);
         let addressArr = address.split(",");
         let length = addressArr.length;
-        let coordinateTrans = ol.proj.transform(coordinate, 'EPSG:3857', 'EPSG:4326');
-        document.getElementById('floating-panel').innerHTML = '<p style="font-size:1.2rem;font-weight: bold;" >' + (addressArr[0] || '') + '</p>' + '<p>' + (addressArr[1] || '') + ',' + (addressArr[length - 2] || '') + '</p>' + '<p>' + coordinateTrans[0].toFixed(4) + ' , ' + coordinateTrans[1].toFixed(4) + '</p>'
+        let coordinateTrans = ol.proj.transform([coordinate[1], coordinate[0]], 'EPSG:3857', 'EPSG:4326');
+        document.getElementById('floating-panel').innerHTML = '<p style="font-size:1.2rem;font-weight: bold;" >' + (addressArr[0] || '') + '</p>' + '<p>' + (addressArr[1] || '') + ',' + (addressArr[length - 2] || '') + '</p>' + '<p>' + coordinateTrans[1].toFixed(4) + ' , ' + coordinateTrans[0].toFixed(4) + '</p>'
     }
 }
 
