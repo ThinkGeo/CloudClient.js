@@ -15,7 +15,7 @@ public abstract class BaseClient : IDisposable
     protected string GetNextCandidateBaseUri();//?
     protected virtual string GetNextCandidateBaseUriCore();
     protected virtual void OnGettingAccessToken(GettingAccessTokenEventArgs e);
-    protected virtual void OnSendingWebRequest(SendingWebRequestEventArgs e);//可重写可不重写   
+    protected virtual void OnSendingWebRequest(SendingWebRequestEventArgs e);  
     public virtual void Dispose();
 }
 
