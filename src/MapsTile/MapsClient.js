@@ -5,15 +5,24 @@ class MapsClient extends BaseClient {
         super(apiKey);
     }
 
-    getRasterTile(z, x, y, srid, style, tileSize, tileResolution, callback) {
+    getRasterTile(options, callback) {
+        let opts = options || {};
+        let z = opts['z'];
+        let x = opts['x'];
+        let y = opts['y'];
+        let projection = opts['projection'];
+        let mapType = opts['mapType'];
+        let tileSize = opts['tileSize'];
+        let tileResolution = opts['tileResolution'];
+
         // verify the required parameter 'style' is set
-        if (style === undefined || style === null || style === '') {
-            throw new Error("Missing the required parameter 'style' when calling getRasterTile");
+        if (mapType === undefined || mapType === null || mapType === '') {
+            throw new Error("Missing the required parameter 'mapType' when calling getRasterTile");
         }
         else {
-            switch (style) {
+            switch (mapType) {
                 case RasterMapType.Default:
-                    style = "Light";
+                    mapType = "Light";
                     break;
                 case RasterMapType.Light:
                 case RasterMapType.Dark:
@@ -21,7 +30,7 @@ class MapsClient extends BaseClient {
                 case RasterMapType.Aerial:
                     break;
                 case RasterMapType.TransparentBackground:
-                    style = "transparent-background";
+                    mapType = "transparent-background";
                     break;
                 default:
                     throw new Error("The 'style' didn't match any RasterMapType");
@@ -30,12 +39,12 @@ class MapsClient extends BaseClient {
 
         // verify the required parameter 'resolution' is set
         if (tileResolution === undefined || tileResolution === null || tileResolution === '') {
-            throw new Error("Missing the required parameter 'resolution' when calling getRasterTile");
+            throw new Error("Missing the required parameter 'tileResolution' when calling getRasterTile");
         }
 
         // verify the required parameter 'srid' is set
-        if (srid === undefined || srid === null || srid === '') {
-            throw new Error("Missing the required parameter 'srid' when calling getRasterTile");
+        if (projection === undefined || projection === null || projection === '') {
+            throw new Error("Missing the required parameter 'projection' when calling getRasterTile");
         }
 
         // verify the required parameter 'tileSize' is set
@@ -45,27 +54,27 @@ class MapsClient extends BaseClient {
 
         // verify the required parameter 'tileZ' is set
         if (z === undefined || z === null || z === '') {
-            throw new Error("Missing the required parameter 'tileZ' when calling getRasterTile");
+            throw new Error("Missing the required parameter 'z' when calling getRasterTile");
         }
 
         // verify the required parameter 'tileX' is set
         if (x === undefined || x === null || x === '') {
-            throw new Error("Missing the required parameter 'tileX' when calling getRasterTile");
+            throw new Error("Missing the required parameter 'x' when calling getRasterTile");
         }
 
         // verify the required parameter 'tileY' is set
         if (y === undefined || y === null || y === '') {
-            throw new Error("Missing the required parameter 'tileY' when calling getRasterTile");
+            throw new Error("Missing the required parameter 'y' when calling getRasterTile");
         }
 
-        var fileExtension = this.getImageSuffix(style);
+        var fileExtension = this.getImageSuffix(mapType);
 
         let path = '/api/v1/maps/raster/{style}/x{resolution}/{srid}/{tileSize}/{tileZ}/{tileX}/{tileY}.{fileExtension}';
         let httpMethod = 'GET';
         let pathParams = {
-            'style': style,
+            'style': mapType,
             'resolution': tileResolution,
-            'srid': srid,
+            'srid': projection,
             'tileSize': tileSize,
             'tileZ': z,
             'tileX': x,
@@ -80,31 +89,37 @@ class MapsClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
-    getVectorTile(z, x, y, srid, callback) {
+    getVectorTile(options, callback) {
+        let opts = options || {};
+        let z = opts['z'];
+        let x = opts['x'];
+        let y = opts['y'];
+        let projection = opts['projection'];
+
         // verify the required parameter 'srid' is set
-        if (srid === undefined || srid === null || srid === '') {
-            throw new Error("Missing the required parameter 'srid' when calling getVectorTile");
+        if (projection === undefined || projection === null || projection === '') {
+            throw new Error("Missing the required parameter 'projection' when calling getVectorTile");
         }
 
         // verify the required parameter 'tileZ' is set
         if (z === undefined || z === null || z === '') {
-            throw new Error("Missing the required parameter 'tileZ' when calling getVectorTile");
+            throw new Error("Missing the required parameter 'z' when calling getVectorTile");
         }
 
         // verify the required parameter 'tileX' is set
         if (x === undefined || x === null || x === '') {
-            throw new Error("Missing the required parameter 'tileX' when calling getVectorTile");
+            throw new Error("Missing the required parameter 'x' when calling getVectorTile");
         }
 
         // verify the required parameter 'tileY' is set
         if (y === undefined || y === null || y === '') {
-            throw new Error("Missing the required parameter 'tileY' when calling getVectorTile");
+            throw new Error("Missing the required parameter 'y' when calling getVectorTile");
         }
 
         let path = '/api/v1/maps/vector/streets/{srid}/{tileZ}/{tileX}/{tileY}.pbf';
         let httpMethod = 'GET';
         let pathParams = {
-            'srid': srid,
+            'srid': projection,
             'tileZ': z,
             'tileX': x,
             'tileY': y
