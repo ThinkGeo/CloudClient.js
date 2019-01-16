@@ -1,3 +1,4 @@
+import $Base$Client from "./Advanced/BaseClient";
 import $Elevation$Client from "./Elevation/ElevationClient";
 import $Projection$Client from "./Projection/ProjectionClient";
 import $Geocoding$Client from "./Geocoding/GeocodingClient";
@@ -19,7 +20,7 @@ import TileResolution from "./shared/TileResolution";
 import TileSize from "./shared/TileSize";
 
 let tg = {};
-
+tg.BaseClient = $Base$Client;
 tg.ElevationClient = $Elevation$Client;
 tg.ProjectionClient = $Projection$Client;
 tg.GeocodingClient = $Geocoding$Client;
