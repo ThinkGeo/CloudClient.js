@@ -6,6 +6,8 @@ import $Maps$Client from "./MapsTile/MapsClient";
 import $ReverseGeocoding$Client from "./ReverseGeocoding/ReverseGeocodingClient";
 import $Color$Client from "./ColorUtilities/ColorClient";
 
+import $Raster$Map$Type from "./MapsTile/RasterMapType";
+
 import ElevationPointResult from "./Elevation/ElevationPointResult";
 import ElevationResult from "./Elevation/ElevationResult";
 import GradeResult from "./Elevation/GradeResult";
@@ -36,7 +38,7 @@ tg.ColorClient = $Color$Client;
 // tg.ReverseGeocodingOptions = ReverseGeocodingOptions;
 // tg.ReverseGeocodingResult = ReverseGeocodingResult;
 // tg.ReverseGeocodingResultDetail = ReverseGeocodingResultDetail;
-
+tg.RasterMapType = $Raster$Map$Type
 tg.LocationCategories = LocationCategories;
 tg.TileResolution = TileResolution;
 tg.TileSize = TileSize;
