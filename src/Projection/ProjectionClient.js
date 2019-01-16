@@ -5,7 +5,7 @@ class ProjectionClient extends BaseClient {
         super(apiKey);
     }
 
-    projection(options, callback) {
+    project(options, callback) {
         let opts = options || {};
 
         let pointX = opts['pointX'];
@@ -19,17 +19,17 @@ class ProjectionClient extends BaseClient {
         let toProj = opts['toProj'];
 
         if (pointX != undefined && pointY != undefined) {
-            projectionOfPoint(pointY, pointX, fromProj, toProj, callback);
+            this.projectionOfPoint(pointY, pointX, fromProj, toProj, callback);
         }
         else if (wkt != undefined) {
-            projectionOfGeometry(wkt, fromProj, toProj, callback)
+            this.projectionOfGeometry(wkt, fromProj, toProj, callback)
         }
         else {
-            projectionOfGeometries(opts, callback);
+            this.projectionOfGeometries(opts, callback);
         }
     }
 
-    projectionForPoint(pointY, pointX, fromProj, toProj, callback) {
+    projectForPoint(pointY, pointX, fromProj, toProj, callback) {
         // verify the required parameter 'pointY' is set
         if (pointY === undefined || pointY === null || pointY === '') {
             throw new Error("Missing the required parameter 'pointY' when calling projectionForPoint");
@@ -66,7 +66,7 @@ class ProjectionClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
-    projectionForGeometry(wkt, fromProj, toProj, callback) {
+    projectForGeometry(wkt, fromProj, toProj, callback) {
         // verify the required parameter 'wkt' is set
         if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling projectionForGeometry");
@@ -97,7 +97,7 @@ class ProjectionClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
-    projectionForGeometries(options, callback) {
+    projecForGeometries(options, callback) {
         let opts = options || {};
 
         let path = '/api/v1/projection/multi';

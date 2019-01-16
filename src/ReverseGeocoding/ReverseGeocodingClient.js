@@ -5,6 +5,37 @@ class ReverseGeocodingClient extends BaseClient {
         super(apiKey);
     }
 
+    search(options, callback) {
+        let opts = options || {};
+
+        let pointX = opts['pointX'];
+        let pointY = opts['pointY'];
+
+        let wkt = opts["wkt"];
+
+        let body = opts['body'];
+
+        let placeId = opts['placeId'];
+
+        if (pointX != undefined && pointY != undefined) {
+            this.searchPlaceByPoint(pointY, pointX, callback, opts);
+        }
+        else if (wkt != undefined) {
+            if (wkt.indexOf("one") > 0) {
+                this.searchPlaceByLine(wkt, callback, opts);
+            }
+            else {
+                this.searchPlaceByArea(wkt, callback, opts);
+            }
+        }
+        else if (body != undefined) {
+            this.searchPlaceByPoints(opts, callback);
+        }
+        else if (placeId != undefined) {
+            this.searchPlaceById(placeId, callback, opts);
+        }
+    }
+
     searchPlaceByPoint(pointY, pointX, callback, options) {
         let opts = options || {};
 
@@ -101,6 +132,31 @@ class ReverseGeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
+    searchPlaceByPoints(options, callback) {
+        let opts = options || {};
+
+        let path = '/api/v1/location/reverse-geocode/multi';
+        let httpMethod = 'POST';
+        let pathParams = {};
+        let queryParams = {
+            'Srid': opts['Srid'],
+            'Proj4String': opts['Sroj4String'],
+            'Lang': opts['Lang'],
+            'SearchRadius': opts['SearchRadius'],
+            'SearchRadiusUnit': opts['SearchRadiusUnit'],
+            'MaxResults': opts['MaxResults'],
+            'LocationCategories': opts['LocationCategories'],
+            'LocationTypes': opts['LocationTypes'],
+            'VerboseResults': opts['VerboseResults'],
+            'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
+        };
+        let bodyParam = JSON.stringify(opts['body']);
+        var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
+    }
+
     searchPlaceById(placeId, callback, options) {
         let opts = options || {};
 
@@ -133,7 +189,7 @@ class ReverseGeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
-    searchPlaceByCatergories(callback) {
+    getPlaceCatergories(callback) {
         let path = '/api/v1/location/reverse-geocode/location-categories';
         let httpMethod = 'GET';
         let pathParams = {};
@@ -144,39 +200,14 @@ class ReverseGeocodingClient extends BaseClient {
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
-    
-    searchPlaceByCatergoriesOfCommon(callback) {
+
+    getCommonCatergories(callback) {
         let path = '/api/v1/location/reverse-geocode/location-categories/common';
         let httpMethod = 'GET';
         let pathParams = {};
         let queryParams = {};
         let bodyParam = null;
         let contentTypes = [];
-        let returnType = 'json';
-
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
-    }
-
-    searchPlaceByPoints(options, callback) {
-        let opts = options || {};
-
-        let path = '/api/v1/location/reverse-geocode/multi';
-        let httpMethod = 'POST';
-        let pathParams = {};
-        let queryParams = {
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Sroj4String'],
-            'Lang': opts['Lang'],
-            'SearchRadius': opts['SearchRadius'],
-            'SearchRadiusUnit': opts['SearchRadiusUnit'],
-            'MaxResults': opts['MaxResults'],
-            'LocationCategories': opts['LocationCategories'],
-            'LocationTypes': opts['LocationTypes'],
-            'VerboseResults': opts['VerboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
-        };
-        let bodyParam = JSON.stringify(opts['body']);
-        var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
