@@ -55,16 +55,16 @@ class ReverseGeocodingClient extends BaseClient {
             'pointX': pointX
         };
         let queryParams = {
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Sroj4String'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
             'Lang': opts['lang'],
-            'SearchRadius': opts['SearchRadius'],
-            'SearchRadiusUnit': opts['SearchRadiusUnit'],
-            'MaxResults': opts['MaxResults'],
-            'LocationCategories': opts['LocationCategories'],
-            'LocationTypes': opts['LocationTypes'],
-            'VerboseResults': opts['VerboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
+            'SearchRadius': opts['searchRadius'],
+            'SearchRadiusUnit': opts['searchRadiusUnit'],
+            'MaxResults': opts['maxResults'],
+            'LocationCategories': opts['locationCategories'],
+            'LocationTypes': opts['locationTypes'],
+            'VerboseResults': opts['verboseResults'],
+            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
         let contentTypes = [];
@@ -85,16 +85,16 @@ class ReverseGeocodingClient extends BaseClient {
         let pathParams = {};
         let queryParams = {
             'wkt': wkt,
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Sroj4String'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
             'Lang': opts['lang'],
-            'SearchRadius': opts['SearchRadius'],
-            'SearchRadiusUnit': opts['SearchRadiusUnit'],
-            'MaxResults': opts['MaxResults'],
-            'LocationCategories': opts['LocationCategories'],
-            'LocationTypes': opts['LocationTypes'],
-            'VerboseResults': opts['VerboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
+            'SearchRadius': opts['searchRadius'],
+            'SearchRadiusUnit': opts['searchRadiusUnit'],
+            'MaxResults': opts['maxResults'],
+            'LocationCategories': opts['locationCategories'],
+            'LocationTypes': opts['locationTypes'],
+            'VerboseResults': opts['verboseResults'],
+            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
         let contentTypes = [];
@@ -114,16 +114,16 @@ class ReverseGeocodingClient extends BaseClient {
         let pathParams = {};
         let queryParams = {
             'wkt': wkt,
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Sroj4String'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
             'Lang': opts['lang'],
-            'SearchRadius': opts['SearchRadius'],
-            'SearchRadiusUnit': opts['SearchRadiusUnit'],
-            'MaxResults': opts['MaxResults'],
-            'LocationCategories': opts['LocationCategories'],
-            'LocationTypes': opts['LocationTypes'],
-            'VerboseResults': opts['VerboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
+            'SearchRadius': opts['searchRadius'],
+            'SearchRadiusUnit': opts['searchRadiusUnit'],
+            'MaxResults': opts['maxResults'],
+            'LocationCategories': opts['locationCategories'],
+            'LocationTypes': opts['locationTypes'],
+            'VerboseResults': opts['verboseResults'],
+            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
         let contentTypes = [];
@@ -139,16 +139,16 @@ class ReverseGeocodingClient extends BaseClient {
         let httpMethod = 'POST';
         let pathParams = {};
         let queryParams = {
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Sroj4String'],
-            'Lang': opts['Lang'],
-            'SearchRadius': opts['SearchRadius'],
-            'SearchRadiusUnit': opts['SearchRadiusUnit'],
-            'MaxResults': opts['MaxResults'],
-            'LocationCategories': opts['LocationCategories'],
-            'LocationTypes': opts['LocationTypes'],
-            'VerboseResults': opts['VerboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
+            'Lang': opts['lang'],
+            'SearchRadius': opts['searchRadius'],
+            'SearchRadiusUnit': opts['searchRadiusUnit'],
+            'MaxResults': opts['maxResults'],
+            'LocationCategories': opts['locationCategories'],
+            'LocationTypes': opts['locationTypes'],
+            'VerboseResults': opts['verboseResults'],
+            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
         };
         let bodyParam = JSON.stringify(opts['body']);
         var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
@@ -171,16 +171,16 @@ class ReverseGeocodingClient extends BaseClient {
             'placeId': placeId
         };
         let queryParams = {
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Sroj4String'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
             'Lang': opts['lang'],
-            'SearchRadius': opts['SearchRadius'],
-            'SearchRadiusUnit': opts['SearchRadiusUnit'],
-            'MaxResults': opts['MaxResults'],
-            'LocationCategories': opts['LocationCategories'],
-            'LocationTypes': opts['LocationTypes'],
-            'VerboseResults': opts['VerboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['DistanceFromQueryFeatureUnit'],
+            'SearchRadius': opts['searchRadius'],
+            'SearchRadiusUnit': opts['searchRadiusUnit'],
+            'MaxResults': opts['maxResults'],
+            'LocationCategories': opts['locationCategories'],
+            'LocationTypes': opts['locationTypes'],
+            'VerboseResults': opts['verboseResults'],
+            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
         };
         let bodyParam = null;
         let contentTypes = [];

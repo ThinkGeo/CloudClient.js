@@ -19,7 +19,7 @@ class GeocodingClient extends BaseClient {
     
     searchByPoint(location, callback, options) {
         if (location === undefined || location === null || location === '') {
-            throw new Error("Missing the required parameter 'searchText' when calling getGeocodingAdress");
+            throw new Error("Missing the required parameter 'searchText' when calling searchByPoint");
         }
         let opts = options || {};
 
@@ -29,12 +29,12 @@ class GeocodingClient extends BaseClient {
             'searchText': location
         };
         let queryParams = {
-            'LocationType': opts['LocationType'],
-            'FuzzyMatch': opts['FuzzyMatch'],
-            'MaxResults': opts['MaxResults'],
-            'VerboseResults': opts['VerboseResults'],
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Proj4String'],
+            'LocationType': opts['locationType'],
+            'FuzzyMatch': opts['fuzzyMatch'],
+            'MaxResults': opts['maxResults'],
+            'VerboseResults': opts['verboseResults'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
         };
         let bodyParam = {};
         let contentTypes = [];
@@ -51,12 +51,12 @@ class GeocodingClient extends BaseClient {
         let pathParams = {
         };
         let queryParams = {
-            'LocationType': opts['LocationType'],
-            'FuzzyMatch': opts['FuzzyMatch'],
-            'MaxResults': opts['MaxResults'],
-            'VerboseResults': opts['VerboseResults'],
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Proj4String'],
+            'LocationType': opts['locationType'],
+            'FuzzyMatch': opts['fuzzyMatch'],
+            'MaxResults': opts['maxResults'],
+            'VerboseResults': opts['verboseResults'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
         };
         let bodyParam = opts['body'];
         let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];

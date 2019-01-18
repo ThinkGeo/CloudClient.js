@@ -22,7 +22,7 @@ class MapsClient extends BaseClient {
         else {
             switch (mapType) {
                 case RasterMapType.Default:
-                    mapType = "Light";
+                    mapType = "light";
                     break;
                 case RasterMapType.Light:
                 case RasterMapType.Dark:

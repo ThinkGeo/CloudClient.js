@@ -63,7 +63,7 @@ class BaseClient extends Eventable {
         // }
     }
 
-    GetNextCandidateBaseUri() {
+    getNextCandidateBaseUri() {
         this.baseUrlIndex_++;
         if (this.baseUrls_) {
             let baseUrlsLength = this.baseUrls_.length;
@@ -89,7 +89,7 @@ class BaseClient extends Eventable {
         let xhr = new XMLHttpRequest();
 
         params = Util.applyAuthToRequest(applyAuthNames, this.authentications_, params);
-        let url = Util.buildUrl(this.GetNextCandidateBaseUri(), path, pathParams, params.queryObj);
+        let url = Util.buildUrl(this.getNextCandidateBaseUri(), path, pathParams, params.queryObj);
 
         xhr.open(httpMethod, url, true);
 

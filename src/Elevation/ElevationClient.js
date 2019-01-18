@@ -17,9 +17,9 @@ class ElevationClient extends BaseClient {
             'pointX': pointX
         };
         let queryParams = {
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Proj4String'],
-            'ElevationUnit': opts['ElevationUnit'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
+            'ElevationUnit': opts['elevationUnit'],
         };
 
         let contentTypes = [];
@@ -33,9 +33,9 @@ class ElevationClient extends BaseClient {
         let path = '/api/v1/elevation/point/multi';
         let httpMethod = 'POST';
         let queryParams = {
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Proj4String'],
-            'ElevationUnit': opts['ElevationUnit'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
+            'ElevationUnit': opts['elevationUnit'],
         };
         let bodyParam = JSON.stringify(opts['body']);
         let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
@@ -53,12 +53,12 @@ class ElevationClient extends BaseClient {
         let pathParams = {};
         let queryParams = {
             'wkt': wkt,
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Proj4String'],
-            'NumberOfSegments': opts['NumberOfSegments'],
-            'ElevationUnit': opts['ElevationUnit'],
-            'IntervalDistance': opts['IntervalDistance'],
-            'IntervalDistanceUnit': opts['IntervalDistanceUnit'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
+            'NumberOfSegments': opts['numberOfSegments'],
+            'ElevationUnit': opts['elevationUnit'],
+            'IntervalDistance': opts['intervalDistance'],
+            'IntervalDistanceUnit': opts['intervalDistanceUnit'],
         };
 
         let contentTypes = [];
@@ -75,12 +75,12 @@ class ElevationClient extends BaseClient {
 
         let queryParams = {
             'wkt': wkt,
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Proj4String'],
-            'NumberOfSegments': opts['NumberOfSegments'],
-            'ElevationUnit': opts['ElevationUnit'],
-            'IntervalDistance': opts['IntervalDistance'],
-            'IntervalDistanceUnit': opts['IntervalDistanceUnit'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
+            'NumberOfSegments': opts['numberOfSegments'],
+            'ElevationUnit': opts['elevationUnit'],
+            'IntervalDistance': opts['intervalDistance'],
+            'IntervalDistanceUnit': opts['intervalDistanceUnit'],
         };
         let contentTypes = [];
         let returnType = 'json';
@@ -96,11 +96,11 @@ class ElevationClient extends BaseClient {
         let pathParams = {};
         let queryParams = {
             'wkt': wkt,
-            'Srid': opts['Srid'],
-            'Proj4String': opts['Proj4String'],
-            'IntervalDistance': opts['IntervalDistance'],
-            'IntervalDistanceUnit': opts['IntervalDistanceUnit'],
-            'ElevationUnit': opts['ElevationUnit'],
+            'Srid': opts['srid'],
+            'Proj4String': opts['proj4String'],
+            'IntervalDistance': opts['intervalDistance'],
+            'IntervalDistanceUnit': opts['intervalDistanceUnit'],
+            'ElevationUnit': opts['elevationUnit'],
         };
 
         let contentTypes = [];

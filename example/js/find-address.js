@@ -145,14 +145,14 @@ const geocoder = (val) => {
     let timer = setTimeout(() => {
         timeout = true;
     }, time);
-    geocodingClient.getGeocodingAdress(val, function (status, response) {
+    geocodingClient.searchByPoint(val, function (status, response) {
         console.log(response)
         if (timeout) {
             document.querySelector('.loading').classList.add('hidden');
             return;
         }
         clearTimeout(timer);
-        let data =  response.data;
+        let data = response.data;
         console.log(data)
         renderResult(data)
     }, {
