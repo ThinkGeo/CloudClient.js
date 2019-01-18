@@ -7,40 +7,27 @@ import $ReverseGeocoding$Client from "./ReverseGeocoding/ReverseGeocodingClient"
 import $Color$Client from "./ColorUtilities/ColorClient";
 
 import $Raster$Map$Type from "./MapsTile/RasterMapType";
+import $Map$Projection from "./MapsTile/MapProjection";
+import $Tile$Resolution from "./MapsTile/TileResolution";
+import $Tile$Size from "./MapsTile/TileSize";
 
-import ElevationPointResult from "./Elevation/ElevationPointResult";
-import ElevationResult from "./Elevation/ElevationResult";
-import GradeResult from "./Elevation/GradeResult";
-import GradeSegment from "./Elevation/GradeSegment";
-import ReverseGeocodingLocation from "./ReverseGeocoding/ReverseGeocodingLocation";
-import ReverseGeocodingOptions from "./ReverseGeocoding/ReverseGeocodingOptions";
-import ReverseGeocodingResult from "./ReverseGeocoding/ReverseGeocodingResult";
-import ReverseGeocodingResultDetail from "./ReverseGeocoding/ReverseGeocodingResultDetail";
-
-import LocationCategories from "./shared/LocationCategories";
-import TileResolution from "./shared/TileResolution";
-import TileSize from "./shared/TileSize";
+import $Location$Categories from "./shared/LocationCategories";
 
 let tg = {};
 tg.BaseClient = $Base$Client;
 tg.ElevationClient = $Elevation$Client;
 tg.ProjectionClient = $Projection$Client;
 tg.GeocodingClient = $Geocoding$Client;
+
 tg.MapsClient = $Maps$Client;
+tg.MapProjection = $Map$Projection;
+tg.RasterMapType = $Raster$Map$Type
+tg.TileResolution = $Tile$Resolution;
+tg.TileSize = $Tile$Size;
+
 tg.ReverseGeocodingClient = $ReverseGeocoding$Client;
 tg.ColorClient = $Color$Client;
 
-// tg.GradeResult = GradeResult;
-// tg.GradeSegment = GradeSegment;
-// tg.ElevationPointResult = ElevationPointResult;
-// tg.ElevationResult = ElevationResult;
-// tg.ReverseGeocodingLocation = ReverseGeocodingLocation;
-// tg.ReverseGeocodingOptions = ReverseGeocodingOptions;
-// tg.ReverseGeocodingResult = ReverseGeocodingResult;
-// tg.ReverseGeocodingResultDetail = ReverseGeocodingResultDetail;
-tg.RasterMapType = $Raster$Map$Type
-tg.LocationCategories = LocationCategories;
-tg.TileResolution = TileResolution;
-tg.TileSize = TileSize;
+tg.LocationCategories = $Location$Categories;
 
 export default tg;

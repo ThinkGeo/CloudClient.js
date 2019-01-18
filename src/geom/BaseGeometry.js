@@ -2,7 +2,7 @@ class BaseGeometry {
     constructor() {
     }
 
-    encode() {
+    toWKT() {
         let type = this.getType().toUpperCase();
         let encoded = this.encodeGeometry();
         return type + '(' + encoded + ')';
@@ -15,7 +15,6 @@ class BaseGeometry {
     encodeGeometry() {
         return "";
     }
-
 }
 
 export default BaseGeometry;

@@ -1,7 +1,7 @@
 const TileSize = {
-    Default: 'Default',
-    Small: 'Small',
-    Medium: 'Medium',
+    Default: 512,
+    Small: 256,
+    Medium: 512,
 };
 
 Object.freeze(TileSize);
