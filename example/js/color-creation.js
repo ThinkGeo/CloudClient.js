@@ -1,5 +1,5 @@
 
-let ColorClient = new tg.ColorClient("Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~");
+let colorClient = new tg.ColorClient("Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~");
 
 //Render data
 const renderData = (data) => {
@@ -35,42 +35,42 @@ const getResponse = () => {
 
     switch (options.category) {
         case 'analogous':
-            ColorClient.getColorsInAnalogousFamily(opts, function (status, response) {
+            colorClient.getColorsInAnalogousFamily(opts, function (status, response) {
                 renderData(response)
             });
             break;
         case 'complementary':
-            ColorClient.getColorsInComplementaryFamily(opts, function (status, response) {
+            colorClient.getColorsInComplementaryFamily(opts, function (status, response) {
                 renderData(response)
             });
             break;
         case 'qualitative':
-            ColorClient.getColorsInQualityFamily(opts, function (status, response) {
+            colorClient.getColorsInQualityFamily(opts, function (status, response) {
                 renderData(response)
             });
             break;
         case 'sequential':
-            ColorClient.getColorsInHueFamily(opts, function (status, response) {
+            colorClient.getColorsInHueFamily(opts, function (status, response) {
                 renderData(response)
             });
             break;
         case 'tetrad':
-            ColorClient.getColorsInTetradFamily(opts, function (status, response) {
+            colorClient.getColorsInTetradFamily(opts, function (status, response) {
                 renderData(response)
             });
             break;
         case 'contrasting':
-            ColorClient.getColorsInContrastingFamily(opts, function (status, response) {
+            colorClient.getColorsInContrastingFamily(opts, function (status, response) {
                 renderData(response)
             });
             break;
         case 'triad':
-            ColorClient.getColorsInTriadFamily(opts, function (status, response) {
+            colorClient.getColorsInTriadFamily(opts, function (status, response) {
                 renderData(response)
             });
             break;
         default:
-            ColorClient.getColorsInAnalogousFamily(opts, function (status, response) {
+            colorClient.getColorsInAnalogousFamily(opts, function (status, response) {
                 renderData(response)
             });
     }

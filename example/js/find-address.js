@@ -156,7 +156,7 @@ const geocoder = (val) => {
         console.log(data)
         renderResult(data)
     }, {
-            MaxResults: 5,
+            maxResults: 5,
         });
 }
 

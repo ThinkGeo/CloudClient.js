@@ -143,11 +143,11 @@ var drawLineElevation = function (feature) {
     var wkt = format.writeGeometry(feature.getGeometry());
     var opts = {
       'wkt': wkt,
-      'Srid': 3857,
-      'NumberOfSegments': _samplesNumber || 15,
-      'IntervalDistance': intervalLine || null,
-      'ElevationUnit': "Feet",
-      'IntervalDistanceUnit': intervalDistanceUnit || "Feet"
+      'srid': 3857,
+      'numberOfSegments': _samplesNumber || 15,
+      'intervalDistance': intervalLine || null,
+      'elevationUnit': "Feet",
+      'intervalDistanceUnit': intervalDistanceUnit || "Feet"
     };
     var grades = [];
     elevationClient.getElevationOfLine(opts, function (status, data) {

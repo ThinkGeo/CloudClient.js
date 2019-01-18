@@ -11,7 +11,7 @@ const styleJson = {
 }
 const apiKey = 'Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~';
 
-let ReverseGeocodingClient = new tg.ReverseGeocodingClient("Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~");
+let reverseGeocodingClient = new tg.ReverseGeocodingClient("Yy6h5V0QY4ua3VjqdkJl7KTXpxbKgGlFJWjMTGLc_8s~");
 
 
 
@@ -200,7 +200,7 @@ const renderNearbyResult = function (response) {
 
 //search nearby
 const reverseGeocode = function (coordinate, flag) {
-    ReverseGeocodingClient.searchPlaceByPoint(coordinate[0], coordinate[1], function (status, data) {
+    reverseGeocodingClient.searchPlaceByPoint(coordinate[0], coordinate[1], function (status, data) {
         if (data.data.bestMatchLocation) {
             let address = data.data.bestMatchLocation.data.address;
             if (flag) {
@@ -220,14 +220,11 @@ const reverseGeocode = function (coordinate, flag) {
         }
 
     }, {
-            Srid: 3857,
-            SearchRadius: 500,
-            MaxResults: 20,
-            VerboseResults: true,
+            srid: 3857,
+            searchRadius: 500,
+            maxResults: 20,
+            verboseResults: true,
         });
-
-
-
 }
 
 map.addEventListener('click', function (evt) {
