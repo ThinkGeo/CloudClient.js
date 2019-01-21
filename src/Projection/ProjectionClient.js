@@ -19,13 +19,13 @@ class ProjectionClient extends BaseClient {
         let toProj = opts['toProj'];
 
         if (pointX != undefined && pointY != undefined) {
-            this.projectionOfPoint(pointY, pointX, fromProj, toProj, callback);
+            this.projectForPoint(pointY, pointX, fromProj, toProj, callback);
         }
         else if (wkt != undefined) {
-            this.projectionOfGeometry(wkt, fromProj, toProj, callback)
+            this.projectForGeometry(wkt, fromProj, toProj, callback)
         }
         else {
-            this.projectionOfGeometries(opts, callback);
+            this.projecForGeometries(opts, callback);
         }
     }
 

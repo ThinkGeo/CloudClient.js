@@ -11,7 +11,6 @@ class ReverseGeocodingClient extends BaseClient {
         let pointX = opts['pointX'];
         let pointY = opts['pointY'];
 
-        let wkt = opts["wkt"];
 
         let body = opts['body'];
 
@@ -20,12 +19,12 @@ class ReverseGeocodingClient extends BaseClient {
         if (pointX != undefined && pointY != undefined) {
             this.searchPlaceByPoint(pointY, pointX, callback, opts);
         }
-        else if (wkt != undefined) {
-            if (wkt.indexOf("one") > 0) {
-                this.searchPlaceByLine(wkt, callback, opts);
+        else if (opts["wkt"] != undefined) {
+            if (opts["wkt"].indexOf("LINESTRING") >= 0 || opts["wkt"].indexOf("linestring") >= 0) {
+                this.searchPlaceByLine(opts["wkt"], callback, opts);
             }
             else {
-                this.searchPlaceByArea(wkt, callback, opts);
+                this.searchPlaceByArea(opts["wkt"], callback, opts);
             }
         }
         else if (body != undefined) {

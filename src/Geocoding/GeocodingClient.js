@@ -10,7 +10,7 @@ class GeocodingClient extends BaseClient {
         let location = opts['location'];
         let body = opts['body'];
         if (location != undefined) {
-            this.search(location, callback, opts);
+            this.searchByPoint(location, callback, opts);
         }
         else if (body != undefined) {
             this.searchBatch(opts, callback);
