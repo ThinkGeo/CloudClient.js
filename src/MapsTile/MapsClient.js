@@ -67,7 +67,19 @@ class MapsClient extends BaseClient {
             throw new Error("Missing the required parameter 'y' when calling getRasterTile");
         }
 
-        var fileExtension = this.getImageSuffix(mapType);
+        var fileExtension = "jpeg";
+        switch (style) {
+            case RasterMapType.Aerial:
+            case RasterMapType.Hybrid:
+                fileExtension = "jpeg";
+                break;
+            case RasterMapType.Light:
+            case RasterMapType.Dark:
+            case RasterMapType.TransparentBackground:
+            default:
+                fileExtension = "png";
+                break;
+        }
 
         let path = '/api/v1/maps/raster/{style}/x{resolution}/{srid}/{tileSize}/{tileZ}/{tileX}/{tileY}.{fileExtension}';
         let httpMethod = 'GET';
@@ -130,19 +142,6 @@ class MapsClient extends BaseClient {
         let returnType = 'arrayBuffer';
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
-    }
-
-    getImageSuffix(style) {
-        switch (style) {
-            case RasterMapType.Aerial:
-            case RasterMapType.Hybrid:
-                return "jpeg";
-            case RasterMapType.Light:
-            case RasterMapType.Dark:
-            case RasterMapType.TransparentBackground:
-            default:
-                return "png";
-        }
     }
 }
 

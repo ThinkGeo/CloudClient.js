@@ -97,7 +97,7 @@ class ProjectionClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
-    projecForGeometries(options, callback) {
+    projectForGeometries(options, callback) {
         let opts = options || {};
 
         let path = '/api/v1/projection/multi';
