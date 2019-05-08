@@ -14,7 +14,7 @@ import $Map$Projection from "./MapsTile/MapProjection";
 import $Tile$Resolution from "./MapsTile/TileResolution";
 import $Tile$Size from "./MapsTile/TileSize";
 
-import $Time$Zone from "./TimeZone/TimeZoneClient";
+import $Time$Zone$Client from "./TimeZone/TimeZoneClient";
 
 
 let tg = {};
@@ -34,6 +34,6 @@ tg.ColorClient = $Color$Client;
 
 tg.LocationCategories = $Location$Categories;
 
-tg.TimeZone = $Time$Zone;
+tg.TimeZoneClient = $Time$Zone$Client;
 
 export default tg;
