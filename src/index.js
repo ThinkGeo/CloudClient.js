@@ -14,6 +14,8 @@ import $Map$Projection from "./MapsTile/MapProjection";
 import $Tile$Resolution from "./MapsTile/TileResolution";
 import $Tile$Size from "./MapsTile/TileSize";
 
+import $Time$Zone from "./TimeZone/TimeZoneClient";
+
 
 let tg = {};
 tg.BaseClient = $Base$Client;
@@ -23,7 +25,7 @@ tg.GeocodingClient = $Geocoding$Client;
 
 tg.MapsClient = $Maps$Client;
 tg.MapProjection = $Map$Projection;
-tg.RasterMapType = $Raster$Map$Type
+tg.RasterMapType = $Raster$Map$Type;
 tg.TileResolution = $Tile$Resolution;
 tg.TileSize = $Tile$Size;
 
@@ -31,5 +33,7 @@ tg.ReverseGeocodingClient = $ReverseGeocoding$Client;
 tg.ColorClient = $Color$Client;
 
 tg.LocationCategories = $Location$Categories;
+
+tg.TimeZone = $Time$Zone;
 
 export default tg;
