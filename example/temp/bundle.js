@@ -609,6 +609,12 @@
           htmlPath: './example/html/color-creation.html',
           codePenUrl: 'https://codepen.io/thinkgeo/pen/ZVzEgL',
           jsPath: './example/js/color-creation.js'
+        }, {
+          comments: 'Get a time zone by coordinate via <a href="https://cloud.thinkgeo.com/login.html">ThinkGeo Cloud Service</a>.',
+            title: 'Time-Zone',
+          htmlPath: './example/html/time-zone.html',
+          codePenUrl: 'https://codepen.io/thinkgeo/pen/ZVzEgL',
+          jsPath: './example/js/time-zone.js'
         }
         ]
       },{
