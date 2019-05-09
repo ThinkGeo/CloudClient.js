@@ -10,12 +10,12 @@ class TimeZoneClient extends BaseClient {
 
         // verify the required parameter 'pointY' is set
         if (pointY === undefined || pointY === null || pointY === '') {
-            throw new Error('Missing the required parameter \'pointY\' when calling searchPlaceByPoint');
+            throw new Error('Missing the required parameter \'pointY\' when calling getTimeZoneByCoordinate');
         }
 
         // verify the required parameter 'pointX' is set
         if (pointX === undefined || pointX === null || pointX === '') {
-            throw new Error('Missing the required parameter \'pointX\' when calling searchPlaceByPoint');
+            throw new Error('Missing the required parameter \'pointX\' when calling getTimeZoneByCoordinate');
         }
         let path = '/api/v1/timezones/{pointY},{pointX}';
         let httpMethod = 'GET';
