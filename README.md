@@ -1,6 +1,6 @@
 # ThinkGeoCloudClient.js
 
-ThinkGeoCloudClient.js is an open-source JavaScript SDK for making request to ThinkGeo Cloud Service. It simplifies the process of the code of request.
+ThinkGeoCloudClient.js is an open-source JavaScript SDK you can use to interact with the ThinkGeo Cloud, a collection of web-based GIS services that include map tiles, geocoding and reverse geocoding, elevation and more.  It simplifies the process of calling ThinkGeo Cloud web APIs from your applications.
 
 
 ## Demos
@@ -10,38 +10,38 @@ ThinkGeoCloudClient.js is an open-source JavaScript SDK for making request to Th
 * [Reverse Geocoding](https://samples.thinkgeo.com/cloud/#FindNearbyPlaces)
 * [Geocoding](https://samples.thinkgeo.com/cloud/#FindanAddressintheUS)
 * [Colors](https://samples.thinkgeo.com/cloud/#GenerateColorThemes)
+* [Projection](https://samples.thinkgeo.com/cloud/#TransformProjection)
+* [Time Zone](https://samples.thinkgeo.com/cloud/#GetTimeZoneforaPoint)
 
 
-## Create a basic web application with CloudClient.js
+## Creating a Basic Web Application with ThinkGeoCloudClient.js
 
-In this walkthrough, you will learn how to create a basic web application with CloudClient.js. You should have some familiarity with HTML/CSS and JavaScript, but the source code is provided. Any operating system or text editor will work, but you will need an internet connection while you are working (Take GeoCoding Service as example). 
+In this walkthrough, you will learn how to create a basic web application with ThinkGeoCloudClient.js. You should have some familiarity with HTML/CSS and JavaScript, but the source code is provided.  Any operating system or text editor will work, but you will need an Internet connection while you are working.  You'll also need a ThinkGeo Cloud account and an API key to access the ThinkGeo Cloud APIs -- you can [get started for free](https://cloud.thinkgeo.com).
 
-**Step 1:** Create an API Key
+### Step 1: Create an API Key
 
-CloudClient.js requires an API key for access to ThinkGeo Cloud services, it can be created following the guide of "[Create a Client Key](http://wiki.thinkgeo.com/wiki/thinkgeo_cloud_quick_start_guide)". For help, see the [API Reference](https://cloud.thinkgeo.com/help) or [Quick Start Guide](http://wiki.thinkgeo.com/wiki/thinkgeo_cloud_quick_start_guide).
+Your ThinkGeo Cloud account comes with a pregenerated API key you can use right away, or you can create your own keys by [following these guidelines](https://wiki.thinkgeo.com/wiki/thinkgeo_cloud_client_keys_guideline).  For general help with the service, see the [the ThinkGeo Cloud wiki](https://wiki.thinkgeo.com/wiki/thinkgeo_cloud).
 
-**Step 2:** Create an index page
+### Step 2: Create an HTML Page
 
-To get started making your application with Cloud Service, you need to use a text editor to update the HTML.
+We'll start creating a simple sample web application by creating an HTML page.
 
-1. Start your text editor with a blank document "index.html" and copy and paste the following HTML.
+Start your favorite text editor with a blank HTML document e.g. `index.html`.  Copy and paste the following HTML into it:
 
 ```html
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
+    <title>My Cloud Service Sample</title>
   </head>
   <body>
+    <div id="response"></div>
   </body>
 </html>
 ```
 
-2. In the `<head>` tag, add a title, such as `<title>My Cloud Service Sample</title>`.
-
-3. In the `<body>` tag, add a `DIV` to show the response from Cloud Services.
-
-After all the above, the HTML document should look as below:
+The most notable element here is the `<div id="response"></div>`, which we'll use to display the response we get from the ThinkGeo Cloud.
 
 ```
 <!DOCTYPE html>
@@ -56,34 +56,36 @@ After all the above, the HTML document should look as below:
 </html>
 ```
 
-**Step 3:** Add references JavaScript files
+### Step 3: Add a Reference to the ThinkGeoCloudClient.js Library
 
-To get started using CloudClient.js, you need to link to the JS files in the '<head>' section. Both NPM or CDN provides the minified version, which is a compressed file that improves performance. 
+To get started using ThinkGeoCloudClient.js, you need to reference the JavaScript library in the `<head>` section of your HTML page.  Both NPM and ThinkGeo's CDN provide a minified version, which is a compressed file that improves performance. 
   
-##### CDN
-Load from CDN in your project:
+#### CDN
+Reference the library directly from ThinkGeo's CDN:
 
 ```html
-<!-- latest minified version of thinkgeocloudclient.js -->
-<script src="https://cdn.thinkgeo.com/cloudclient-js/1.0.0/thinkgeocloudclient.js"></script>
+<!-- Latest minified version of ThinkGeoCloudClient.js -->
+<script src="https://cdn.thinkgeo.com/cloudclient-js/1.0.1/thinkgeocloudclient.js"></script>
 ```
 
-##### NPM
+#### NPM
 
-- Install the package:
+First, install the ThinkGeoCloudClient package:
 ```
 npm i thinkgeocloudclient-js
 ``` 
 
-- Include it to your page:
+Next, include it in your HTML page:
 ```html
-<!-- latest minified version of thinkgeocloudclient.js -->
-<script src="path/to/dist/thinkgeocloudclient.js"></script>
+<!-- Latest minified version of ThinkGeoCloudClient.js -->
+<script src="path/to/lib/thinkgeocloudclient.js"></script>
 ```
 
-**Step 4:** At the bottom of your page, add a JavaScript section to consume the services. 
+### Step 4: Make a ThinkGeo Cloud Request
+
+At the bottom of your HTML page, add a JavaScript section with the following code.  As a demonstration, this will make a request to the ThinkGeo Cloud Reverse Geocoding service to find points of interest near a specified latitude/longitude coordinate.  The results will be displayed on your HTML page.
  
- ```JavaScript
+```JavaScript
 let reverseGeocodingClient = new tg.ReverseGeocodingClient('Your-Cloud-Service-Api-Key');
 
 // Find the ThinkGeo office address by coordinate
@@ -95,4 +97,4 @@ reverseGeocodingClient.searchPlaceByPoint(33.128367, -96.809847, function (statu
        document.getElementById('response').innerHTML = address;
     }
 })
- ```
+```
