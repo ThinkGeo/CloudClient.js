@@ -586,34 +586,34 @@
         dataTarget: 'ThinkGeo-cloud-services',
         styleName: 'ThinkGeo Cloud Services',
         subitems: [{
-          comments: 'Convert an address to a latitude and longitude via  <a href="https://cloud.thinkgeo.com/login.html">ThinkGeo  Cloud Service</a>.',
+          comments: 'Convert an address to a latitude and longitude via  <a href="https://cloud.thinkgeo.com">ThinkGeo  Cloud Service</a>.',
           title: "Geocoding",
           htmlPath: './example/html/find-address.html',
           codePenUrl: 'https://codepen.io/thinkgeo/pen/jXwdKq',
           jsPath: './example/js/find-address.js'
         }, {
-          comments: `Get the elevation of points along a line on <a href="https://cloud.thinkgeo.com/login.html">ThinkGeo Cloud Service</a>.`,
+          comments: `Get the elevation of points along a line on <a href="https://cloud.thinkgeo.com">ThinkGeo Cloud Service</a>.`,
           title: 'Elevation',
           htmlPath: './example/html/elevation.html',
           codePenUrl: 'https://codepen.io/thinkgeo/pen/mabbKm',
           jsPath: './example/js/elevation.js'
         }, {
-          comments: 'Convert a coordinate to address via <a href="https://cloud.thinkgeo.com/login.html">ThinkGeo Cloud Service</a>.',
+          comments: 'Convert a coordinate to address via <a href="https://cloud.thinkgeo.com">ThinkGeo Cloud Service</a>.',
           title: 'Reverse-Geocoding',
           htmlPath: './example/html/reverse-geocoding.html',
           codePenUrl: 'https://codepen.io/thinkgeo/pen/gZYOae',
           jsPath: './example/js/reverse-geocoding.js'
         }, {
-          comments: 'Get a family of colors based on different options from <a href="https://cloud.thinkgeo.com/login.html">ThinkGeo Cloud Service</a>.',
+          comments: 'Get a family of colors based on different options from <a href="https://cloud.thinkgeo.com">ThinkGeo Cloud Service</a>.',
             title: 'Colors',
           htmlPath: './example/html/color-creation.html',
           codePenUrl: 'https://codepen.io/thinkgeo/pen/ZVzEgL',
           jsPath: './example/js/color-creation.js'
         }, {
-          comments: 'Get a time zone by coordinate via <a href="https://cloud.thinkgeo.com/login.html">ThinkGeo Cloud Service</a>.',
+          comments: 'Get the time zone of a point on the map via <a href="https://cloud.thinkgeo.com">ThinkGeo Cloud Service</a>.',
             title: 'Time-Zone',
           htmlPath: './example/html/time-zone.html',
-          codePenUrl: 'https://codepen.io/thinkgeo/pen/ZVzEgL',
+          codePenUrl: 'https://codepen.io/thinkgeo/pen/PgVPVM',
           jsPath: './example/js/time-zone.js'
         }
         ]
