@@ -21,21 +21,15 @@ class GeocodingClient extends BaseClient {
         if (location === undefined || location === null || location === '') {
             throw new Error("Missing the required parameter 'searchText' when calling searchByPoint");
         }
-        let opts = options || {};
-
         let path = '/api/v1/location/geocode/{searchText}';
         let httpMethod = 'GET';
         let pathParams = {
             'searchText': location
         };
-        let queryParams = {
-            'LocationType': opts['locationType'],
-            'FuzzyMatch': opts['fuzzyMatch'],
-            'MaxResults': opts['maxResults'],
-            'VerboseResults': opts['verboseResults'],
-            'Srid': opts['srid'],
-            'Proj4String': opts['proj4String'],
-        };
+
+        let queryParams = options || {};
+        delete queryParams["location"];
+
         let bodyParam = {};
         let contentTypes = [];
         let returnType = 'json';
@@ -50,14 +44,10 @@ class GeocodingClient extends BaseClient {
         let httpMethod = 'POST';
         let pathParams = {
         };
-        let queryParams = {
-            'LocationType': opts['locationType'],
-            'FuzzyMatch': opts['fuzzyMatch'],
-            'MaxResults': opts['maxResults'],
-            'VerboseResults': opts['verboseResults'],
-            'Srid': opts['srid'],
-            'Proj4String': opts['proj4String'],
-        };
+
+        let queryParams = options || {};
+        delete queryParams["body"];
+        
         let bodyParam = opts['body'];
         let contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';
