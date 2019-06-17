@@ -1,39 +1,46 @@
-import $Base$Client from "./Advanced/BaseClient";
-import $Elevation$Client from "./Elevation/ElevationClient";
-import $Projection$Client from "./Projection/ProjectionClient";
-import $Geocoding$Client from "./Geocoding/GeocodingClient";
+import $DistanceUnit from './constants/DistanceUnit';
 
-import $ReverseGeocoding$Client from "./ReverseGeocoding/ReverseGeocodingClient";
-import $Location$Categories from "./ReverseGeocoding/LocationCategories";
+import $Base$Client from './Advanced/BaseClient';
+import $Elevation$Client from './Elevation/ElevationClient';
+import $Projection$Client from './Projection/ProjectionClient';
+import $Geocoding$Client from './Geocoding/GeocodingClient';
 
-import $Color$Client from "./ColorUtilities/ColorClient";
+import $ReverseGeocoding$Client from './ReverseGeocoding/ReverseGeocodingClient';
+import $Location$Categories from './ReverseGeocoding/LocationCategories';
 
-import $Maps$Client from "./MapsTile/MapsClient";
-import $Raster$Map$Type from "./MapsTile/RasterMapType";
-import $Map$Projection from "./MapsTile/MapProjection";
-import $Tile$Resolution from "./MapsTile/TileResolution";
-import $Tile$Size from "./MapsTile/TileSize";
+import $Color$Client from './ColorUtilities/ColorClient';
 
+import $Maps$Client from './MapsTile/MapsClient';
+import $Raster$Map$Type from './MapsTile/RasterMapType';
+import $Map$Projection from './MapsTile/MapProjection';
+import $Tile$Resolution from './MapsTile/TileResolution';
+import $Tile$Size from './MapsTile/TileSize';
+
+import $Routing$Client from './Routing/RoutingClient';
 import $Time$Zone$Client from "./TimeZone/TimeZoneClient";
 
 
 let tg = {};
+tg.DistanceUnit = $DistanceUnit;
+
 tg.BaseClient = $Base$Client;
 tg.ElevationClient = $Elevation$Client;
 tg.ProjectionClient = $Projection$Client;
 tg.GeocodingClient = $Geocoding$Client;
 
+tg.ReverseGeocodingClient = $ReverseGeocoding$Client;
+tg.LocationCategories = $Location$Categories;
+
+tg.ColorClient = $Color$Client;
+
 tg.MapsClient = $Maps$Client;
-tg.MapProjection = $Map$Projection;
 tg.RasterMapType = $Raster$Map$Type;
+tg.MapProjection = $Map$Projection;
 tg.TileResolution = $Tile$Resolution;
 tg.TileSize = $Tile$Size;
 
-tg.ReverseGeocodingClient = $ReverseGeocoding$Client;
-tg.ColorClient = $Color$Client;
-
-tg.LocationCategories = $Location$Categories;
-
+tg.RoutingClient = $Routing$Client;
 tg.TimeZoneClient = $Time$Zone$Client;
+
 
 export default tg;
