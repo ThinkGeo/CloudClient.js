@@ -79,11 +79,14 @@ class BaseClient extends Eventable {
 
     callApi(path, httpMethod, pathParams, queryParams, bodyParam, authNames, contentTypes, returnType, callback) {
         let params = {
-            queryObj: queryParams,
-            setHeaderObj: {
+            queryObj: queryParams
+        }
+        if (httpMethod.toLowerCase() === 'post') {
+            params["setHeaderObj"] = {
                 "Content-type": contentTypes
             }
         }
+
         let applyAuthNames = authNames === undefined ? this.authNames_ : authNames;
 
         let xhr = new XMLHttpRequest();
@@ -93,7 +96,9 @@ class BaseClient extends Eventable {
 
         xhr.open(httpMethod, url, true);
 
-        Util.setRequestHeader(xhr, params.setHeaderObj);
+        if(params.setHeaderObj){
+            Util.setRequestHeader(xhr, params.setHeaderObj);
+        }        
 
         if (returnType) {
             if (returnType.toLowerCase() === 'blob') {
