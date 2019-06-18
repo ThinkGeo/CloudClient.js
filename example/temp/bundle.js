@@ -615,6 +615,12 @@
           htmlPath: './example/html/time-zone.html',
           codePenUrl: 'https://codepen.io/thinkgeo/pen/PgVPVM',
           jsPath: './example/js/time-zone.js'
+        }, {
+          comments: 'Get the routing of two points via <a href="https://cloud.thinkgeo.com">ThinkGeo Cloud Service</a>.',
+            title: 'Routing',
+          htmlPath: './example/html/routing.html',
+          codePenUrl: 'https://codepen.io/thinkgeocodepen/pen/JqOdax',
+          jsPath: './example/js/routing.js'
         }
         ]
       },{
