@@ -12,6 +12,7 @@ ThinkGeoCloudClient.js is an open-source JavaScript SDK you can use to interact 
 * [Colors](https://samples.thinkgeo.com/cloud/#GenerateColorThemes)
 * [Projection](https://samples.thinkgeo.com/cloud/#TransformProjection)
 * [Time Zone](https://samples.thinkgeo.com/cloud/#GetTimeZoneforaPoint)
+* [Routing](https://samples.thinkgeo.com/cloud/#RoutinginNorthAmerica)
 
 
 ## Creating a Basic Web Application with ThinkGeoCloudClient.js
@@ -65,7 +66,7 @@ Reference the library directly from ThinkGeo's CDN:
 
 ```html
 <!-- Latest minified version of ThinkGeoCloudClient.js -->
-<script src="https://cdn.thinkgeo.com/cloudclient-js/1.0.1/thinkgeocloudclient.js"></script>
+<script src="https://cdn.thinkgeo.com/cloudclient-js/1.0.4/thinkgeocloudclient.js"></script>
 ```
 
 #### NPM
