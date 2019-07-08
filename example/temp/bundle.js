@@ -621,6 +621,12 @@
           htmlPath: './example/html/routing.html',
           codePenUrl: 'https://codepen.io/thinkgeocodepen/pen/JqOdax',
           jsPath: './example/js/routing.js'
+        }, {
+          comments: 'Perform a spatial query via <a href="https://cloud.thinkgeo.com">ThinkGeo Cloud Service</a>.',
+            title: 'Maps Query',
+          htmlPath: './example/html/maps-query.html',
+          codePenUrl: 'https://codepen.io/thinkgeocodepen/pen/JqOdax',
+          jsPath: './example/js/maps-query.js'
         }
         ]
       },{
