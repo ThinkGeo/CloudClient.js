@@ -85,6 +85,17 @@ class RoutingClient extends BaseClient {
 
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
+
+    getCostMatrix(options, callback) {
+        const innerOptions = options || {};
+        const queryParams = {
+            origins: innerOptions.origins,
+            destinations: innerOptions.destinations,
+            costmatrixtype: innerOptions.costmatrixtype,
+        };
+
+        this.callApi('/api/v1/route/matrix', 'GET', {}, queryParams, null, undefined, [], 'json', callback);
+    }
 }
 
 export default RoutingClient;
