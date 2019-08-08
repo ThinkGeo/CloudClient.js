@@ -3,7 +3,7 @@ import BaseClient from "../Advanced/BaseClient";
 class ReverseGeocodingClient extends BaseClient {
     constructor(apiKey) {
         super(apiKey);
-        this._MAX_WKT_LENGTH_IN_GET_REQUEST = 1024;
+        this._MAX_WKT_LENGTH_IN_GET_REQUEST = 2000;
     }
     search(options, callback) {
         let opts = options || {};
