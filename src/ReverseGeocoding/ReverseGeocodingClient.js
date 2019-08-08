@@ -212,7 +212,7 @@ class ReverseGeocodingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
-    searchPlaceInAdvance(options, callback) {
+    searchPlaceAdvanceMode(options, callback) {
         let opts = options || {};
 
         let path = '/api/v1/location/reverse-geocode/advanced';
@@ -222,8 +222,8 @@ class ReverseGeocodingClient extends BaseClient {
         let bodyParam = JSON.stringify({
             'Wkt': opts['wkt'],
             'Srid': opts['srid'],
-            'Lang': opts['lang'],
             'Proj4String': opts['proj4String'],
+            'Lang': opts['lang'],
             'SearchRadius': opts['searchRadius'],
             'SearchRadiusUnit': opts['searchRadiusUnit'],
             'MaxResults': opts['maxResults'],
