@@ -3,8 +3,8 @@ import BaseClient from "../Advanced/BaseClient";
 class ReverseGeocodingClient extends BaseClient {
     constructor(apiKey) {
         super(apiKey);
+        this._MAX_WKT_LENGTH_IN_GET_REQUEST = 1024;
     }
-
     search(options, callback) {
         let opts = options || {};
 
@@ -79,27 +79,43 @@ class ReverseGeocodingClient extends BaseClient {
         if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling searchPlaceByLine");
         }
-        let path = '/api/v1/location/reverse-geocode/line';
-        let httpMethod = 'GET';
-        let pathParams = {};
-        let queryParams = {
-            'wkt': wkt,
-            'Srid': opts['srid'],
-            'Proj4String': opts['proj4String'],
-            'Lang': opts['lang'],
-            'SearchRadius': opts['searchRadius'],
-            'SearchRadiusUnit': opts['searchRadiusUnit'],
-            'MaxResults': opts['maxResults'],
-            'LocationCategories': opts['locationCategories'],
-            'LocationTypes': opts['locationTypes'],
-            'VerboseResults': opts['verboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
-        };
-        let bodyParam = null;
-        let contentTypes = [];
-        let returnType = 'json';
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
+        if (wkt.length > this._MAX_WKT_LENGTH_IN_GET_REQUEST) {
+            let path = '/api/v1/location/reverse-geocode/line';
+            let httpMethod = 'GET';
+            let pathParams = {};
+            let queryParams = {
+                'wkt': wkt,
+                'Srid': opts['srid'],
+                'Proj4String': opts['proj4String'],
+                'Lang': opts['lang'],
+                'SearchRadius': opts['searchRadius'],
+                'SearchRadiusUnit': opts['searchRadiusUnit'],
+                'MaxResults': opts['maxResults'],
+                'LocationCategories': opts['locationCategories'],
+                'LocationTypes': opts['locationTypes'],
+                'VerboseResults': opts['verboseResults'],
+                'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            };
+            let bodyParam = null;
+            let contentTypes = [];
+            let returnType = 'json';
+            this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
+        } else {
+            this.searchPlaceAdvanceMode({
+                'wkt': wkt,
+                'srid': opts['srid'],
+                'proj4String': opts['proj4String'],
+                'lang': opts['lang'],
+                'searchRadius': opts['searchRadius'],
+                'searchRadiusUnit': opts['searchRadiusUnit'],
+                'maxResults': opts['maxResults'],
+                'locationCategories': opts['locationCategories'],
+                'locationTypes': opts['locationTypes'],
+                'verboseResults': opts['verboseResults'],
+                'distanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            }, callback);
+        }
     }
 
     searchPlaceByArea(wkt, callback, options) {
@@ -108,27 +124,44 @@ class ReverseGeocodingClient extends BaseClient {
         if (wkt === undefined || wkt === null || wkt === '') {
             throw new Error("Missing the required parameter 'wkt' when calling searchPlaceByArea");
         }
-        let path = '/api/v1/location/reverse-geocode/area';
-        let httpMethod = 'GET';
-        let pathParams = {};
-        let queryParams = {
-            'wkt': wkt,
-            'Srid': opts['srid'],
-            'Proj4String': opts['proj4String'],
-            'Lang': opts['lang'],
-            'SearchRadius': opts['searchRadius'],
-            'SearchRadiusUnit': opts['searchRadiusUnit'],
-            'MaxResults': opts['maxResults'],
-            'LocationCategories': opts['locationCategories'],
-            'LocationTypes': opts['locationTypes'],
-            'VerboseResults': opts['verboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
-        };
-        let bodyParam = null;
-        let contentTypes = [];
-        let returnType = 'json';
+        if (wkt.length < this._MAX_WKT_LENGTH_IN_GET_REQUEST) {
 
-        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
+            let path = '/api/v1/location/reverse-geocode/area';
+            let httpMethod = 'GET';
+            let pathParams = {};
+            let queryParams = {
+                'wkt': wkt,
+                'Srid': opts['srid'],
+                'Proj4String': opts['proj4String'],
+                'Lang': opts['lang'],
+                'SearchRadius': opts['searchRadius'],
+                'SearchRadiusUnit': opts['searchRadiusUnit'],
+                'MaxResults': opts['maxResults'],
+                'LocationCategories': opts['locationCategories'],
+                'LocationTypes': opts['locationTypes'],
+                'VerboseResults': opts['verboseResults'],
+                'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            };
+            let bodyParam = null;
+            let contentTypes = [];
+            let returnType = 'json';
+            
+            this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
+        } else {
+            this.searchPlaceAdvanceMode({
+                'wkt': wkt,
+                'srid': opts['srid'],
+                'proj4String': opts['proj4String'],
+                'lang': opts['lang'],
+                'searchRadius': opts['searchRadius'],
+                'searchRadiusUnit': opts['searchRadiusUnit'],
+                'maxResults': opts['maxResults'],
+                'locationCategories': opts['locationCategories'],
+                'locationTypes': opts['locationTypes'],
+                'verboseResults': opts['verboseResults'],
+                'distanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            }, callback);
+        }
     }
 
     searchPlaceByPoints(options, callback) {
