@@ -93,7 +93,7 @@ class RoutingClient extends BaseClient {
             destinations: innerOptions.destinations,
             costmatrixtype: innerOptions.costmatrixtype,
             durationunit: innerOptions.durationunit,
-            distanceunit: innerOptions.distanceunit
+            distanceunit: innerOptions.distanceunit 
         };
 
         this.callApi('/api/v1/route/matrix', 'GET', {}, queryParams, null, undefined, [], 'json', callback);
