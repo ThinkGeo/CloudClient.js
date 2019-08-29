@@ -1,6 +1,7 @@
 import BaseClient from '../Advanced/BaseClient';
 import RoutingGetRouteOptions from './RoutingGetRouteOptions';
 import RoutingGetServiceAreaOptions from './RoutingGetServiceAreaOptions';
+import RoutingGetCostMatrixOptions from './RoutingGetCostMatrixOptions';
 
 class RoutingClient extends BaseClient {
     constructor (apiKey){
@@ -16,15 +17,9 @@ class RoutingClient extends BaseClient {
     getRoute(waypoints, callback, options){
         let opts = options || {};
         
-        let coordinatesString;
-        waypoints.forEach((waypoint, index) => {
-            if (index === 0){
-                coordinatesString = (waypoint.y + ',' + waypoint.x);
-            }
-            else{
-                coordinatesString += (';' + waypoint.y + ',' + waypoint.x);
-            }
-        });
+        let coordinatesString = waypoints
+            .map(item => item.y + ',' + item.x)
+            .join(';');
         
         let path = '/api/v1/route/{coordinates}';
         let httpMethod = 'GET';
@@ -86,14 +81,34 @@ class RoutingClient extends BaseClient {
         this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 
-    getCostMatrix(options, callback) {
+    /**
+     * 
+     * @param {{x:number, y:number}[]} origins
+     * @param {{x:number, y:number}[]} destinations
+     * @param {function(number, object) : undefined} callback 
+     * @param {RoutingGetCostMatrixOptions} options 
+     */
+    getCostMatrix(origins, destinations, callback, options) {
         const innerOptions = options || {};
+
+        let originsString = origins
+            .map(item => item.y + ',' + item.x)
+            .join(';');
+
+        let destinationsString = destinations
+            .map(item => item.y + ',' + item.x)
+            .join(';');
+        
         const queryParams = {
-            origins: innerOptions.origins,
-            destinations: innerOptions.destinations,
-            costmatrixtype: innerOptions.costmatrixtype,
-            durationunit: innerOptions.durationunit,
-            distanceunit: innerOptions.distanceunit
+            origins: originsString,
+            destinations: destinationsString,
+            costMatrixType: innerOptions.costMatrixType,
+            srid: innerOptions.srid,
+            proj4String: innerOptions.proj4String,
+            coordinateSnapRadius: innerOptions.coordinateSnapRadius,
+            coordinateSnapRadiusUnit: innerOptions.coordinateSnapRadiusUnit,
+            durationUnit: innerOptions.durationUnit,
+            distanceUnit: innerOptions.distanceUnit
         };
 
         this.callApi('/api/v1/route/matrix', 'GET', {}, queryParams, null, undefined, [], 'json', callback);
