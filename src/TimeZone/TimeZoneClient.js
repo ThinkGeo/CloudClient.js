@@ -5,6 +5,13 @@ class TimeZoneClient extends BaseClient {
         super(apiKey);
     }
 
+    /**
+     * 
+     * @param {number} pointY 
+     * @param {number} pointX 
+     * @param {function(number, object) : undefined} callback 
+     * @param {srid:number, proj4String:string} options 
+     */
     getTimeZoneByCoordinate(pointY, pointX, callback, options) {
         let opts = options || {};
 
@@ -27,6 +34,38 @@ class TimeZoneClient extends BaseClient {
             'Srid': opts['srid'],
             'Proj4String': opts['proj4String'],
         };
+        let bodyParam = null;
+        let contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
+    }
+
+    /**
+     * 
+     * @param {function(number, object) : undefined} callback 
+     */
+    getAllTimeZoneNames(callback) {
+        let path = '/api/v1/timezones';
+        let httpMethod = 'GET';
+        let pathParams = undefined;
+        let queryParams = {};
+        let bodyParam = null;
+        let contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
+    }
+
+    /**
+     * 
+     * @param {function(number, object) : undefined} callback 
+     */
+    getAllTimeZones(callback) {
+        let path = '/api/v1/timezones/geometry';
+        let httpMethod = 'GET';
+        let pathParams = undefined;
+        let queryParams = {};
         let bodyParam = null;
         let contentTypes = [];
         let returnType = 'json';
