@@ -1,6 +1,6 @@
 import DistanceUnit from '../constants/DistanceUnit';
 
-export default class GetServiceAreaOptions{
+export default class RoutingGetServiceAreaOptions{
     /**
      * 
      */

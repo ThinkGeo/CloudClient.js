@@ -2,6 +2,7 @@ import BaseClient from '../Advanced/BaseClient';
 import RoutingGetRouteOptions from './RoutingGetRouteOptions';
 import RoutingGetServiceAreaOptions from './RoutingGetServiceAreaOptions';
 import RoutingGetCostMatrixOptions from './RoutingGetCostMatrixOptions';
+import RoutingOptimizationOptions from './RoutingOptimizationOptions';
 
 class RoutingClient extends BaseClient {
     constructor (apiKey){
@@ -86,7 +87,7 @@ class RoutingClient extends BaseClient {
      * @param {{x:number, y:number}[]} origins
      * @param {{x:number, y:number}[]} destinations
      * @param {function(number, object) : undefined} callback 
-     * @param {RoutingGetCostMatrixOptions} options 
+     * @param {RoutingGetCostMatrixOptions | undefined} options 
      */
     getCostMatrix(origins, destinations, callback, options) {
         const innerOptions = options || {};
@@ -112,6 +113,43 @@ class RoutingClient extends BaseClient {
         };
 
         this.callApi('/api/v1/route/matrix', 'GET', {}, queryParams, null, undefined, [], 'json', callback);
+    }
+
+    /**
+     * 
+     * @param {{x:number, y:number}[]} coordinates 
+     * @param {function(number, object) : undefined} callback 
+     * @param {RoutingOptimizationOptions | undefined} options 
+     */
+    optimization(coordinates, callback, options) {
+        let opts = options || {};
+        
+        let coordinatesString = coordinates
+            .map(item => item.y + ',' + item.x)
+            .join(';');
+        
+        let path = '/api/v1/route/optimization/{coordinates}';
+        let httpMethod = 'GET';
+        let pathParams = {
+            coordinates: coordinatesString,
+        };
+        let queryParams = {
+            CoordinateSnapRadius: opts.coordinateSnapRadius,
+            CoordinateSnapRadiusUnit: opts.coordinateSnapRadiusUnit,
+            Destination: opts.destination,
+            DistanceUnit: opts.distanceUnit,
+            DurationUnit: opts.durationUnit,
+            Proj4String: opts.proj4String,
+            Roundtrip: opts.roundtrip,
+            Source: opts.source,
+            Srid: opts.srid,
+            TurnByTurn: opts.turnByTurn,
+        };
+        let bodyParam = null;
+        let contentTypes = [];
+        let returnType = 'json';
+
+        this.callApi(path, httpMethod, pathParams, queryParams, bodyParam, undefined, contentTypes, returnType, callback);
     }
 }
 
