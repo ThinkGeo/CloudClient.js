@@ -64,6 +64,7 @@ class ReverseGeocodingClient extends BaseClient {
             'LocationTypes': opts['locationTypes'],
             'VerboseResults': opts['verboseResults'],
             'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            'IncludeOverturePlaces': opts['includeOverturePlaces'],
         };
         let bodyParam = null;
         let contentTypes = [];
@@ -96,6 +97,7 @@ class ReverseGeocodingClient extends BaseClient {
                 'LocationTypes': opts['locationTypes'],
                 'VerboseResults': opts['verboseResults'],
                 'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+                'IncludeOverturePlaces': opts['includeOverturePlaces'],
             };
             let bodyParam = null;
             let contentTypes = [];
@@ -141,6 +143,7 @@ class ReverseGeocodingClient extends BaseClient {
                 'LocationTypes': opts['locationTypes'],
                 'VerboseResults': opts['verboseResults'],
                 'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+                'IncludeOverturePlaces': opts['includeOverturePlaces'],
             };
             let bodyParam = null;
             let contentTypes = [];
@@ -160,6 +163,7 @@ class ReverseGeocodingClient extends BaseClient {
                 'locationTypes': opts['locationTypes'],
                 'verboseResults': opts['verboseResults'],
                 'distanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+                'IncludeOverturePlaces': opts['includeOverturePlaces'],
             }, callback);
         }
     }
@@ -181,6 +185,7 @@ class ReverseGeocodingClient extends BaseClient {
             'LocationTypes': opts['locationTypes'],
             'VerboseResults': opts['verboseResults'],
             'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            'IncludeOverturePlaces': opts['includeOverturePlaces'],
         };
         let bodyParam = JSON.stringify(opts['body']);
         var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
@@ -213,6 +218,7 @@ class ReverseGeocodingClient extends BaseClient {
             'LocationTypes': opts['locationTypes'],
             'VerboseResults': opts['verboseResults'],
             'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            'IncludeOverturePlaces': opts['includeOverturePlaces'],
         };
         let bodyParam = null;
         let contentTypes = [];
@@ -263,7 +269,8 @@ class ReverseGeocodingClient extends BaseClient {
             'LocationCategories': opts['locationCategories'],
             'LocationTypes': opts['locationTypes'],
             'VerboseResults': opts['verboseResults'],
-            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit']
+            'DistanceFromQueryFeatureUnit': opts['distanceFromQueryFeatureUnit'],
+            'IncludeOverturePlaces': opts['includeOverturePlaces']
         });
         var contentTypes = ['application/json-patch+json', 'application/json', 'text/json', 'application/_*+json'];
         let returnType = 'json';

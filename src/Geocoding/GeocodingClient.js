@@ -21,7 +21,7 @@ class GeocodingClient extends BaseClient {
         if (location === undefined || location === null || location === '') {
             throw new Error("Missing the required parameter 'searchText' when calling searchByPoint");
         }
-        let path = '/api/v1/location/geocode/{searchText}';
+        let path = '/api/v2/location/geocode/{searchText}';
         let httpMethod = 'GET';
         let pathParams = {
             'searchText': location
@@ -40,7 +40,7 @@ class GeocodingClient extends BaseClient {
     searchBatch(options, callback) {
         let opts = options || {};
 
-        let path = '/api/v1/location/geocode/multi';
+        let path = '/api/v2/location/geocode/multi';
         let httpMethod = 'POST';
         let pathParams = {
         };
